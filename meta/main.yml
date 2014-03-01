@@ -1,4 +1,17 @@
 ---
 dependencies:
-  # TODO: Figure out a better way to make this dependency not required.
   - { role: apache }
+
+galaxy_info:
+  author: geerlingguy
+  description: PHP for RHEL/CentOS 6.x
+  company: "Midwestern Mac, LLC"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 1.4
+  platforms:
+  - name: EL
+    versions:
+    - 6
+  categories:
+    - development
+    - web
