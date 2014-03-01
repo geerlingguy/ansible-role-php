@@ -1,0 +1,4 @@
+---
+dependencies:
+  # TODO: Figure out a better way to make this dependency not required.
+  - { role: apache }

@@ -1,0 +1,13 @@
+---
+# PHP.
+- name: Ensure PHP packages are installed.
+  yum: name={{ item }} state=installed enablerepo={{ php_enablerepo }}
+  with_items: php_packages
+  notify: restart apache
+
+- name: Place PHP configuration files in place.
+  template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=644
+  with_items:
+  - { src: php.ini.j2, dest: /etc/php.ini }
+  - { src: apc.ini.j2, dest: /etc/php.d/php.ini }
+  notify: restart apache
