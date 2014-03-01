@@ -63,6 +63,11 @@ A list of the PHP packages to install. You'll likely want to install common pack
       - php-pecl-apc
       - php-xml
 
+## TODO
+
+  - Make role more flexible, allowing APC to be excluded from `php_packages` list.
+  - Use `lineinfile` rather than templates to make configuration changes.
+
 ## License
 
 MIT / BSD
