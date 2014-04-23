@@ -1,6 +1,6 @@
 # Ansible Role: PHP
 
-Installs PHP on RedHat Enterprise Linux or CentOS 6.x servers.
+Installs PHP on RedHat/CentOS and Debian/Ubuntu servers.
 
 ## Requirements
 
@@ -9,10 +9,6 @@ None.
 ## Role Variables
 
 Available variables are listed below, along with default values (see `vars/main.yml`):
-
-    php_enablerepo: ""
-
-If you have enabled any additional repositories (might I suggest geerlingguy.repo-epel or geerlingguy.repo-remi), those repositories can be listed under this variable (e.g. `remi,epel`). This can be handy, as an example, if you want to install the latest version of PHP 5.4, which is in the Remi repository.
 
     php_memory_limit: "256M"
     php_max_execution_time: "60"
@@ -33,7 +29,11 @@ Explicitly set PHP's date timezone system-wide.
 
     php_packages: []
 
-A list of the PHP packages to install. You'll likely want to install common packages like `php`, `php-cli`, `php-devel` and `php-pdo`, and you can add in whatever other packages you'd like (for example, `php-gd` for image manipulation, or `php-ldap` if you need to connect to an LDAP server for authentication).
+A list of the PHP packages to install (OS-specific by default). You'll likely want to install common packages like `php`, `php-cli`, `php-devel` and `php-pdo`, and you can add in whatever other packages you'd like (for example, `php-gd` for image manipulation, or `php-ldap` if you need to connect to an LDAP server for authentication).
+
+    php_enablerepo: ""
+
+(RedHat/CentOS only) If you have enabled any additional repositories (might I suggest geerlingguy.repo-epel or geerlingguy.repo-remi), those repositories can be listed under this variable (e.g. `remi,epel`). This can be handy, as an example, if you want to install the latest version of PHP 5.4, which is in the Remi repository.
 
 ## Dependencies
 
@@ -62,12 +62,13 @@ A list of the PHP packages to install. You'll likely want to install common pack
       - php-pdo
       - php-pecl-apc
       - php-xml
+      ...
 
 ## TODO
 
   - Make role more flexible, allowing APC to be excluded from `php_packages` list.
   - Use `lineinfile` rather than templates to make configuration changes.
-  - Remove apache dependency (better way of using handler?).
+  - Remove apache dependency (better way of using handler? Way to get around Debian/apt's apache2 + php bindings?).
 
 ## License
 

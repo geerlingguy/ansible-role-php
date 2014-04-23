@@ -7,18 +7,4 @@ php_upload_max_filesize: "64M"
 php_apc_cache_by_default: "1"
 php_apc_shm_size: "96M"
 php_date_timezone: "America/Chicago"
-php_packages:
-  - ImageMagick
-  - php
-  - php-cli
-  - php-common
-  - php-devel
-  - php-gd
-  - php-imap
-  - php-ldap
-  - php-mbstring
-  - php-pdo
-  - php-pear
-  - php-pecl-apc
-  - php-xml
-  - php-xmlrpc
+php_packages: []

@@ -1,0 +1,19 @@
+---
+php_conf_path: /etc
+php_extension_conf_path: /etc/php.d
+php_apc_conf_filename: apc.ini
+php_packages:
+  - ImageMagick
+  - php
+  - php-cli
+  - php-common
+  - php-devel
+  - php-gd
+  - php-imap
+  - php-ldap
+  - php-mbstring
+  - php-pdo
+  - php-pear
+  - php-pecl-apc
+  - php-xml
+  - php-xmlrpc
