@@ -14,9 +14,13 @@ install:
 
   # Add ansible.cfg to pick up roles path.
   - "printf '[defaults]\\nroles_path = ../' > ansible.cfg"
+  - cat ansible.cfg
+  - pwd
 
   # Install required dependencies.
   - ansible-galaxy install geerlingguy.apache
+  - ls
+  - ls ../
 
 script:
   # Check the role/playbook's syntax.
