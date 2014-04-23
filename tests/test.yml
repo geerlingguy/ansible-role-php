@@ -1,8 +1,6 @@
 ---
-- hosts: all
-  vars_files:
-    - '../vars/main.yml'
+- hosts: localhost
+  remote_user: root
   roles:
     - geerlingguy.apache
-  tasks:
-    - include: '../tasks/main.yml'
+    - geerlingguy.php
