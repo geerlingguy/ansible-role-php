@@ -7,6 +7,8 @@ before_install:
   - sudo apt-get update -qq
 install:
   - pip install ansible==1.5.0
+  - "printf '[defaults]\nroles_path = ../' > ansible.cfg"
+  - ansible-galaxy install geerlingguy.apache
 script:
   # Check the role/playbook's syntax.
   - "ansible-playbook -i tests/inventory tests/$SITE --syntax-check"
