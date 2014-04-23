@@ -21,5 +21,9 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
-  # Check PHP version to see if it's running...
-  # TODO
+  # Make sure PHP is running.
+  - >
+    php -v
+    | grep -q 'The PHP Group'
+    && (echo 'PHP is installed' && exit 0)
+    || (echo 'PHP is not installed' && exit 1)
