@@ -3,4 +3,4 @@
   remote_user: root
   roles:
     - geerlingguy.apache
-    - geerlingguy.php
+    - ansible-role-php
