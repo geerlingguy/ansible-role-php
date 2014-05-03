@@ -1,6 +1,5 @@
 ---
-dependencies:
-  - { role: geerlingguy.apache }
+dependencies: []
 
 galaxy_info:
   author: geerlingguy

@@ -6,7 +6,7 @@ Installs PHP on RedHat/CentOS and Debian/Ubuntu servers.
 
 ## Requirements
 
-None.
+Must be running a separate web server, such as Nginx or Apache.
 
 ## Role Variables
 
@@ -33,13 +33,21 @@ Explicitly set PHP's date timezone system-wide.
 
 A list of the PHP packages to install (OS-specific by default). You'll likely want to install common packages like `php`, `php-cli`, `php-devel` and `php-pdo`, and you can add in whatever other packages you'd like (for example, `php-gd` for image manipulation, or `php-ldap` if you need to connect to an LDAP server for authentication).
 
+    php_webserver_daemon: "httpd"
+
+The default values for the HTTP server deamon are `httpd` (used by Apache) for RedHat/CentOS, or `apache2` (also used by Apache) for Debian/Ubuntu. If you are running another webserver (for example, `nginx`), change this value to the name of the daemon under which the webserver runs.
+
+    php_enable_php_fpm: false
+
+If you add `php-fpm` to the `php_packages` list, and would like to run PHP-fpm, as you would with Nginx or as an alternative to `mod_php` in Apache, you can set this variable to `true`, and the `php-fpm` daemon will be enabled and started. You will need to configure PHP-fpm on your own, by editing the config file in `/etc/php-fpm.d/www.conf` (for RedHat servers) or replacing it with your own template via Ansible.
+
     php_enablerepo: ""
 
 (RedHat/CentOS only) If you have enabled any additional repositories (might I suggest geerlingguy.repo-epel or geerlingguy.repo-remi), those repositories can be listed under this variable (e.g. `remi,epel`). This can be handy, as an example, if you want to install the latest version of PHP 5.4, which is in the Remi repository.
 
 ## Dependencies
 
-  - geerlingguy.apache
+None.
 
 ## Example Playbook
 
@@ -70,7 +78,6 @@ A list of the PHP packages to install (OS-specific by default). You'll likely wa
 
   - Make role more flexible, allowing APC to be excluded from `php_packages` list.
   - Use `lineinfile` rather than templates to make configuration changes.
-  - Remove apache dependency (better way of using handler? Way to get around Debian/apt's apache2 + php bindings?).
 
 ## License
 

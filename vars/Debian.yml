@@ -13,3 +13,4 @@ php_packages:
   - php5-gd
   - php5-ldap
   - php-apc
+php_webserver_daemon: "apache2"

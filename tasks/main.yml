@@ -8,7 +8,7 @@
     state=installed
     enablerepo={{ php_enablerepo }}
   with_items: php_packages
-  notify: restart apache
+  notify: restart webserver
   when: ansible_os_family == 'RedHat'
 
 - name: Ensure PHP packages are installed (Debian).
@@ -16,7 +16,7 @@
     name={{ item }}
     state=installed
   with_items: php_packages
-  notify: restart apache
+  notify: restart webserver
   when: ansible_os_family == 'Debian'
 
 - name: Place PHP configuration files in place.
@@ -27,4 +27,8 @@
   with_items:
   - { src: php.ini.j2, dest: "{{ php_conf_path }}/php.ini" }
   - { src: apc.ini.j2, dest: "{{ php_extension_conf_path }}/{{ php_apc_conf_filename }}" }
-  notify: restart apache
+  notify: restart webserver
+
+- name: Ensure php-fpm is started and enabled at boot (if configured).
+  service: name=php-fpm state=started enabled=yes
+  when: php_enable_php_fpm
