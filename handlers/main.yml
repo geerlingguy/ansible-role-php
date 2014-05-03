@@ -1,0 +1,3 @@
+---
+- name: restart webserver
+  service: "name={{ php_webserver_daemon }} state=restarted"
