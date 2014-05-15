@@ -2,13 +2,14 @@
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
 
-- name: Ensure PHP packages are installed yo.
+- name: Ensure PHP packages are installed (RedHat).
   yum: >
     name={{ item }}
     state=installed
     enablerepo={{ php_enablerepo }}
   with_items: php_packages
   notify: restart webserver
+  when: ansible_os_family == 'RedHat'
 
 - name: Ensure PHP packages are installed (Debian).
   apt: >
