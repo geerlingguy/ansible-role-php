@@ -2,5 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - geerlingguy.apache
     - ansible-role-php
