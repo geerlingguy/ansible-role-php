@@ -1,9 +1,10 @@
 ---
+
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
 
 - name: Ensure PHP packages are installed (RedHat).
-  yum: >
+  yum:
     name={{ item }}
     state=installed
     enablerepo={{ php_enablerepo }}
@@ -12,23 +13,43 @@
   when: ansible_os_family == 'RedHat'
 
 - name: Ensure PHP packages are installed (Debian).
-  apt: >
+  apt:
     name={{ item }}
     state=installed
   with_items: php_packages
   notify: restart webserver
   when: ansible_os_family == 'Debian'
 
+- name: Create mods-available directory
+  file:
+    path={{ php_conf_basepath }}/mods-available
+    state=directory
+  when: php_mods is defined and ansible_os_family == 'Debian'
+
 - name: Place PHP configuration files in place.
-  template: >
-    src={{ item.src }}
-    dest={{ item.dest }}
-    owner=root group=root mode=644
-  with_items:
-  - { src: php.ini.j2, dest: "{{ php_conf_path }}/php.ini" }
-  - { src: apc.ini.j2, dest: "{{ php_extension_conf_path }}/{{ php_apc_conf_filename }}" }
+  template:
+    src={{ item.name }}.j2
+    dest={{ item.dest }}/{{ item.name }}
+    owner=root
+    group=root
+    mode=644
+  with_items: php_conf_files
   notify: restart webserver
 
+- name: Create PHP modules symlinks
+  file:
+    src={{ php_conf_basepath }}/mods-available/{{ item.name }}
+    dest={{ item.dest }}/conf.d/{{ item.size }}-{{ item.name }}
+    state=link
+    owner=root
+    group=root
+  with_items: php_mods
+  notify: restart webserver
+  when: php_mods is defined
+
 - name: Ensure php-fpm is started and enabled at boot (if configured).
-  service: name=php-fpm state=started enabled=yes
+  service:
+    name=php-fpm
+    state=started
+    enabled=yes
   when: php_enable_php_fpm
