@@ -8,6 +8,7 @@ php_packages:
   - php-cli
   - php-common
   - php-devel
+  - php-fpm
   - php-gd
   - php-imap
   - php-ldap
