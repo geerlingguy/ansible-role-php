@@ -27,7 +27,7 @@
 
 - name: Version PHP > 5.5 install packages OpCache
   command: pecl -d preferred_state=beta install ZendOpcache
-  when: php_version_installed != '5.5 and php_enable_opcache == True
+  when: php_version_installed != '5.5' and php_enable_opcache == True
   ignore_errors: true
 
 # - name: Check if path exists
