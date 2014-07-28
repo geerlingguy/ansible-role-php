@@ -82,6 +82,15 @@ None.
       - php-xml
       ...
 
+## Test
+
+You can launch test like that:
+
+    cd tests
+    make test_ubuntu-14.04 > test_ubuntu-14.04.log
+    make test_centos-6.5 > test_centos-6.5.log
+    make test_ubuntu-12.04 > test_ubuntu-12.04.log
+
 ## TODO
 
   - Make role more flexible, allowing APC to be excluded from `php_packages` list.

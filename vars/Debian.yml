@@ -1,7 +1,16 @@
 ---
-php_conf_path: /etc/php5/apache2
-php_extension_conf_path: /etc/php5/conf.d
-php_apc_conf_filename: 20-apc.ini
+
+php_conf_basepath: /etc/php5
+
+php_conf_files:
+  - { name: php.ini, dest: /etc/php5/apache2 }
+  - { name: php.ini, dest: /etc/php5/cli }
+  - { name: apc.ini, dest: /etc/php5/mods-available }
+
+php_mods:
+  - { name: apc.ini, dest: /etc/php5/apache2, size: 20 }
+  - { name: apc.ini, dest: /etc/php5/cli,     size: 20 }
+
 php_packages:
   - php5
   - libapache2-mod-php5
@@ -14,4 +23,5 @@ php_packages:
   - php5-gd
   - php5-ldap
   - php-apc
+
 php_webserver_daemon: "apache2"

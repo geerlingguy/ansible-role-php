@@ -1,0 +1,9 @@
+---
+
+- name: Update Apt cache (Debian).
+  apt: update_cache=yes cache_valid_time=3600
+  when: ansible_os_family == 'Debian'
+
+- name: Ensure PHP packages are installed (RedHat).
+  yum: name=libselinux-python state=installed
+  when: ansible_os_family == 'RedHat'
