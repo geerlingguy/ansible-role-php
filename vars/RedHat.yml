@@ -1,7 +1,7 @@
 ---
 php_conf_path: /etc
 php_extension_conf_path: /etc/php.d
-php_apc_conf_filename: apc.ini
+php_opcode_conf_filename: opcache.ini
 php_packages:
   - ImageMagick
   - php
@@ -14,7 +14,6 @@ php_packages:
   - php-mbstring
   - php-pdo
   - php-pear
-  - php-pecl-apc
   - php-xml
   - php-xmlrpc
 php_webserver_daemon: "httpd"

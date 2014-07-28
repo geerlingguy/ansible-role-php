@@ -1,0 +1,47 @@
+---
+
+- name: Config PHP | Set global configuration
+  lineinfile:
+    dest="{{ php_conf_path }}/php.ini"
+    regexp="{{ item.key }}"
+    line="{{ item.value }}"
+    backup=yes
+    create=no
+  with_items:
+    - {key: "^max_execution_time = ", value: "max_execution_time = {{ php_max_execution_time }}"}
+    - {key: "^memory_limit = ", value: "memory_limit = {{ php_memory_limit }}"}
+    - {key: "^upload_max_filesize = ", value: "upload_max_filesize = {{ php_upload_max_filesize }}"}
+    - {key: "^date.timezone = ", value: "date.timezone = {{ php_date_timezone }}"}
+
+- name: Config PHP | Set configuration for env prod
+  lineinfile:
+    dest="{{ php_conf_path }}/php.ini"
+    regexp="{{ item.key }}"
+    line="{{ item.value }}"
+    backup=yes
+    create=no
+  with_items:
+    - {key: "^expose_php = ", value: "expose_php = Off"}
+    - {key: "^error_reporting = ", value: "error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT"}
+    - {key: "^display_errors = ", value: "display_errors = Off"}
+    - {key: "^display_startup_errors = ", value: "display_startup_errors = Off"}
+    - {key: "^ignore_repeated_errors = ", value: "ignore_repeated_errors = On"}
+    - {key: "^track_errors = ", value: "track_errors = Off"}
+  when: php_env == "prod"
+
+
+- name: Config PHP | Set configuration env dev
+  lineinfile:
+    dest="{{ php_conf_path }}/php.ini"
+    regexp="{{ item.key }}"
+    line="{{ item.value }}"
+    backup=yes
+    create=no
+  with_items:
+    - {key: "^expose_php = ", value: "expose_php = On"}
+    - {key: "^error_reporting = ", value: "error_reporting = E_ALL"}
+    - {key: "^display_errors = ", value: "display_errors = On"}
+    - {key: "^display_startup_errors = ", value: "display_startup_errors = On"}
+    - {key: "^ignore_repeated_errors = ", value: "ignore_repeated_errors = Off"}
+    - {key: "^track_errors = ", value: "track_errors = On"}
+  when: php_env == "dev"

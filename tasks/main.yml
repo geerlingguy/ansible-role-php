@@ -19,14 +19,39 @@
   notify: restart webserver
   when: ansible_os_family == 'Debian'
 
-- name: Place PHP configuration files in place.
+- include: setup-config-php.yml
+
+- name: find version PHP
+  shell: php --version | sed -n 1p | cut -d'-' -f1 | cut -c 5-7
+  register: php_version_installed
+
+- name: Version PHP > 5.5 install packages OpCache
+  command: pecl -d preferred_state=beta install ZendOpcache
+  when: php_version_installed != '5.5' and php_enable_opcache == True
+  ignore_errors: true
+
+# - name: Check if path exists
+#   stat: path={{ php_extension_conf_path }}/
+#   register: check_path
+#
+# - name: Set path if not exists
+#   command: echo '/etc/php5/conf.d'
+#   register: php_extension_conf_path
+#   when: check_path.stat.exists == False
+
+- name: Place OpCache configuration files in place.
   template: >
     src={{ item.src }}
     dest={{ item.dest }}
     owner=root group=root mode=644
   with_items:
-  - { src: php.ini.j2, dest: "{{ php_conf_path }}/php.ini" }
-  - { src: apc.ini.j2, dest: "{{ php_extension_conf_path }}/{{ php_apc_conf_filename }}" }
+  - { src: opcache.ini.j2, dest: "{{ php_extension_conf_path }}/{{ php_opcode_conf_filename }}" }
+  when: php_enable_opcache
+  notify: restart webserver
+
+- name: Enable OpCache
+  command: php5enmod -s ALL opcache
+  when: ansible_os_family == 'Debian' and php_version_installed != '5.5' and php_enable_opcache == True
   notify: restart webserver
 
 - name: Ensure php-fpm is started and enabled at boot (if configured).
