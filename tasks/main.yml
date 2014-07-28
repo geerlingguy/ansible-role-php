@@ -30,6 +30,15 @@
   when: php_version_installed != '5.5'
   ignore_errors: true
 
+- name: Check if path exists
+  stat: path={{ php_extension_conf_path }}/
+  register: check_path
+
+- name: Set path if not exists
+  command: echo '/etc/php5/conf.d'
+  register: php_extension_conf_path
+  when: check_path.stat.exists == False
+
 - name: Place OpCache configuration files in place.
   template: >
     src={{ item.src }}
