@@ -8,7 +8,6 @@ php_apc_enabled_in_ini: false
 php_apc_cache_by_default: "1"
 php_apc_shm_size: "96M"
 php_date_timezone: "America/Chicago"
-php_packages: []
 php_enable_webserver: true
 php_webserver_daemon: "httpd"
 

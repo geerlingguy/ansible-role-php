@@ -2,7 +2,7 @@
 php_conf_path: /etc/php5/apache2
 php_extension_conf_path: /etc/php5/conf.d
 php_apc_conf_filename: 20-apc.ini
-php_packages:
+__php_packages:
   - php5
   - libapache2-mod-php5
   - php5-mcrypt
@@ -12,6 +12,4 @@ php_packages:
   - php5-dev
   - php5-fpm
   - php5-gd
-  - php5-ldap
-  - php-apc
 php_webserver_daemon: "apache2"
