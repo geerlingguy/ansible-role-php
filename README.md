@@ -33,6 +33,10 @@ This Ansible role assumes you're including `php-pecl-apc` in the list of `php_pa
 
 Explicitly set PHP's date timezone system-wide.
 
+    php_sendmail_path: "/usr/sbin/sendmail -t -i"
+
+The path to use for sendmail or a sendmail wrapper/replacement. You can also add options to this line if you need to set sendmail to use an explicit name/email for the sender.
+
     php_packages: []
 
 A list of the PHP packages to install (OS-specific by default). You'll likely want to install common packages like `php`, `php-cli`, `php-devel` and `php-pdo`, and you can add in whatever other packages you'd like (for example, `php-gd` for image manipulation, or `php-ldap` if you need to connect to an LDAP server for authentication).
