@@ -13,4 +13,4 @@ php_webserver_daemon: "httpd"
 
 php_enable_php_fpm: false
 
-sendmail_path: "/usr/sbin/sendmail -t -i"
+php_sendmail_path: "/usr/sbin/sendmail -t -i"
