@@ -18,6 +18,10 @@ Available variables are listed below, along with default values (see `vars/main.
 
 Some commonly-adjusted PHP ini directives. Adjust to suit your system.
 
+    php_enable_apc: true
+
+Whether to enable APC. Other APC variables will be ineffective if this is set to false.
+
     php_apc_enabled_in_ini: false
 
 When installing APC, depending on the system and whether running PHP as a webserver module or standalone via `php-fpm`, you might need the line `extension=apc.so` in `apc.ini`. If you need that line added, set this variable to true.
