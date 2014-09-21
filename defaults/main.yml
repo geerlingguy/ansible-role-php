@@ -15,3 +15,4 @@ php_enable_php_fpm: false
 php_enable_apc: true
 
 php_sendmail_path: "/usr/sbin/sendmail -t -i"
+php_short_open_tag: false
