@@ -23,6 +23,9 @@
   notify: restart webserver
   when: ansible_os_family == 'Debian'
 
+- name: Assures {{ php_conf_path }} directory exists
+  file: path={{ php_conf_path }} state=directory
+
 - name: Place PHP configuration file in place.
   template: >
     src=php.ini.j2
@@ -30,6 +33,9 @@
     owner=root group=root mode=644
   notify: restart webserver
   
+- name: Assures {{ php_extension_conf_path }} directory exists
+  file: path={{ php_extension_conf_path }} state=directory
+
 - name: Place APC configuration file in place.
   template: >
     src=apc.ini.j2
