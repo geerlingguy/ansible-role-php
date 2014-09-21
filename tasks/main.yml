@@ -3,47 +3,57 @@
   include_vars: "{{ ansible_os_family }}.yml"
 
 - name: Define php_packages.
-  set_fact: php_packages="{{ __php_packages | list }}"
+  set_fact:
+    php_packages: "{{ __php_packages | list }}"
   when: php_packages is not defined
 
 - name: Ensure PHP packages are installed (RedHat).
-  yum: >
-    name={{ item }}
-    state=installed
-    enablerepo={{ php_enablerepo }}
+  yum:
+    name: "{{ item }}"
+    state: installed
+    enablerepo: "{{ php_enablerepo }}"
   with_items: php_packages
   notify: restart webserver
   when: ansible_os_family == 'RedHat'
 
 - name: Ensure PHP packages are installed (Debian).
-  apt: >
-    name={{ item }}
-    state=installed
+  apt:
+    name: "{{ item }}"
+    state: installed
   with_items: php_packages
   notify: restart webserver
   when: ansible_os_family == 'Debian'
 
-- name: Assures {{ php_conf_path }} directory exists
-  file: path={{ php_conf_path }} state=directory
+- name: Ensure configuration directories exist.
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ php_conf_path }}"
+    - "{{ php_extension_conf_path }}"
 
 - name: Place PHP configuration file in place.
-  template: >
-    src=php.ini.j2
-    dest={{ php_conf_path }}/php.ini
-    owner=root group=root mode=644
+  template:
+    src: php.ini.j2
+    dest: "{{ php_conf_path }}/php.ini"
+    owner: root
+    group: root
+    mode: 0644
   notify: restart webserver
-  
-- name: Assures {{ php_extension_conf_path }} directory exists
-  file: path={{ php_extension_conf_path }} state=directory
 
 - name: Place APC configuration file in place.
-  template: >
-    src=apc.ini.j2
-    dest={{ php_extension_conf_path }}/{{ php_apc_conf_filename }}
-    owner=root group=root mode=644
+  template:
+    src: apc.ini.j2
+    dest: "{{ php_extension_conf_path }}/{{ php_apc_conf_filename }}"
+    owner: root
+    group: root
+    mode: 0644
   when: php_enable_apc
   notify: restart webserver
 
 - name: Ensure php-fpm is started and enabled at boot (if configured).
-  service: name=php-fpm state=started enabled=yes
+  service:
+    name: php-fpm
+    state: started
+    enabled: yes
   when: php_enable_php_fpm
