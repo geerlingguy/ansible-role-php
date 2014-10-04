@@ -51,9 +51,9 @@
   when: php_enable_apc
   notify: restart webserver
 
-- name: Ensure php-fpm is started and enabled at boot (if configured).
+- name: Ensure php5-fpm is started and enabled at boot (if configured).
   service:
-    name: php-fpm
+    name: php5-fpm
     state: started
     enabled: yes
   when: php_enable_php_fpm

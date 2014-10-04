@@ -5,8 +5,8 @@
     state: restarted
   when: php_enable_webserver
 
-- name: restart php-fpm
+- name: restart php5-fpm
   service:
-    name: php-fpm
+    name: php5-fpm
     state: restarted
   when: php_enable_php_fpm
