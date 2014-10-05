@@ -14,3 +14,4 @@ __php_packages:
   - php5-gd
   - php-pear
 php_webserver_daemon: "apache2"
+php_fpm_daemon: "php5-fpm"
