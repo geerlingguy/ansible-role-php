@@ -1,6 +1,6 @@
 ---
 php_conf_path: /etc/php5/apache2
-php_extension_conf_path: /etc/php5/conf.d
+php_extension_conf_path: /etc/php5/apache2/conf.d
 php_apc_conf_filename: 20-apc.ini
 __php_packages:
   - php5
