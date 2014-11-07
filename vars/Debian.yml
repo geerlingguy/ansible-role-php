@@ -10,7 +10,6 @@ __php_packages:
   - php5-common
   - php5-curl
   - php5-dev
-  - php5-fpm
   - php5-gd
   - php-pear
 php_webserver_daemon: "apache2"
