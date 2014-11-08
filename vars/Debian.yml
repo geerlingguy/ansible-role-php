@@ -11,5 +11,6 @@ __php_packages:
   - php5-curl
   - php5-dev
   - php5-gd
+  - php5-mysql
   - php-pear
 php_webserver_daemon: "apache2"
