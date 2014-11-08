@@ -53,7 +53,7 @@
 
 - name: Ensure php-fpm is started and enabled at boot (if configured).
   service:
-    name: php-fpm
+    name: "{{ php_fpm_daemon }}"
     state: started
     enabled: yes
   when: php_enable_php_fpm

@@ -10,6 +10,7 @@ php_apc_shm_size: "96M"
 php_date_timezone: "America/Chicago"
 php_enable_webserver: true
 php_webserver_daemon: "httpd"
+php_fpm_daemon: "php-fpm"
 
 php_enable_php_fpm: false
 php_enable_apc: true
