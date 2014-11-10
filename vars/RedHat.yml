@@ -18,4 +18,4 @@ __php_packages:
   - php-pecl-apc
   - php-xml
   - php-xmlrpc
-php_webserver_daemon: "httpd"
+__php_webserver_daemon: "httpd"
