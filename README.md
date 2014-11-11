@@ -61,6 +61,11 @@ The default values for the HTTP server deamon are `httpd` (used by Apache) for R
 
 If you add `php-fpm` to the `php_packages` list, and would like to run PHP-fpm, as you would with Nginx or as an alternative to `mod_php` in Apache, you can set this variable to `true`, and the `php-fpm` daemon will be enabled and started. You will need to configure PHP-fpm on your own, by editing the config file in `/etc/php-fpm.d/www.conf` (for RedHat servers) or replacing it with your own template via Ansible.
 
+    php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
+    php_display_errors: "Off"
+
+Error reporting settings. Defaults to not display any errors (a safe default for production), but should set `php_display_errors` to `"On"` so you can see all errors when developing or testing.
+
     php_enablerepo: ""
 
 (RedHat/CentOS only) If you have enabled any additional repositories (might I suggest geerlingguy.repo-epel or geerlingguy.repo-remi), those repositories can be listed under this variable (e.g. `remi,epel`). This can be handy, as an example, if you want to install the latest version of PHP 5.4, which is in the Remi repository.
