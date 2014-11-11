@@ -9,7 +9,7 @@
 
 - name: Define php_webserver_daemon.
   set_fact:
-    php_webserver_daemon: "{{ __php_webserver_daemon | list }}"
+    php_webserver_daemon: "{{ __php_webserver_daemon }}"
   when: php_webserver_daemon is not defined
 
 - name: Ensure PHP packages are installed (RedHat).
