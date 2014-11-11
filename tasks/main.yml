@@ -1,4 +1,5 @@
 ---
+# Variable setup.
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
 
@@ -12,53 +13,12 @@
     php_webserver_daemon: "{{ __php_webserver_daemon }}"
   when: php_webserver_daemon is not defined
 
-- name: Ensure PHP packages are installed (RedHat).
-  yum:
-    name: "{{ item }}"
-    state: installed
-    enablerepo: "{{ php_enablerepo }}"
-  with_items: php_packages
-  notify: restart webserver
+# Setup/install tasks.
+- include: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
-- name: Ensure PHP packages are installed (Debian).
-  apt:
-    name: "{{ item }}"
-    state: installed
-  with_items: php_packages
-  notify: restart webserver
+- include: setup-Debian.yml
   when: ansible_os_family == 'Debian'
 
-- name: Ensure configuration directories exist.
-  file:
-    path: "{{ item }}"
-    state: directory
-  with_items:
-    - "{{ php_conf_path }}"
-    - "{{ php_extension_conf_path }}"
-
-- name: Place PHP configuration file in place.
-  template:
-    src: php.ini.j2
-    dest: "{{ php_conf_path }}/php.ini"
-    owner: root
-    group: root
-    mode: 0644
-  notify: restart webserver
-
-- name: Place APC configuration file in place.
-  template:
-    src: apc.ini.j2
-    dest: "{{ php_extension_conf_path }}/{{ php_apc_conf_filename }}"
-    owner: root
-    group: root
-    mode: 0644
-  when: php_enable_apc
-  notify: restart webserver
-
-- name: Ensure php-fpm is started and enabled at boot (if configured).
-  service:
-    name: php-fpm
-    state: started
-    enabled: yes
-  when: php_enable_php_fpm
+# Configure PHP.
+- include: configure.yml

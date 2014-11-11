@@ -10,40 +10,7 @@ Must be running a separate web server, such as Nginx or Apache.
 
 ## Role Variables
 
-Available variables are listed below, along with default values (see `vars/main.yml`):
-
-    php_memory_limit: "256M"
-    php_max_execution_time: "60"
-    php_upload_max_filesize: "64M"
-
-Some commonly-adjusted PHP ini directives. Adjust to suit your system.
-
-    php_enable_apc: true
-
-Whether to enable APC. Other APC variables will be ineffective if this is set to false.
-
-    php_apc_enabled_in_ini: false
-
-When installing APC, depending on the system and whether running PHP as a webserver module or standalone via `php-fpm`, you might need the line `extension=apc.so` in `apc.ini`. If you need that line added, set this variable to true.
-
-    php_apc_cache_by_default: "1"
-    php_apc_shm_size: "96M"
-
-Two APC ini directives that are often customized on a system. Set `php_apc_cache_by_default` to 0 to disable APC by default (so you could enable it on a host-by-host basis). Set the `php_apc_shm_size` so it will hold all your application code in memory with a little overhead (fragmentation or APC running out of memory will slow down PHP dramatically).
-
-This Ansible role assumes you're including `php-pecl-apc` in the list of `php_packages` below. It's rarely a good idea to run a PHP < 5.5 installation without some kind of opcode cache, and APC works great for PHP 5.3 and 5.4.
-
-    php_date_timezone: "America/Chicago"
-
-Explicitly set PHP's date timezone system-wide.
-
-    php_sendmail_path: "/usr/sbin/sendmail -t -i"
-
-The path to use for sendmail or a sendmail wrapper/replacement. You can also add options to this line if you need to set sendmail to use an explicit name/email for the sender.
-
-    php_short_open_tag: false
-
-Whether to allow short open tags.
+Available variables are listed below, along with default values (see `defaults/main.yml`):
 
     php_packages: []
 
@@ -61,14 +28,43 @@ The default values for the HTTP server deamon are `httpd` (used by Apache) for R
 
 If you add `php-fpm` to the `php_packages` list, and would like to run PHP-fpm, as you would with Nginx or as an alternative to `mod_php` in Apache, you can set this variable to `true`, and the `php-fpm` daemon will be enabled and started. You will need to configure PHP-fpm on your own, by editing the config file in `/etc/php-fpm.d/www.conf` (for RedHat servers) or replacing it with your own template via Ansible.
 
-    php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
-    php_display_errors: "Off"
-
-Error reporting settings. Defaults to not display any errors (a safe default for production), but should set `php_display_errors` to `"On"` so you can see all errors when developing or testing.
-
     php_enablerepo: ""
 
 (RedHat/CentOS only) If you have enabled any additional repositories (might I suggest geerlingguy.repo-epel or geerlingguy.repo-remi), those repositories can be listed under this variable (e.g. `remi,epel`). This can be handy, as an example, if you want to install the latest version of PHP 5.4, which is in the Remi repository.
+
+### php.ini settings
+
+    php_use_managed_ini: true
+
+By default, all the extra defaults below are applied through the php.ini included with this role. You can self-manage your php.ini file (if you need more flexility in its configuration) by setting this to `false` (in which case all the below variables will be ignored).
+
+    php_memory_limit: "256M"
+    php_max_execution_time: "60"
+    php_upload_max_filesize: "64M"
+    php_date_timezone: "America/Chicago"
+    php_sendmail_path: "/usr/sbin/sendmail -t -i"
+    php_short_open_tag: false
+    php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
+    php_display_errors: "Off"
+
+Various defaults for PHP. Only used if `php_use_managed_ini` is set to `true`.
+
+### APC-related Variables
+
+    php_enable_apc: true
+
+Whether to enable APC. Other APC variables will be ineffective if this is set to false.
+
+    php_apc_enabled_in_ini: false
+
+When installing APC, depending on the system and whether running PHP as a webserver module or standalone via `php-fpm`, you might need the line `extension=apc.so` in `apc.ini`. If you need that line added, set this variable to true.
+
+    php_apc_cache_by_default: "1"
+    php_apc_shm_size: "96M"
+
+Two APC ini directives that are often customized on a system. Set `php_apc_cache_by_default` to 0 to disable APC by default (so you could enable it on a host-by-host basis). Set the `php_apc_shm_size` so it will hold all your application code in memory with a little overhead (fragmentation or APC running out of memory will slow down PHP dramatically).
+
+This Ansible role assumes you're including `php-pecl-apc` in the list of `php_packages`. It's rarely a good idea to run a PHP < 5.5 installation without some kind of opcode cache, and APC works great for PHP 5.3 and 5.4.
 
 ## Dependencies
 
