@@ -2,6 +2,7 @@
 php_conf_path: /etc/php5/apache2
 php_extension_conf_path: /etc/php5/apache2/conf.d
 php_apc_conf_filename: 20-apc.ini
+php_fpm_daemon: php5-fpm
 __php_packages:
   - php5
   - libapache2-mod-php5
