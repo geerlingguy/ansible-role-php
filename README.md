@@ -40,6 +40,7 @@ By default, all the extra defaults below are applied through the php.ini include
 
     php_memory_limit: "256M"
     php_max_execution_time: "60"
+    php_realpath_cache_size: "32K"
     php_upload_max_filesize: "64M"
     php_date_timezone: "America/Chicago"
     php_sendmail_path: "/usr/sbin/sendmail -t -i"
