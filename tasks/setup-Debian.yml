@@ -1,4 +1,7 @@
 ---
+- name: Run "apt-get update" to get rid of expired cache.
+  apt: update_cache=yes
+
 - name: Ensure PHP packages are installed.
   apt:
     name: "{{ item }}"
