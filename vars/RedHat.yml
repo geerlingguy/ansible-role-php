@@ -1,8 +1,4 @@
 ---
-php_conf_path: /etc
-php_extension_conf_path: /etc/php.d
-php_apc_conf_filename: apc.ini
-php_fpm_daemon: php-fpm
 __php_packages:
   - ImageMagick
   - php
@@ -20,3 +16,9 @@ __php_packages:
   - php-xml
   - php-xmlrpc
 __php_webserver_daemon: "httpd"
+
+__php_conf_path: /etc
+__php_extension_conf_path: /etc/php.d
+
+php_apc_conf_filename: apc.ini
+php_fpm_daemon: php-fpm

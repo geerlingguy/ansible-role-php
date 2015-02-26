@@ -23,6 +23,7 @@
     dest: "{{ php_extension_conf_path }}/{{ php_apc_conf_filename }}"
     owner: root
     group: root
+    force: yes
     mode: 0644
   when: php_enable_apc
   notify: restart webserver

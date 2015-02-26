@@ -3,6 +3,7 @@
   service:
     name: "{{ php_webserver_daemon }}"
     state: restarted
+  notify: restart php-fpm
   when: php_enable_webserver
 
 - name: restart php-fpm

@@ -58,7 +58,7 @@ Whether to enable APC. Other APC variables will be ineffective if this is set to
 
     php_apc_enabled_in_ini: false
 
-When installing APC, depending on the system and whether running PHP as a webserver module or standalone via `php-fpm`, you might need the line `extension=apc.so` in `apc.ini`. If you need that line added, set this variable to true.
+When installing APC, depending on the system and whether running PHP as a webserver module or standalone via `php-fpm`, you might need the line `extension=apc.so` in `apc.ini`. If you need that line added (e.g. you're running `php-fpm`), set this variable to true.
 
     php_apc_cache_by_default: "1"
     php_apc_shm_size: "96M"
