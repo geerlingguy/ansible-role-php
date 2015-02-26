@@ -13,6 +13,7 @@ php_enable_apc: true
 php_apc_enabled_in_ini: false
 php_apc_cache_by_default: "1"
 php_apc_shm_size: "96M"
+php_apc_stat: "1"
 
 # If this is set to false, none of the following options will have any effect.
 # Any and all changes to /etc/php.ini will be your responsibility.

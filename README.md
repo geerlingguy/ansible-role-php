@@ -62,6 +62,7 @@ When installing APC, depending on the system and whether running PHP as a webser
 
     php_apc_cache_by_default: "1"
     php_apc_shm_size: "96M"
+    php_apc_stat: "1"
 
 Two APC ini directives that are often customized on a system. Set `php_apc_cache_by_default` to 0 to disable APC by default (so you could enable it on a host-by-host basis). Set the `php_apc_shm_size` so it will hold all your application code in memory with a little overhead (fragmentation or APC running out of memory will slow down PHP dramatically).
 
