@@ -3,6 +3,7 @@
 php_enablerepo: ""
 php_memory_limit: "256M"
 php_max_execution_time: "60"
+php_post_max_size: "32M"
 php_upload_max_filesize: "64M"
 php_apc_enabled_in_ini: false
 php_apc_cache_by_default: "1"
