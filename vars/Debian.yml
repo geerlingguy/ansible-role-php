@@ -1,7 +1,4 @@
 ---
-php_conf_path: /etc/php5/apache2
-php_extension_conf_path: /etc/php5/apache2/conf.d
-php_apc_conf_filename: 20-apc.ini
 __php_packages:
   - php5
   - libapache2-mod-php5
@@ -13,4 +10,13 @@ __php_packages:
   - php5-gd
   - php5-mysql
   - php-pear
-php_webserver_daemon: "apache2"
+  - php-apc
+  - libpcre3-dev
+__php_webserver_daemon: "apache2"
+
+# Vendor-specific configuration paths on Debian/Ubuntu make my brain asplode.
+__php_conf_path: "{{ '/etc/php5' if php_webserver_daemon and php_webserver_daemon != 'apache2' else '/etc/php5/apache2' }}"
+php_extension_conf_path: "/etc/php5/conf.d"
+
+php_apc_conf_filename: 20-apc.ini
+php_fpm_daemon: php5-fpm

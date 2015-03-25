@@ -1,0 +1,10 @@
+---
+- name: Update apt cache.
+  apt: update_cache=yes cache_valid_time=86400
+
+- name: Ensure PHP packages are installed.
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items: php_packages
+  notify: restart webserver

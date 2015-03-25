@@ -1,0 +1,36 @@
+---
+- name: Ensure configuration directories exist.
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ php_conf_path }}"
+    - "{{ php_extension_conf_path }}"
+
+- name: Place PHP configuration file in place.
+  template:
+    src: php.ini.j2
+    dest: "{{ php_conf_path }}/php.ini"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart webserver
+  when: php_use_managed_ini
+
+- name: Place APC configuration file in place.
+  template:
+    src: apc.ini.j2
+    dest: "{{ php_extension_conf_path }}/{{ php_apc_conf_filename }}"
+    owner: root
+    group: root
+    force: yes
+    mode: 0644
+  when: php_enable_apc
+  notify: restart webserver
+
+- name: Ensure php-fpm is started and enabled at boot (if configured).
+  service:
+    name: "{{ php_fpm_daemon }}"
+    state: started
+    enabled: yes
+  when: php_enable_php_fpm
