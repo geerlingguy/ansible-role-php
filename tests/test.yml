@@ -3,5 +3,6 @@
   remote_user: root
   vars:
     php_enable_webserver: false
+    php_cli_date_timezone: Europe/London
   roles:
     - ansible-role-php

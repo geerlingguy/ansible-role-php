@@ -1,11 +1,13 @@
 [PHP]
+{% set is_cli = item.cli is defined and item.cli %}
 
 ;;;;;;;;;;;;;;;;;;;;
 ; Language Options ;
 ;;;;;;;;;;;;;;;;;;;;
 
 engine = On
-short_open_tag = {{ php_short_open_tag }}
+short_open_tag = {% if is_cli and php_cli_short_open_tag is defined %}{{ php_cli_short_open_tag }}{% else %}{{ php_short_open_tag }}{% endif %}
+
 asp_tags = Off
 precision = 14
 output_buffering = 4096
@@ -36,18 +38,21 @@ expose_php = On
 ; Resource Limits ;
 ;;;;;;;;;;;;;;;;;;;
 
-max_execution_time = {{ php_max_execution_time }}
+max_execution_time = {% if is_cli and php_cli_max_execution_time is defined %}{{ php_cli_max_execution_time }}{% else %}{{ php_max_execution_time }}{% endif %}
+
 max_input_time = 60
 ;max_input_nesting_level = 64
 ; max_input_vars = 1000
-memory_limit = {{ php_memory_limit }}
+memory_limit = {% if is_cli and php_cli_memory_limit is defined %}{{ php_cli_memory_limit }}{% else %}{{ php_memory_limit }}{% endif %}
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Error handling and logging ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
-display_errors = {{ php_display_errors }}
+display_errors = {% if is_cli and php_cli_display_errors is defined %}{{ php_cli_display_errors }}{% else %}{{ php_display_errors }}{% endif %}
+
 display_startup_errors = Off
 log_errors = On
 log_errors_max_len = 1024
@@ -105,7 +110,8 @@ enable_dl = Off
 ;fastcgi.logging = 0
 ;cgi.rfc2616_headers = 0
 
-realpath_cache_size = {{ php_realpath_cache_size }}
+realpath_cache_size = {% if is_cli and php_cli_realpath_cache_size is defined %}{{ php_cli_realpath_cache_size }}{% else %}{{ php_realpath_cache_size }}{% endif %}
+
 
 ;;;;;;;;;;;;;;;;
 ; File Uploads ;
@@ -113,7 +119,8 @@ realpath_cache_size = {{ php_realpath_cache_size }}
 
 file_uploads = On
 ;upload_tmp_dir =
-upload_max_filesize = {{ php_upload_max_filesize }}
+upload_max_filesize = {% if is_cli and php_cli_upload_max_filesize is defined %}{{ php_cli_upload_max_filesize }}{% else %}{{ php_upload_max_filesize }}{% endif %}
+
 max_file_uploads = 20
 
 ;;;;;;;;;;;;;;;;;;
@@ -137,7 +144,8 @@ default_socket_timeout = 60
 cli_server.color = On
 
 [Date]
-date.timezone = {{ php_date_timezone }}
+date.timezone = {% if is_cli and php_cli_date_timezone is defined %}{{ php_cli_date_timezone }}{% else %}{{ php_date_timezone }}{% endif %}
+
 
 ;date.default_latitude = 31.7667
 ;date.default_longitude = 35.2333

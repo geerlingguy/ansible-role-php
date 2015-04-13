@@ -35,3 +35,10 @@ script:
     | grep -q 'The PHP Group'
     && (echo 'PHP is installed' && exit 0)
     || (echo 'PHP is not installed' && exit 1)
+
+  # Make sure PHP cli is correctly configured.
+  - >
+    php -r "echo ini_get('date.timezone'), \"\\n\";"
+    | grep -q 'Europe/London'
+    && (echo 'PHP CLI is correctly configured' && exit 0)
+    || (echo 'PHP CLI is not correctly configured' && exit 1)

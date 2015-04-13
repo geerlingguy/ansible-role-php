@@ -57,6 +57,17 @@ By default, all the extra defaults below are applied through the php.ini include
     php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
     php_display_errors: "Off"
 
+Also, the PHP CLI environment uses the same variables as the web server by default, but you can redefine some of them with the following variables:
+
+    php_cli_memory_limit: "256M"
+    php_cli_max_execution_time: "60"
+    php_cli_realpath_cache_size: "32K"
+    php_cli_upload_max_filesize: "64M"
+    php_cli_date_timezone: "America/Chicago"
+    php_cli_short_open_tag: false
+    php_cli_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
+    php_cli_display_errors: "Off"
+
 Various defaults for PHP. Only used if `php_use_managed_ini` is set to `true`.
 
 ### APC-related Variables
