@@ -50,7 +50,8 @@ memory_limit = {% if is_cli and php_cli_memory_limit is defined %}{{ php_cli_mem
 ; Error handling and logging ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
+error_reporting = {% if is_cli and php_cli_error_reporting is defined %}{{ php_cli_error_reporting }}{% else %}{{ php_error_reporting }}{% endif %}
+
 display_errors = {% if is_cli and php_cli_display_errors is defined %}{{ php_cli_display_errors }}{% else %}{{ php_display_errors }}{% endif %}
 
 display_startup_errors = Off
