@@ -18,6 +18,11 @@
     php_conf_path: "{{ __php_conf_path }}"
   when: php_conf_path is not defined
 
+- name: Define php_extension_conf_path.
+  set_fact:
+    php_extension_conf_path: "{{ __php_extension_conf_path }}"
+  when: php_extension_conf_path is not defined
+
 # Setup/install tasks.
 - include: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
