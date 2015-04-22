@@ -103,15 +103,16 @@ None.
     php_max_execution_time: "90"
     php_upload_max_filesize: "256M"
     php_packages:
-      - php
-      - php-cli
-      - php-common
-      - php-devel
-      - php-gd
-      - php-mbstring
-      - php-pdo
-      - php-pecl-apc
-      - php-xml
+      - php5
+      - php5-mysql
+      - libapache2-mod-php5
+      - php5-common
+      - php5-gd
+      - php5-mysql
+      - php5-cli
+      - php5-cgi
+      - php5-curl
+      - php-auth
       ...
 
 ## TODO
