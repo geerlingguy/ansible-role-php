@@ -56,6 +56,7 @@ By default, all the extra defaults below are applied through the php.ini include
     php_short_open_tag: false
     php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
     php_display_errors: "Off"
+    php_display_startup_errors: "On"
 
 Various defaults for PHP. Only used if `php_use_managed_ini` is set to `true`.
 
