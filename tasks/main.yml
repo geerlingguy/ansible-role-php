@@ -30,5 +30,15 @@
 - include: setup-Debian.yml
   when: ansible_os_family == 'Debian'
 
+- name: Check the installed version of PHP.
+  shell: php -r "echo PHP_VERSION;"
+  register: php_version
+  changed_when: false
+
+- name: Disable opcache if PHP version is < 5.5.
+  set_fact:
+    php_opcache_enable: 0
+  when: "php_version.stdout.split('.')[0] == '5' and php_version.stdout.split('.')[1] < '5'"
+
 # Configure PHP.
 - include: configure.yml

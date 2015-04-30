@@ -8,6 +8,18 @@ php_enable_webserver: true
 # Start and enable the PHP fpm service.
 php_enable_php_fpm: false
 
+# OpCache settings (useful for PHP >=5.5).
+php_opcache_enabled_in_ini: false
+php_opcache_enable: "1"
+php_opcache_enable_cli: "0"
+php_opcache_memory_consumption: "96"
+php_opcache_interned_strings_buffer: "16"
+php_opcache_max_accelerated_files: "4096"
+php_opcache_max_wasted_percentage: "5"
+php_opcache_validate_timestamps: "1"
+php_opcache_revalidate_freq: "2"
+php_opcache_max_file_size: "0"
+
 # APC settings (useful for PHP <5.5).
 php_enable_apc: true
 php_apc_enabled_in_ini: false
