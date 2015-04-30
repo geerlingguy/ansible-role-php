@@ -60,6 +60,26 @@ By default, all the extra defaults below are applied through the php.ini include
 
 Various defaults for PHP. Only used if `php_use_managed_ini` is set to `true`.
 
+### OpCache-related Variables
+
+The OpCache is included in PHP starting in version 5.5, and the following variables will only take effect if the version of PHP you have installed is 5.5 or greater.
+
+    php_opcache_enabled_in_ini: false
+
+When installing APC, depending on the system and whether running PHP as a webserver module or standalone via `php-fpm`, you might need the line `extension=apc.so` in `apc.ini`. If you need that line added (e.g. you're running `php-fpm`), set this variable to true.
+
+    php_opcache_enable: "1"
+    php_opcache_enable_cli: "0"
+    php_opcache_memory_consumption: "96"
+    php_opcache_interned_strings_buffer: "16"
+    php_opcache_max_accelerated_files: "4096"
+    php_opcache_max_wasted_percentage: "5"
+    php_opcache_validate_timestamps: "1"
+    php_opcache_revalidate_freq: "2"
+    php_opcache_max_file_size: "0"
+
+OpCache ini directives that are often customized on a system. Make sure you have enough memory and file slots allocated in the OpCache (`php_opcache_memory_consumption`, in MB, and `php_opcache_max_accelerated_files`) to contain all the PHP code you are running. If not, you may get less-than-optimal performance!
+
 ### APC-related Variables
 
     php_enable_apc: true
@@ -75,7 +95,7 @@ When installing APC, depending on the system and whether running PHP as a webser
     php_apc_stat: "1"
     php_apc_enable_cli: "0"
 
-APC ini directives that are often customized on a system. Set `php_apc_cache_by_default` to 0 to disable APC by default (so you could enable it on a host-by-host basis). Set the `php_apc_shm_size` so it will hold all your application code in memory with a little overhead (fragmentation or APC running out of memory will slow down PHP *dramatically*).
+APC ini directives that are often customized on a system. Set `php_apc_cache_by_default` to 0 to disable APC by default (so you could just enable it for one codebase if you have a *lot* of code on a server). Set the `php_apc_shm_size` so it will hold all your application code in memory with a little overhead (fragmentation or APC running out of memory will slow down PHP *dramatically*).
 
 #### Ensuring APC is installed
 
