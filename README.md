@@ -67,7 +67,7 @@ The OpCache is included in PHP starting in version 5.5, and the following variab
 
     php_opcache_enabled_in_ini: false
 
-When installing APC, depending on the system and whether running PHP as a webserver module or standalone via `php-fpm`, you might need the line `extension=apc.so` in `apc.ini`. If you need that line added (e.g. you're running `php-fpm`), set this variable to true.
+When installing Opcache, depending on the system and whether running PHP as a webserver module or standalone via `php-fpm`, you might need the line `extension=opcache.so` in `opcache.ini`. If you need that line added (e.g. you're running `php-fpm`), set this variable to true.
 
     php_opcache_enable: "1"
     php_opcache_enable_cli: "0"
