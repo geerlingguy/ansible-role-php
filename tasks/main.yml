@@ -34,6 +34,7 @@
   shell: php -r "echo PHP_VERSION;"
   register: php_version
   changed_when: false
+  always_run: yes
 
 - name: Disable opcache if PHP version is < 5.5.
   set_fact:
