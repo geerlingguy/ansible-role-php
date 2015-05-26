@@ -30,7 +30,7 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Run the role/playbook in --check mode.
-  - "ansible-playbook -i tests/inventory tests/$SITE --check"
+  - "ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo --check"
 
   # Make sure PHP is running.
   - >
