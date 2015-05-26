@@ -136,11 +136,6 @@ None.
       - php-xml
       ...
 
-## TODO
-
-  - Make role more flexible, allowing APC to be excluded from `php_packages` list.
-  - Use `lineinfile` rather than templates to make configuration changes.
-
 ## License
 
 MIT / BSD
