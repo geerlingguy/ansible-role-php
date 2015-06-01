@@ -52,6 +52,12 @@
     state: link
   when: gmp_file.stat.exists == false
 
+- name: Check if PHP is installed.
+  command: which php
+  changed_when: false
+  failed_when: false
+  register: php_installed
+
 - name: Clone the PHP repository.
   git:
     repo: https://git.php.net/repository/php-src.git
@@ -59,13 +65,7 @@
     version: "{{ php_source_version }}"
     accept_hostkey: yes
     depth: 1
-    force: yes
-
-- name: Check if PHP is installed.
-  command: which php
-  changed_when: false
-  failed_when: false
-  register: php_installed
+  when: php_installed|failed
 
 - name: Ensure PHP installation path exists.
   file:
