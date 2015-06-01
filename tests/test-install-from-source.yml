@@ -5,6 +5,7 @@
   vars:
     php_enable_webserver: false
     php_install_from_source: true
+    php_source_make_command: "make --jobs=2"
 
   roles:
     - ansible-role-php
