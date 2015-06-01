@@ -3,7 +3,8 @@ language: python
 python: "2.7"
 
 env:
-  - SITE=test.yml
+  - SITE=test-install-package.yml
+  - SITE=test-install-from-source.yml
 
 before_install:
   - sudo apt-get update -qq

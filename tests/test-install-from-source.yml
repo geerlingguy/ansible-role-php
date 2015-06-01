@@ -1,7 +1,10 @@
 ---
 - hosts: localhost
   remote_user: root
+
   vars:
     php_enable_webserver: false
+    php_install_from_source: true
+
   roles:
     - ansible-role-php

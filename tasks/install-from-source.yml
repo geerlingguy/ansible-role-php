@@ -1,0 +1,97 @@
+---
+- name: Ensure dependencies for building from source are installed (RedHat).
+  yum: "pkg={{ item }} state=installed"
+  with_items:
+    - recode-devel
+    - aspell-devel
+    - libmcrypt-devel
+    - t1lib-devel
+    - libXpm-devel
+    - libpng-devel
+    - libjpeg-turbo-devel
+    - bzip2-devel
+    - openssl-libs
+    - libicu-devel
+  when: ansible_os_family == 'RedHat'
+
+- name: Update apt cache (Debian).
+  apt: update_cache=yes cache_valid_time=86400
+  when: ansible_os_family == 'Debian'
+
+- name: Ensure dependencies for building from source are installed (Debian).
+  apt: "pkg={{ item }} state=installed"
+  with_items:
+    - build-essential
+    - autoconf
+    - automake
+    - libtool
+    - bison
+    - re2c
+    - libxml2-dev
+    - libcurl4-openssl-dev
+    - libbz2-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libxpm-dev
+    - libfreetype6-dev
+    - libgmp-dev
+    - libgmp3-dev
+    - libmcrypt-dev
+    - libmysqlclient-dev
+    - libpspell-dev
+    - librecode-dev
+  when: ansible_os_family == 'Debian'
+
+- name: Ensure gmp.h is symlinked into a location accessible to gcc.
+  file:
+    src: /usr/include/x86_64-linux-gnu/gmp.h
+    dest: /usr/include/gmp.h
+    state: link
+
+- name: Clone the PHP repository.
+  git:
+    repo: https://git.php.net/repository/php-src.git
+    dest: "{{ php_source_clone_dir }}"
+    version: "{{ php_source_version }}"
+    accept_hostkey: yes
+    depth: 1
+
+- name: Check if PHP is installed.
+  command: which php
+  changed_when: false
+  failed_when: false
+  register: php_installed
+
+- name: Ensure PHP installation path exists.
+  file:
+    path: "{{ php_source_install_path }}"
+    state: directory
+    mode: 0755
+  when: php_installed|failed
+
+- name: Build configure script.
+  shell: >
+    ./buildconf
+    chdir={{ php_source_clone_dir }}
+  when: php_installed|failed
+
+- name: Run configure script.
+  shell: >
+    {{ php_source_configure_command }}
+    chdir={{ php_source_clone_dir }}
+  when: php_installed|failed
+
+- name: Make and install PHP.
+  shell: >
+    {{ item }}
+    chdir={{ php_source_clone_dir }}
+  with_items:
+    - "{{ php_source_make_command }}"
+    - make install
+  when: php_installed|failed
+
+- name: Ensure php executable is symlinked into a standard path.
+  file:
+    src: "{{ php_source_install_path }}/bin/php"
+    dest: /usr/bin/php
+    state: link

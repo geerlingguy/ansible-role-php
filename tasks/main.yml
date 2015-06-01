@@ -25,10 +25,14 @@
 
 # Setup/install tasks.
 - include: setup-RedHat.yml
-  when: ansible_os_family == 'RedHat'
+  when: (php_install_from_source == false) and (ansible_os_family == 'RedHat')
 
 - include: setup-Debian.yml
-  when: ansible_os_family == 'Debian'
+  when: (php_install_from_source == false) and (ansible_os_family == 'Debian')
+
+# Install PHP from source when php_install_from_source is true.
+- include: install-from-source.yml
+  when: php_install_from_source == true
 
 - name: Check the installed version of PHP.
   shell: php -r "echo PHP_VERSION;"
