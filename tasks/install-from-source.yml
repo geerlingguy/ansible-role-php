@@ -41,11 +41,16 @@
     - librecode-dev
   when: ansible_os_family == 'Debian'
 
+- name: Check if gmp.h is already in a location accessible to gcc.
+  stat: path=/usr/include/gmp.h
+  register: gmp_file
+
 - name: Ensure gmp.h is symlinked into a location accessible to gcc.
   file:
     src: /usr/include/x86_64-linux-gnu/gmp.h
     dest: /usr/include/gmp.h
     state: link
+  when: gmp_file.stat.exists == false
 
 - name: Clone the PHP repository.
   git:

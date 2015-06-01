@@ -33,11 +33,12 @@ script:
   # Run the role/playbook in --check mode.
   - "ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo --check"
 
-  - find / -name 'gmp.h'
-
-  # Make sure PHP is running.
+  # Make sure PHP is available.
   - >
     php -v
     | grep -q 'The PHP Group'
     && (echo 'PHP is installed' && exit 0)
     || (echo 'PHP is not installed' && exit 1)
+
+  # And for posterity...
+  - php -v
