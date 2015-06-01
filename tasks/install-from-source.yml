@@ -34,7 +34,6 @@
     - libpng-dev
     - libxpm-dev
     - libfreetype6-dev
-    - libgmp-dev
     - libgmp3-dev
     - libmcrypt-dev
     - libmysqlclient-dev
