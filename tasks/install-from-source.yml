@@ -31,7 +31,7 @@
     - libcurl4-openssl-dev
     - libbz2-dev
     - libjpeg-dev
-    - libpng-dev
+    - libpng12-dev
     - libxpm-dev
     - libfreetype6-dev
     - libgmp3-dev
@@ -59,6 +59,7 @@
     version: "{{ php_source_version }}"
     accept_hostkey: yes
     depth: 1
+    force: yes
 
 - name: Check if PHP is installed.
   command: which php
