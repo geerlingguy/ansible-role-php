@@ -3,7 +3,7 @@
   file:
     path: "{{ item }}"
     state: directory
-    follow: true
+    follow: yes
   with_items:
     - "{{ php_conf_path }}"
     - "{{ php_extension_conf_path }}"
@@ -15,6 +15,7 @@
     owner: root
     group: root
     mode: 0644
+    follow: yes
   notify: restart webserver
   when: php_use_managed_ini
 
@@ -24,8 +25,8 @@
     dest: "{{ php_extension_conf_path }}/{{ php_apc_conf_filename }}"
     owner: root
     group: root
-    force: yes
     mode: 0644
+    follow: yes
   when: php_enable_apc
   notify: restart webserver
 
@@ -35,8 +36,8 @@
     dest: "{{ php_extension_conf_path }}/{{ php_opcache_conf_filename }}"
     owner: root
     group: root
-    force: yes
     mode: 0644
+    follow: yes
   when: php_opcache_enable
   notify: restart webserver
 
