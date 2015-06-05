@@ -1,0 +1,56 @@
+[{{ php_fpm_pool_name }}]
+listen = {{ php_fpm_listen }}
+
+listen.backlog = {{ php_fpm_listen_backlog }}
+
+listen.allowed_clients = {{ php_fpm_listen_allowed_clients }}
+
+{% if php_fpm_listen_owner is defined %}
+listen.owner = {{ php_fpm_listen_owner }}
+{% endif %}
+{% if php_fpm_listen_group is defined %}
+listen.group = {{ php_fpm_listen_group }}
+{% endif %}
+{% if php_fpm_listen_mode is defined %}
+listen.mode = {{ php_fpm_listen_mode }}
+{% endif %}
+
+user = {{ php_fpm_user }}
+group = {{ php_fpm_group }}
+
+pm = {{ php_fpm_pm }}
+pm.max_children = {{ php_fpm_pm_max_children }}
+pm.start_servers = {{ php_fpm_pm_start_servers }}
+pm.min_spare_servers = {{ php_fpm_pm_min_spare_servers }}
+pm.max_spare_servers = {{ php_fpm_pm_max_spare_servers }}
+pm.max_requests = {{ php_fpm_pm_max_requests }}
+
+{% if php_fpm_status_path is defined %}
+pm.status_path = {{ php_fpm_status_path }}
+{% endif %}
+
+{% if php_fpm_ping_path is defined %}
+ping.path = {{ php_fpm_ping_path }}
+{% endif %}
+
+{% if php_fpm_ping_response is defined %}
+ping.response = {{ php_fpm_ping_response }}
+{% endif %}
+
+request_terminate_timeout = {{ php_fpm_request_terminate_timeout }}
+
+request_slowlog_timeout = {{ php_fpm_request_slowlog_timeout }}
+
+slowlog = {{ php_fpm_slowlog }}
+
+catch_workers_output = {{ php_fpm_catch_workers_output }}
+
+security.limit_extensions = {{ php_fpm_security_limit_extensions }}
+
+{% if php_fpm_extra_vars is defined %}
+{% for blockkey, blockdict in php_fpm_extra_vars.iteritems() %}
+{% for key, value in blockdict.iteritems() %}
+{{ blockkey }}[{{ key }}] = {{ value }}
+{% endfor %}
+{% endfor %}
+{% endif %}

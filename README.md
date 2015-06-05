@@ -28,18 +28,6 @@ The default values for the HTTP server deamon are `httpd` (used by Apache) for R
 
 (RedHat/CentOS only) If you have enabled any additional repositories (might I suggest geerlingguy.repo-epel or geerlingguy.repo-remi), those repositories can be listed under this variable (e.g. `remi,epel`). This can be handy, as an example, if you want to install the latest version of PHP 5.4, which is in the Remi repository.
 
-### PHP-FPM
-
-PHP-FPM is a simple and robust FastCGI Process Manager for PHP. It can dramatically ease scaling of PHP apps and is the normal way of running PHP-based sites and apps when using a webserver like Nginx (though it can be used with other webservers just as easily).
-
-When using this role with PHP running as `php-fpm` instead of as a process inside a webserver (e.g. Apache's `mod_php`), you need to set the following variable to `true`:
-
-    php_enable_php_fpm: false
-
-You will also need to override the default `php_packages` list and add `php-fpm` (RedHat/CentOS) or `php5-fpm` (Debian/Ubuntu) to the list.
-
-This role does not manage fpm-specific www pool configuration (found in `/etc/php-fpm.d/www.conf` on RedHat/CentOS and `/etc/php5/fpm/pool.d/www.conf` on Debian/Ubuntu), but rather allows you to manage those files on your own. If you change that file, remember to notify the `restart php-fpm` handler so PHP picks up the new settings once in place. Settings like `pm.max_children` and other `pm.*` settings can have a dramatic impact on server performance, and should be tuned specifically for each application and server configuration.
-
 ### php.ini settings
 
     php_use_managed_ini: true
@@ -62,6 +50,73 @@ By default, all the extra defaults below are applied through the php.ini include
     php_expose_php: "On"
 
 Various defaults for PHP. Only used if `php_use_managed_ini` is set to `true`.
+
+### PHP-FPM
+
+PHP-FPM is a simple and robust FastCGI Process Manager for PHP. It can dramatically ease scaling of PHP apps and is the normal way of running PHP-based sites and apps when using a webserver like Nginx (though it can be used with other webservers just as easily).
+
+When using this role with PHP running as `php-fpm` instead of as a process inside a webserver (e.g. Apache's `mod_php`), you need to set the following variable to `true`:
+
+    php_enable_php_fpm: false
+
+You will also need to override the default `php_packages` list and add `php-fpm` (RedHat/CentOS) or `php5-fpm` (Debian/Ubuntu) to the list.
+
+This role does now have an option to manage fpm-specific www pool configuration (found in `/etc/php-fpm.d/www.conf` on RedHat/CentOS and `/etc/php5/fpm/pool.d/www.conf` on Debian/Ubuntu), but still allows you to manage those files on your own. If you change that file, remember to notify the `restart php-fpm` handler so PHP picks up the new settings once in place. Settings like `pm.max_children` and other `pm.*` settings can have a dramatic impact on server performance, and should be tuned specifically for each application and server configuration.
+
+### PHP-FPM Pool Variables
+
+When using this role to manage your pool for PHP-FPM, you need to set the following variable to `true`:
+
+    php_fpm_use_managed_conf: false
+
+**The following are at least recommended to be _required_ variables if using managed conf**
+
+    php_fpm_user: "apache"
+    php_fpm_group: "apache"
+
+The following are *default* variables
+
+    php_fpm_pool_name: "www"
+    php_fpm_listen: "127.0.0.1:9000"
+    php_fpm_listen_backlog: "-1"
+    php_fpm_listen_allowed_clients: "127.0.0.1"
+    php_fpm_user: "apache"
+    php_fpm_group: "apache"
+    php_fpm_pm: "dynamic"
+    php_fpm_pm_max_children: "50"
+    php_fpm_pm_start_servers: "5"
+    php_fpm_pm_min_spare_servers: "5"
+    php_fpm_pm_max_spare_servers: "35"
+    php_fpm_pm_max_requests: "0"
+    php_fpm_request_terminate_timeout: "0"
+    php_fpm_request_slowlog_timeout: "0"
+    php_fpm_slowlog: "/var/log/php-fpm/www-slow.log"
+    php_fpm_catch_workers_output: "no"
+    php_fpm_security_limit_extensions: ".php"
+
+The following are **optional** variables
+
+    php_fpm_listen_owner
+    php_fpm_listen_group
+    php_fpm_listen_mode
+    php_fpm_status_path
+    php_fpm_ping_path
+    php_fpm_ping_response
+    php_fpm_extra_vars
+
+**php_fpm_extra_vars** allows you to set environment as well as php values and flags. See below for example.
+
+    php_fpm_extra_vars:
+      php_admin_value:
+        error_log: "/var/log/php-fpm/www-error.log"
+      php_admin_flag:
+        log_errors: "on"
+      php_value:
+        "session.save_handler": "files"
+        "session.save_path": "/tmp/php/session"
+        "soap.wsdl_cache_dir": "/tmp/php/wsdlcache"
+      php_flag:
+        display_errors: "stderr"
 
 ### OpCache-related Variables
 

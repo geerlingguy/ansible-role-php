@@ -18,7 +18,9 @@ __php_packages:
 __php_webserver_daemon: "httpd"
 
 __php_conf_path: /etc
-php_extension_conf_path: /etc/php.d
+__php_extension_conf_path: "{{ __php_conf_path }}/conf.d"
+__php_fpm_conf_path: "{{ __php_conf_path }}"
+__php_fpm_pool_path: "{{ __php_fpm_conf_path }}/php-fpm.d"
 
 php_apc_conf_filename: apc.ini
 php_opcache_conf_filename: opcache.ini
