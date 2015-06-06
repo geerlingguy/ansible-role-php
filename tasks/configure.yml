@@ -3,7 +3,7 @@
   file:
     path: "{{ item }}"
     state: directory
-    follow: true
+    follow: yes
   with_items:
     - "{{ php_conf_path }}"
     - "{{ php_extension_conf_path }}"
@@ -15,6 +15,7 @@
     owner: root
     group: root
     mode: 0644
+    follow: yes
   notify: restart webserver
   when: php_use_managed_ini
 
@@ -24,8 +25,8 @@
     dest: "{{ php_extension_conf_path }}/{{ php_apc_conf_filename }}"
     owner: root
     group: root
-    force: yes
     mode: 0644
+    follow: yes
   when: php_enable_apc
   notify: restart webserver
 
@@ -35,10 +36,21 @@
     dest: "{{ php_extension_conf_path }}/{{ php_opcache_conf_filename }}"
     owner: root
     group: root
-    force: yes
     mode: 0644
+    follow: yes
   when: php_opcache_enable
   notify: restart webserver
+
+- name: Place PHP-FPM pool configuration file in place.
+  template:
+    src: php-fpm.d/www.conf.j2
+    dest: "{{ php_fpm_pool_path }}/www.conf"
+    owner: root
+    group: root
+    mode: 0644
+    follow: yes
+  notify: restart php-fpm
+  when: php_enable_php_fpm and php_fpm_use_managed_conf
 
 - name: Ensure php-fpm is started and enabled at boot (if configured).
   service:

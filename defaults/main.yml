@@ -6,7 +6,29 @@ php_enablerepo: ""
 php_enable_webserver: true
 
 # Start and enable the PHP fpm service.
+# If this is set to false, none of the following options will have any effect.
 php_enable_php_fpm: false
+# If this is set to false, none of the following options will have any effect.
+# Any and all changes to /etc/php-fpm.d/www.conf will be your responsibility.
+php_fpm_use_managed_conf: true
+php_fpm_pool_name: "www"
+php_fpm_listen: "127.0.0.1:9000"
+php_fpm_listen_backlog: "-1"
+php_fpm_listen_allowed_clients: "127.0.0.1"
+php_fpm_user: "apache"
+php_fpm_group: "apache"
+php_fpm_pm: "dynamic"
+php_fpm_pm_max_children: "50"
+php_fpm_pm_start_servers: "5"
+php_fpm_pm_min_spare_servers: "5"
+php_fpm_pm_max_spare_servers: "35"
+php_fpm_pm_max_requests: "0"
+php_fpm_request_terminate_timeout: "0"
+php_fpm_request_slowlog_timeout: "0"
+php_fpm_slowlog: "/var/log/php-fpm/www-slow.log"
+php_fpm_catch_workers_output: "no"
+php_fpm_security_limit_extensions: ".php"
+
 
 # OpCache settings (useful for PHP >=5.5).
 php_opcache_enabled_in_ini: false
