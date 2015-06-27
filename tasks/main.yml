@@ -35,7 +35,7 @@
   when: php_install_from_source == true
 
 - name: Check the installed version of PHP.
-  shell: php -r "echo PHP_VERSION;"
+  shell: '{{ php_executable }} -r "echo PHP_VERSION;"'
   register: php_version
   changed_when: false
   always_run: yes

@@ -8,6 +8,9 @@ php_enable_webserver: true
 # Start and enable the PHP fpm service.
 php_enable_php_fpm: false
 
+# The executable to run when calling PHP from the command line.
+php_executable: "php"
+
 # OpCache settings (useful for PHP >=5.5).
 php_opcache_enabled_in_ini: false
 php_opcache_enable: "1"
