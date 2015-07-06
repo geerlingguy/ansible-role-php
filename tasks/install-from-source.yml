@@ -101,8 +101,26 @@
     dest: /usr/bin/php
     state: link
 
+# PHP FPM configuration.
 - name: Ensure php-fpm executable is symlinked into a standard path.
   file:
     src: "{{ php_source_install_path }}/sbin/php-fpm"
     dest: "/usr/sbin/{{ php_fpm_daemon }}"
+    state: link
   when: "'--enable-fpm' in php_source_configure_command"
+
+- name: Ensure php-fpm init script is installed.
+  template:
+    src: fpm-init.j2
+    dest: "/etc/init.d/{{ php_fpm_daemon }}"
+    mode: 0755
+  when: "'--enable-fpm' in php_source_configure_command"
+  notify: restart php-fpm
+
+- name: Ensure php-fpm config file is installed.
+  template:
+    src: php-fpm.conf.j2
+    dest: "{{ php_conf_path }}/fpm/php-fpm.conf"
+    mode: 0644
+  when: "'--enable-fpm' in php_source_configure_command"
+  notify: restart php-fpm
