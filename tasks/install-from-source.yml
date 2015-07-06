@@ -76,7 +76,7 @@
 
 - name: Build configure script.
   shell: >
-    ./buildconf
+    ./buildconf --force
     chdir={{ php_source_clone_dir }}
   when: php_installed|failed
 
