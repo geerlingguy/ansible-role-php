@@ -100,3 +100,9 @@
     src: "{{ php_source_install_path }}/bin/php"
     dest: /usr/bin/php
     state: link
+
+- name: Ensure php-fpm executable is symlinked into a standard path.
+  file:
+    src: "{{ php_source_install_path }}/sbin/php-fpm"
+    dest: "/usr/sbin/{{ php_fpm_daemon }}"
+  when: "'--enable-fpm' in php_source_configure_command"
