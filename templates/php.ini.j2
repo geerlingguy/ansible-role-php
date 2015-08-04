@@ -1,97 +1,70 @@
 [PHP]
-{% set is_cli = item.cli is defined and item.cli %}
 
 ;;;;;;;;;;;;;;;;;;;;
 ; Language Options ;
 ;;;;;;;;;;;;;;;;;;;;
 
 engine = On
-short_open_tag = {% if is_cli and php_cli_short_open_tag is defined %}{{ php_cli_short_open_tag }}{% else %}{{ php_short_open_tag }}{% endif %}
+short_open_tag = {{ php_short_open_tag }}
 
 asp_tags = Off
 precision = 14
 output_buffering = 4096
-;output_handler =
 
 zlib.output_compression = Off
-;zlib.output_compression_level = -1
-;zlib.output_handler =
 
 implicit_flush = Off
 unserialize_callback_func =
 serialize_precision = 17
-;open_basedir =
 disable_functions =
 disable_classes =
 
 zend.enable_gc = On
-;zend.multibyte = Off
-;zend.script_encoding =
 
 ;;;;;;;;;;;;;;;;;
 ; Miscellaneous ;
 ;;;;;;;;;;;;;;;;;
 
-expose_php = On
+expose_php = {{ php_expose_php }}
 
 ;;;;;;;;;;;;;;;;;;;
 ; Resource Limits ;
 ;;;;;;;;;;;;;;;;;;;
 
-max_execution_time = {% if is_cli and php_cli_max_execution_time is defined %}{{ php_cli_max_execution_time }}{% else %}{{ php_max_execution_time }}{% endif %}
-
-max_input_time = 60
-;max_input_nesting_level = 64
-; max_input_vars = 1000
-memory_limit = {% if is_cli and php_cli_memory_limit is defined %}{{ php_cli_memory_limit }}{% else %}{{ php_memory_limit }}{% endif %}
-
+max_execution_time = {{ php_max_execution_time }}
+max_input_time = {{ php_max_input_time }}
+max_input_vars = {{ php_max_input_vars }}
+memory_limit = {{ php_memory_limit }}
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Error handling and logging ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-error_reporting = {% if is_cli and php_cli_error_reporting is defined %}{{ php_cli_error_reporting }}{% else %}{{ php_error_reporting }}{% endif %}
-
-display_errors = {% if is_cli and php_cli_display_errors is defined %}{{ php_cli_display_errors }}{% else %}{{ php_display_errors }}{% endif %}
-
-display_startup_errors = Off
+error_reporting = {{ php_error_reporting }}
+display_errors = {{ php_display_errors }}
+display_startup_errors = {{ php_display_startup_errors }}
 log_errors = On
 log_errors_max_len = 1024
 ignore_repeated_errors = Off
 ignore_repeated_source = Off
 report_memleaks = On
-;report_zend_debug = 0
 track_errors = Off
-;xmlrpc_errors = 0
-;xmlrpc_error_number = 0
 html_errors = On
-;docref_root = "/phpmanual/"
-;docref_ext = .html
-;error_prepend_string = "<span style='color: #ff0000'>"
-;error_append_string = "</span>"
-
-;error_log = php_errors.log
-;error_log = syslog
 
 ;;;;;;;;;;;;;;;;;
 ; Data Handling ;
 ;;;;;;;;;;;;;;;;;
 
-;arg_separator.output = "&amp;"
-;arg_separator.input = ";&"
 variables_order = "GPCS"
 request_order = "GP"
 register_argc_argv = Off
 auto_globals_jit = On
 
-;enable_post_data_reading = Off
 post_max_size = {{ php_post_max_size }}
 auto_prepend_file =
 auto_append_file =
 
 default_mimetype = "text/html"
-;default_charset = "UTF-8"
-;always_populate_raw_post_data = On
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Paths and Directories ;
@@ -99,29 +72,17 @@ default_mimetype = "text/html"
 
 doc_root =
 user_dir =
-; extension_dir = "./"
 
 enable_dl = Off
 
-;cgi.force_redirect = 1
-;cgi.nph = 1
-;cgi.redirect_status_env =
-;cgi.fix_pathinfo=1
-;fastcgi.impersonate = 1
-;fastcgi.logging = 0
-;cgi.rfc2616_headers = 0
-
-realpath_cache_size = {% if is_cli and php_cli_realpath_cache_size is defined %}{{ php_cli_realpath_cache_size }}{% else %}{{ php_realpath_cache_size }}{% endif %}
-
+realpath_cache_size = {{ php_realpath_cache_size }}
 
 ;;;;;;;;;;;;;;;;
 ; File Uploads ;
 ;;;;;;;;;;;;;;;;
 
 file_uploads = On
-;upload_tmp_dir =
-upload_max_filesize = {% if is_cli and php_cli_upload_max_filesize is defined %}{{ php_cli_upload_max_filesize }}{% else %}{{ php_upload_max_filesize }}{% endif %}
-
+upload_max_filesize = {{ php_upload_max_filesize }}
 max_file_uploads = 20
 
 ;;;;;;;;;;;;;;;;;;
@@ -131,11 +92,7 @@ max_file_uploads = 20
 allow_url_fopen = On
 allow_url_include = Off
 
-;user_agent="PHP"
-
 default_socket_timeout = 60
-
-;auto_detect_line_endings = Off
 
 ;;;;;;;;;;;;;;;;;;;
 ; Module Settings ;
@@ -145,81 +102,33 @@ default_socket_timeout = 60
 cli_server.color = On
 
 [Date]
-date.timezone = {% if is_cli and php_cli_date_timezone is defined %}{{ php_cli_date_timezone }}{% else %}{{ php_date_timezone }}{% endif %}
+date.timezone = {{ php_date_timezone }}
 
-
-;date.default_latitude = 31.7667
-;date.default_longitude = 35.2333
-;date.sunrise_zenith = 90.583333
-;date.sunset_zenith = 90.583333
-
-[filter]
-;filter.default = unsafe_raw
-;filter.default_flags =
-
-[iconv]
-;iconv.input_encoding = ISO-8859-1
-;iconv.internal_encoding = ISO-8859-1
-;iconv.output_encoding = ISO-8859-1
-
-[intl]
-;intl.default_locale =
-;intl.error_level = E_WARNING
-
-[sqlite]
-;sqlite.assoc_case = 0
-
-[sqlite3]
-;sqlite3.extension_dir =
-
-[Pcre]
-;pcre.backtrack_limit=100000
-;pcre.recursion_limit=100000
-
-[Pdo]
-;pdo_odbc.connection_pooling=strict
-;pdo_odbc.db2_instance_name
 
 [Pdo_mysql]
 pdo_mysql.cache_size = 2000
 pdo_mysql.default_socket=
-
-[Phar]
-;phar.readonly = On
-;phar.require_hash = On
-;phar.cache_list =
 
 [mail function]
 ; For Win32 only.
 SMTP = localhost
 smtp_port = 25
 
-; For Win32 only.
-; http://php.net/sendmail-from
-;sendmail_from = me@example.com
-
 ; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
 sendmail_path = {{ php_sendmail_path }}
 
-;mail.force_extra_parameters =
 mail.add_x_header = On
-;mail.log =
 
 [SQL]
 sql.safe_mode = Off
 
 [ODBC]
-;odbc.default_db    =  Not yet implemented
-;odbc.default_user  =  Not yet implemented
-;odbc.default_pw    =  Not yet implemented
-;odbc.default_cursortype
 odbc.allow_persistent = On
 odbc.check_persistent = On
 odbc.max_persistent = -1
 odbc.max_links = -1
 odbc.defaultlrl = 4096
 odbc.defaultbinmode = 1
-;birdstep.max_links = -1
 
 [MySQL]
 mysql.allow_local_infile = On
@@ -236,9 +145,7 @@ mysql.connect_timeout = 60
 mysql.trace_mode = Off
 
 [MySQLi]
-
 mysqli.max_persistent = -1
-;mysqli.allow_local_infile = On
 mysqli.allow_persistent = On
 mysqli.max_links = -1
 mysqli.cache_size = 2000
@@ -252,19 +159,6 @@ mysqli.reconnect = Off
 [mysqlnd]
 mysqlnd.collect_statistics = On
 mysqlnd.collect_memory_statistics = Off
-;mysqlnd.net_cmd_buffer_size = 2048
-;mysqlnd.net_read_buffer_size = 32768
-
-[OCI8]
-;oci8.privileged_connect = Off
-;oci8.max_persistent = -1
-;oci8.persistent_timeout = -1
-;oci8.ping_interval = 60
-;oci8.connection_class =
-;oci8.events = Off
-;oci8.statement_cache_size = 20
-;oci8.default_prefetch = 100
-;oci8.old_oci_close_semantics = Off
 
 [PostgreSQL]
 pgsql.allow_persistent = On
@@ -277,14 +171,9 @@ pgsql.log_notice = 0
 [bcmath]
 bcmath.scale = 0
 
-[browscap]
-;browscap = extra/browscap.ini
-
 [Session]
 session.save_handler = files
-;session.save_path = "/tmp"
 session.use_cookies = 1
-;session.cookie_secure =
 session.use_only_cookies = 1
 session.name = PHPSESSID
 session.auto_start = 0
@@ -304,9 +193,6 @@ session.bug_compat_42 = Off
 session.bug_compat_warn = Off
 session.referer_check =
 
-;session.entropy_length = 32
-;session.entropy_file = /dev/urandom
-
 session.cache_limiter = nocache
 session.cache_expire = 180
 
@@ -317,13 +203,6 @@ session.hash_bits_per_character = 5
 
 url_rewriter.tags = "a=href,area=href,frame=src,input=src,form=fakeentry"
 
-;session.upload_progress.enabled = On
-;session.upload_progress.cleanup = On
-;session.upload_progress.prefix = "upload_progress_"
-;session.upload_progress.name = "PHP_SESSION_UPLOAD_PROGRESS"
-;session.upload_progress.freq =  "1%"
-;session.upload_progress.min_freq = "1"
-
 [MSSQL]
 mssql.allow_persistent = On
 mssql.max_persistent = -1
@@ -331,48 +210,9 @@ mssql.max_links = -1
 mssql.min_error_severity = 10
 mssql.min_message_severity = 10
 mssql.compatability_mode = Off
-;mssql.connect_timeout = 5
-;mssql.timeout = 60
-;mssql.textlimit = 4096
-;mssql.textsize = 4096
-;mssql.batchsize = 0
-;mssql.datetimeconvert = On
 mssql.secure_connection = Off
-;mssql.max_procs = -1
-;mssql.charset = "ISO-8859-1"
-
-[Assertion]
-;assert.active = On
-;assert.warning = On
-;assert.bail = Off
-;assert.callback = 0
-;assert.quiet_eval = 0
-
-[mbstring]
-;mbstring.language = Japanese
-;mbstring.internal_encoding = EUC-JP
-;mbstring.http_input = auto
-;mbstring.http_output = SJIS
-;mbstring.encoding_translation = Off
-;mbstring.detect_order = auto
-;mbstring.substitute_character = none;
-;mbstring.func_overload = 0
-;mbstring.strict_detection = Off
-;mbstring.http_output_conv_mimetype=
-
-[gd]
-;gd.jpeg_ignore_warning = 0
-
-[exif]
-;exif.encode_unicode = ISO-8859-15
-;exif.decode_unicode_motorola = UCS-2BE
-;exif.decode_unicode_intel    = UCS-2LE
-;exif.encode_jis =
-;exif.decode_jis_motorola = JIS
-;exif.decode_jis_intel    = JIS
 
 [Tidy]
-;tidy.default_config = /usr/local/lib/php/default.tcfg
 tidy.clean_output = Off
 
 [soap]
@@ -381,15 +221,5 @@ soap.wsdl_cache_dir="/tmp"
 soap.wsdl_cache_ttl=86400
 soap.wsdl_cache_limit = 5
 
-[sysvshm]
-;sysvshm.init_mem = 10000
-
 [ldap]
 ldap.max_links = -1
-
-[mcrypt]
-;mcrypt.algorithms_dir=
-;mcrypt.modes_dir=
-
-[dba]
-;dba.default_handler=

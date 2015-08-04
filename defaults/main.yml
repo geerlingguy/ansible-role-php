@@ -8,6 +8,21 @@ php_enable_webserver: true
 # Start and enable the PHP fpm service.
 php_enable_php_fpm: false
 
+# The executable to run when calling PHP from the command line.
+php_executable: "php"
+
+# OpCache settings (useful for PHP >=5.5).
+php_opcache_enabled_in_ini: false
+php_opcache_enable: "1"
+php_opcache_enable_cli: "0"
+php_opcache_memory_consumption: "96"
+php_opcache_interned_strings_buffer: "16"
+php_opcache_max_accelerated_files: "4096"
+php_opcache_max_wasted_percentage: "5"
+php_opcache_validate_timestamps: "1"
+php_opcache_revalidate_freq: "2"
+php_opcache_max_file_size: "0"
+
 # APC settings (useful for PHP <5.5).
 php_enable_apc: true
 php_apc_enabled_in_ini: false
@@ -20,8 +35,11 @@ php_apc_enable_cli: "0"
 # Any and all changes to /etc/php.ini will be your responsibility.
 php_use_managed_ini: true
 
+php_expose_php: "On"
 php_memory_limit: "256M"
 php_max_execution_time: "60"
+php_max_input_time: "60"
+php_max_input_vars: "1000"
 php_realpath_cache_size: "32K"
 php_upload_max_filesize: "64M"
 php_post_max_size: "32M"
@@ -32,3 +50,49 @@ php_short_open_tag: false
 
 php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
 php_display_errors: "Off"
+php_display_startup_errors: "Off"
+
+# Install PHP from source (instead of using a package manager) with these vars.
+php_install_from_source: false
+php_source_version: "master"
+php_source_clone_dir: "~/php-src"
+php_source_install_path: "/opt/php"
+# For faster compile time: "make --jobs=X" where X is # of cores present.
+php_source_make_command: "make"
+php_source_configure_command: >
+  ./configure
+  --prefix={{ php_source_install_path }}
+  --with-config-file-path={{ php_conf_path }}
+  --enable-mbstring
+  --enable-zip
+  --enable-bcmath
+  --enable-pcntl
+  --enable-ftp
+  --enable-exif
+  --enable-calendar
+  --enable-opcache
+  --enable-pdo
+  --enable-sysvmsg
+  --enable-sysvsem
+  --enable-sysvshm
+  --enable-wddx
+  --with-curl
+  --with-mcrypt
+  --with-iconv
+  --with-gmp
+  --with-pspell
+  --with-gd
+  --with-jpeg-dir=/usr
+  --with-png-dir=/usr
+  --with-zlib-dir=/usr
+  --with-xpm-dir=/usr
+  --with-freetype-dir=/usr
+  --enable-gd-native-ttf
+  --enable-gd-jis-conv
+  --with-openssl
+  --with-pdo-mysql=/usr
+  --with-gettext=/usr
+  --with-zlib=/usr
+  --with-bz2=/usr
+  --with-recode=/usr
+  --with-mysqli=/usr/bin/mysql_config

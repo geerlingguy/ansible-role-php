@@ -3,7 +3,8 @@ language: python
 python: "2.7"
 
 env:
-  - SITE=test.yml
+  - SITE=test-install-package.yml
+  - SITE=test-install-from-source.yml
 
 before_install:
   - sudo apt-get update -qq
@@ -29,7 +30,10 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
-  # Make sure PHP is running.
+  # Run the role/playbook in --check mode.
+  - "ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo --check"
+
+  # Make sure PHP is available.
   - >
     php -v
     | grep -q 'The PHP Group'
@@ -42,3 +46,6 @@ script:
     | grep -q 'Europe/London'
     && (echo 'PHP CLI is correctly configured' && exit 0)
     || (echo 'PHP CLI is not correctly configured' && exit 1)
+
+  # And for posterity...
+  - php -v
