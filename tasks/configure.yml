@@ -11,14 +11,14 @@
 
 - name: Place PHP configuration files in place.
   template:
-    src: php.ini.j2
+    src: "{{ item.src }}"
     dest: "{{ item.path }}/{{ item.filename }}"
     owner: root
     group: root
     mode: 0644
   with_items:
-    - { path: "{{ php_conf_path }}", filename: "{{ php_conf_filename }}" }
-    - { path: "{{ php_cli_conf_path }}", filename: "{{ php_cli_conf_filename }}", cli: yes }
+    - { path: "{{ php_conf_path }}", src: "php.ini.j2", filename: "{{ php_conf_filename }}" }
+    - { path: "{{ php_cli_conf_path }}", src: "php-cli.ini.j2", filename: "{{ php_cli_conf_filename }}" }
   notify: restart webserver
   when: php_use_managed_ini
 
