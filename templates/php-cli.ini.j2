@@ -5,7 +5,7 @@
 ;;;;;;;;;;;;;;;;;;;;
 
 engine = On
-short_open_tag = {% if php_cli_short_open_tag is defined %}{{ php_cli_short_open_tag }}{% else %}{{ php_short_open_tag }}{% endif %}
+short_open_tag = {{ php_cli_short_open_tag }}
 
 asp_tags = Off
 precision = 14
@@ -25,24 +25,24 @@ zend.enable_gc = On
 ; Miscellaneous ;
 ;;;;;;;;;;;;;;;;;
 
-expose_php = {% if php_cli_expose_php is defined %}{{ php_cli_expose_php }}{% else %}{{ php_expose_php }}{% endif %}
+expose_php = {{ php_cli_expose_php }}
 
 ;;;;;;;;;;;;;;;;;;;
 ; Resource Limits ;
 ;;;;;;;;;;;;;;;;;;;
 
-max_execution_time = {% if php_cli_max_execution_time is defined %}{{ php_cli_max_execution_time }}{% else %}{{ php_max_execution_time }}{% endif %}
-max_input_time = {% if php_cli_max_input_time is defined %}{{ php_cli_max_input_time }}{% else %}{{ php_max_input_time }}{% endif %}
-max_input_vars = {% if php_cli_max_input_vars is defined %}{{ php_cli_max_input_vars }}{% else %}{{ php_max_input_vars }}{% endif %}
-memory_limit = {% if php_cli_memory_limit is defined %}{{ php_cli_memory_limit }}{% else %}{{ php_memory_limit }}{% endif %}
+max_execution_time = {{ php_cli_max_execution_time }}
+max_input_time = {{ php_cli_max_input_time }}
+max_input_vars = {{ php_cli_max_input_vars }}
+memory_limit = {{ php_cli_memory_limit }}
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Error handling and logging ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-error_reporting = {% if php_cli_error_reporting is defined %}{{ php_cli_error_reporting }}{% else %}{{ php_error_reporting }}{% endif %}
-display_errors = {% if php_cli_display_errors is defined %}{{ php_cli_display_errors }}{% else %}{{ php_display_errors }}{% endif %}
-display_startup_errors = {% if php_cli_display_startup_errors is defined %}{{ php_cli_display_startup_errors }}{% else %}{{ php_display_startup_errors }}{% endif %}
+error_reporting = {{ php_cli_error_reporting }}
+display_errors = {{ php_cli_display_errors }}
+display_startup_errors = {{ php_cli_display_startup_errors }}
 log_errors = On
 log_errors_max_len = 1024
 ignore_repeated_errors = Off
@@ -75,7 +75,7 @@ user_dir =
 
 enable_dl = Off
 
-realpath_cache_size = {% if php_cli_realpath_cache_size is defined %}{{ php_cli_realpath_cache_size }}{% else %}{{ php_realpath_cache_size }}{% endif %}
+realpath_cache_size = {{ php_cli_realpath_cache_size }}
 
 ;;;;;;;;;;;;;;;;
 ; File Uploads ;
@@ -102,7 +102,7 @@ default_socket_timeout = 60
 cli_server.color = On
 
 [Date]
-date.timezone = {% if php_cli_date_timezone is defined %}{{ php_cli_date_timezone }}{% else %}{{ php_date_timezone }}{% endif %}
+date.timezone = {{ php_cli_date_timezone }}
 
 
 [Pdo_mysql]
