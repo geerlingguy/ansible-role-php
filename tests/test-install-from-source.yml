@@ -6,6 +6,7 @@
     php_enable_webserver: false
     php_install_from_source: true
     php_source_make_command: "make --jobs=2"
+    php_cli_date_timezone: Europe/London
 
   roles:
     - ansible-role-php
