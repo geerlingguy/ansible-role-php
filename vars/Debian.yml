@@ -16,6 +16,12 @@ __php_webserver_daemon: "apache2"
 
 # Vendor-specific configuration paths on Debian/Ubuntu make my brain asplode.
 __php_conf_path: "{{ '/etc/php5' if php_webserver_daemon and php_webserver_daemon != 'apache2' else '/etc/php5/apache2' }}"
+__php_conf_filename: "php.ini"
+
+# Specific case for the cli configuration
+__php_cli_conf_path: "/etc/php5/cli"
+__php_cli_conf_filename: "php.ini"
+
 __php_extension_conf_path: "{{ __php_conf_path }}/conf.d"
 
 php_apc_conf_filename: 20-apc.ini

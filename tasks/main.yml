@@ -18,10 +18,28 @@
     php_conf_path: "{{ __php_conf_path }}"
   when: php_conf_path is not defined
 
+- name: Define php_conf_filename.
+  set_fact:
+    php_conf_filename: "{{ __php_conf_filename }}"
+  when: php_conf_filename is not defined
+
+- name: Define php_cli_conf_path.
+  set_fact:
+    php_cli_conf_path: "{{ __php_cli_conf_path }}"
+  when: php_cli_conf_path is not defined
+
+- name: Define php_cli_conf_filename.
+  set_fact:
+    php_cli_conf_filename: "{{ __php_cli_conf_filename }}"
+  when: php_cli_conf_filename is not defined
+
 - name: Define php_extension_conf_path.
   set_fact:
     php_extension_conf_path: "{{ __php_extension_conf_path }}"
   when: php_extension_conf_path is not defined
+
+# Setup CLI variables
+- include: cli-variables-setup.yml
 
 # Setup/install tasks.
 - include: setup-RedHat.yml
