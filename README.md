@@ -87,6 +87,10 @@ When installing Opcache, depending on the system and whether running PHP as a we
 
 OpCache ini directives that are often customized on a system. Make sure you have enough memory and file slots allocated in the OpCache (`php_opcache_memory_consumption`, in MB, and `php_opcache_max_accelerated_files`) to contain all the PHP code you are running. If not, you may get less-than-optimal performance!
 
+    php_opcache_conf_filename: [platform-specific]
+
+The platform-specific opcache configuration filename. Generally the default should work, but in some cases, you may need to override the filename.
+
 ### APC-related Variables
 
     php_enable_apc: true
@@ -103,6 +107,10 @@ When installing APC, depending on the system and whether running PHP as a webser
     php_apc_enable_cli: "0"
 
 APC ini directives that are often customized on a system. Set `php_apc_cache_by_default` to 0 to disable APC by default (so you could just enable it for one codebase if you have a *lot* of code on a server). Set the `php_apc_shm_size` so it will hold all your application code in memory with a little overhead (fragmentation or APC running out of memory will slow down PHP *dramatically*).
+
+    php_apc_conf_filename: [platform-specific]
+
+The platform-specific APC configuration filename. Generally the default should work, but in some cases, you may need to override the filename.
 
 #### Ensuring APC is installed
 
