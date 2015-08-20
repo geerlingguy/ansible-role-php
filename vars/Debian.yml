@@ -18,6 +18,6 @@ __php_webserver_daemon: "apache2"
 __php_conf_path: "{{ '/etc/php5' if php_webserver_daemon and php_webserver_daemon != 'apache2' else '/etc/php5/apache2' }}"
 __php_extension_conf_path: "{{ __php_conf_path }}/conf.d"
 
-php_apc_conf_filename: 20-apc.ini
-php_opcache_conf_filename: 05-opcache.ini
+__php_apc_conf_filename: 20-apc.ini
+__php_opcache_conf_filename: 05-opcache.ini
 php_fpm_daemon: php5-fpm
