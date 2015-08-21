@@ -1,6 +1,5 @@
 ---
 __php_packages:
-  - ImageMagick
   - php
   - php-cli
   - php-common
