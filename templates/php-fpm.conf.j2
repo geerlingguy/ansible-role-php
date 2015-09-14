@@ -9,4 +9,22 @@ include={{ php_conf_path }}/fpm/pool.d/*.conf
 ;;;;;;;;;;;;;;;;;;
 
 [global]
-error_log = /var/log/php-fpm.log
+error_log = {{ php_conf_error_log }}
+daemonize = {{ php_conf_daemonize }} 
+
+
+[www]
+access.log = {{ php_conf_www_access_log }}
+
+user = {{ php_conf_www_user }}
+group = {{ php_conf_www_group }}
+
+listen = {{ php_conf_www_listen_host }}:{{ php_conf_www_listen_port}}
+
+pm = {{ php_conf_www_pm }}
+pm.max_children = {{ php_conf_www_pm_max_children }}
+pm.start_servers = {{ php_conf_www_pm_start_servers }}
+pm.min_spare_servers = {{ php_conf_www_pm_min_spare_servers }}
+pm.max_spare_servers = {{ php_conf_www_pm_max_spare_servers }}
+
+clear_env = {{ php_conf_www_clear_env }}

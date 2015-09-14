@@ -8,3 +8,14 @@
     state: installed
   with_items: php_packages
   notify: restart webserver
+
+- name: Ensure php-fpm config directory exists.
+  file:
+    path: "{{ php_conf_path }}/fpm"
+    state: directory
+
+- name: Ensure php-fpm config file is installed.
+  template:
+    src: "../templates/php-fpm.conf.j2"
+    dest: "{{ php_conf_path }}/fpm/php-fpm.conf"
+    mode: 0644
