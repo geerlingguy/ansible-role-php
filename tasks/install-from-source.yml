@@ -39,6 +39,7 @@
     - libmysqlclient-dev
     - libpspell-dev
     - librecode-dev
+    - libssl-dev
   when: ansible_os_family == 'Debian'
 
 - name: Check if gmp.h is already in a location accessible to gcc.
