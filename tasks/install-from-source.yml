@@ -45,8 +45,6 @@
   stat: path=/usr/include/gmp.h
   register: gmp_file
 
-
-
 - name: Ensure gmp.h is symlinked into a location accessible to gcc.
   file:
     src: "{{ php_source_install_gmp_path }}"
