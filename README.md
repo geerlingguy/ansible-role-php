@@ -137,8 +137,9 @@ The version of PHP to install from source (a git branch, tag, or commit hash).
 
     php_source_clone_dir: "~/php-src"
     php_source_install_path: "/opt/php"
+    php_source_install_gmp_path: "/usr/include/x86_64-linux-gnu/gmp.h"
 
-Location where source will be cloned and installed, respectively.
+Location where source will be cloned and installed, and the location of the GMP header file (which can be platform/distribution specific).
 
     php_source_make_command: "make"
 
