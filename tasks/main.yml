@@ -57,3 +57,6 @@
 
 # Configure PHP.
 - include: configure.yml
+
+- include: configure-Debian.yml
+  when: (php_install_from_source == false) and (ansible_os_family == 'Debian')

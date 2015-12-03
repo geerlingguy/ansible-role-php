@@ -1,0 +1,12 @@
+- name: Ensure php5-fpm config file is installed.
+  template:
+    src: apache2-fpm.j2
+    dest: /etc/apache2/mods-available/php5-fpm.conf
+    mode: 0644
+  when: php_enable_php_fpm and php_webserver_daemon == "apache2" 
+  notify: restart webserver
+
+- name: Ensure php5-fpm config file is activated
+  file: src=../mods-available/php5-fpm.conf dest=/etc/apache2/mods-enabled/php5-fpm.conf state=link  
+  when: php_enable_php_fpm and php_webserver_daemon == "apache2" 
+  notify: restart webserver
