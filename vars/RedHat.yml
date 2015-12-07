@@ -9,6 +9,7 @@ __php_packages:
   - php-imap
   - php-ldap
   - php-mbstring
+  - php-opcache
   - php-pdo
   - php-pear
   - php-pecl-apc
@@ -19,6 +20,6 @@ __php_webserver_daemon: "httpd"
 __php_conf_path: /etc
 php_extension_conf_path: /etc/php.d
 
-__php_apc_conf_filename: apc.ini
-__php_opcache_conf_filename: opcache.ini
+__php_apc_conf_filename: 50-apc.ini
+__php_opcache_conf_filename: 10-opcache.ini
 __php_fpm_daemon: php-fpm
