@@ -53,7 +53,7 @@
 - name: Disable opcache if PHP version is < 5.5.
   set_fact:
     php_opcache_enable: 0
-  when: "php_version.stdout.split('.')[0] == '5' and php_version.stdout.split('.')[1] < '5'"
+  when: "{{ php_version.stdout | version_compare('5.5', operator='lt') }}"
 
 # Configure PHP.
 - include: configure.yml
