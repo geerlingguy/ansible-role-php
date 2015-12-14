@@ -1,22 +1,22 @@
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides:          php-fpm php5-fpm
+# Provides:          php-fpm {{ php_fpm_daemon }}
 # Required-Start:    $remote_fs $network
 # Required-Stop:     $remote_fs $network
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6  
-# Short-Description: starts php5-fpm
+# Short-Description: starts {{ php_fpm_daemon }}
 # Description:       Starts The PHP FastCGI Process Manager Daemon
 ### END INIT INFO
 
 # Author: Ondrej Sury <ondrej@debian.org>
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-DESC="PHP5 FastCGI Process Manager"
-NAME=php5-fpm
+DESC="PHP FastCGI Process Manager"
+NAME={{ php_fpm_daemon }}
 DAEMON=/usr/sbin/$NAME
 DAEMON_ARGS="--daemonize --fpm-config {{ php_conf_path }}/fpm/php-fpm.conf"
-PIDFILE=/var/run/php5-fpm.pid
+PIDFILE=/var/run/{{ php_fpm_daemon }}.pid
 TIMEOUT=30
 SCRIPTNAME=/etc/init.d/$NAME
 
