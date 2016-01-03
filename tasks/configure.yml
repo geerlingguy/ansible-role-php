@@ -40,6 +40,11 @@
   when: php_opcache_enable
   notify: restart webserver
 
+- name: Define php_fpm_daemon.
+  set_fact:
+    php_fpm_daemon: "{{ __php_fpm_daemon }}"
+  when: php_fpm_daemon is not defined
+
 - name: Ensure php-fpm is started and enabled at boot (if configured).
   service:
     name: "{{ php_fpm_daemon }}"
