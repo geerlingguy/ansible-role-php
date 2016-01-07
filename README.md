@@ -16,6 +16,8 @@ Available variables are listed below, along with default values (see `defaults/m
 
 A list of the PHP packages to install (OS-specific by default). You'll likely want to install common packages like `php`, `php-cli`, `php-devel` and `php-pdo`, and you can add in whatever other packages you'd like (for example, `php-gd` for image manipulation, or `php-ldap` if you need to connect to an LDAP server for authentication).
 
+_Note: If you're using Debian/Ubuntu, you may also need to install `libapache2-mod-php5` (or a similar package depending on PHP version) if you want to use `mod_php` with Apache._
+
     php_enable_webserver: true
 
 If your usage of PHP is tied to a web server (e.g. Apache or Nginx), leave this default value. If you are using PHP server-side or to run some small application, set this value to `false` so this role doesn't attempt to interact with a web server.
