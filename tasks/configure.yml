@@ -51,3 +51,16 @@
     state: started
     enabled: yes
   when: php_enable_php_fpm
+
+- name: Place PHP configuration file for fpm in place.
+  template:
+    src: php.ini.j2
+    dest: "{{ php_conf_path }}/fpm/php.ini"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart php-fpm
+  when: php_use_managed_ini
+  when: php_enable_php_fpm
+
+
