@@ -11,7 +11,9 @@ before_install:
 
 install:
   # Install Ansible.
-  - pip install ansible
+  # TODO - remove specific version number after the following issue is fixed:
+  # https://github.com/ansible/ansible-modules-core/issues/2473
+  - pip install ansible==1.9.4
 
   # Add ansible.cfg to pick up roles path.
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
