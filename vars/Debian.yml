@@ -20,3 +20,4 @@ __php_extension_conf_path: "{{ __php_conf_path }}/conf.d"
 __php_apc_conf_filename: 20-apcu.ini
 __php_opcache_conf_filename: 05-opcache.ini
 __php_fpm_daemon: php5-fpm
+php_fpm_pool_conf_path: "/etc/php5/fpm/pool.d/www.conf"

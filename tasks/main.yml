@@ -57,3 +57,6 @@
 
 # Configure PHP.
 - include: configure.yml
+
+# Configure PHP-FPM.
+- include: configure-fpm.yml

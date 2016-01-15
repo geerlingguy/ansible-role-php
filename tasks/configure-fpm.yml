@@ -1,0 +1,34 @@
+---
+- name: Define php_fpm_daemon.
+  set_fact:
+    php_fpm_daemon: "{{ __php_fpm_daemon }}"
+  when: php_fpm_daemon is not defined
+
+- name: Configure php-fpm pool (if enabled).
+  lineinfile:
+    dest: "{{ php_fpm_pool_conf_path }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - regexp: "^listen.?=.+$"
+      line: "listen = 127.0.0.1:9000"
+    - regexp: '^listen\.allowed_clients.?=.+$'
+      line: "listen.allowed_clients = {{ php_fpm_listen_allowed_clients }}"
+    - regexp: '^pm\.max_children.?=.+$'
+      line: "pm.max_children = {{ php_fpm_pm_max_children }}"
+    - regexp: '^pm\.start_servers.?=.+$'
+      line: "pm.start_servers = {{ php_fpm_pm_start_servers }}"
+    - regexp: '^pm\.min_spare_servers.?=.+$'
+      line: "pm.min_spare_servers = {{ php_fpm_pm_min_spare_servers }}"
+    - regexp: '^pm\.max_spare_servers.?=.+$'
+      line: "pm.max_spare_servers = {{ php_fpm_pm_max_spare_servers }}"
+  when: php_enable_php_fpm
+  notify: restart php-fpm
+
+- name: Ensure php-fpm is started and enabled at boot (if configured).
+  service:
+    name: "{{ php_fpm_daemon }}"
+    state: started
+    enabled: yes
+  when: php_enable_php_fpm

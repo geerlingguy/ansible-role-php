@@ -16,7 +16,7 @@ Available variables are listed below, along with default values (see `defaults/m
 
 A list of the PHP packages to install (OS-specific by default). You'll likely want to install common packages like `php`, `php-cli`, `php-devel` and `php-pdo`, and you can add in whatever other packages you'd like (for example, `php-gd` for image manipulation, or `php-ldap` if you need to connect to an LDAP server for authentication).
 
-_Note: If you're using Debian/Ubuntu, you may also need to install `libapache2-mod-php5` (or a similar package depending on PHP version) if you want to use `mod_php` with Apache._
+_Note: If you're using Debian/Ubuntu, you may also need to install `libapache2-mod-fastcgi` (for cgi/PHP-FPM) or `libapache2-mod-php5` (or a similar package depending on PHP version) if you want to use `mod_php` with Apache._
 
     php_enable_webserver: true
 
@@ -44,7 +44,14 @@ When using this role with PHP running as `php-fpm` instead of as a process insid
 
 You will also need to override the default `php_packages` list and add `php-fpm` (RedHat/CentOS) or `php5-fpm` (Debian/Ubuntu) to the list.
 
-This role does not manage fpm-specific www pool configuration (found in `/etc/php-fpm.d/www.conf` on RedHat/CentOS and `/etc/php5/fpm/pool.d/www.conf` on Debian/Ubuntu), but rather allows you to manage those files on your own. If you change that file, remember to notify the `restart php-fpm` handler so PHP picks up the new settings once in place. Settings like `pm.max_children` and other `pm.*` settings can have a dramatic impact on server performance, and should be tuned specifically for each application and server configuration.
+    php_fpm_listen: "127.0.0.1:9000"
+    php_fpm_listen_allowed_clients: "127.0.0.1"
+    php_fpm_pm_max_children: 50
+    php_fpm_pm_start_servers: 5
+    php_fpm_pm_min_spare_servers: 5
+    php_fpm_pm_max_spare_servers: 5
+
+Specific settings inside the default `www.conf` PHP-FPM pool. If you'd like to manage additional settings, you can do so either by replacing the file with your own template or using `lineinfile` like this role does inside `tasks/configure.yml`.
 
 ### php.ini settings
 
