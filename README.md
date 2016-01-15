@@ -42,7 +42,7 @@ When using this role with PHP running as `php-fpm` instead of as a process insid
 
     php_enable_php_fpm: false
 
-You will also need to override the default `php_packages` list and add `php-fpm` (RedHat/CentOS) or `php5-fpm` (Debian/Ubuntu) to the list.
+If you're using Apache, you can easily get it configured to work with PHP-FPM using the [geerlingguy.apache-php-fpm](https://github.com/geerlingguy/ansible-role-apache-php-fpm) role.
 
     php_fpm_listen: "127.0.0.1:9000"
     php_fpm_listen_allowed_clients: "127.0.0.1"
