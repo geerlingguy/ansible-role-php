@@ -12,7 +12,7 @@
     state: present
   with_items:
     - regexp: "^listen.?=.+$"
-      line: "listen = 127.0.0.1:9000"
+      line: "listen = {{ php_fpm_listen }}"
     - regexp: '^listen\.allowed_clients.?=.+$'
       line: "listen.allowed_clients = {{ php_fpm_listen_allowed_clients }}"
     - regexp: '^pm\.max_children.?=.+$'
