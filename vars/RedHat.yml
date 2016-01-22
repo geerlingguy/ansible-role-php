@@ -23,4 +23,4 @@ php_extension_conf_path: /etc/php.d
 __php_apc_conf_filename: 50-apc.ini
 __php_opcache_conf_filename: 10-opcache.ini
 __php_fpm_daemon: php-fpm
-php_fpm_pool_conf_path: "/etc/php-fpm.d/www.conf"
+__php_fpm_pool_conf_path: "/etc/php-fpm.d/www.conf"
