@@ -44,3 +44,6 @@ script:
 
   # And for posterity...
   - php -v
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
