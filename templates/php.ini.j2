@@ -176,16 +176,16 @@ session.use_only_cookies = 1
 session.name = PHPSESSID
 session.auto_start = 0
 
-session.cookie_lifetime = 0
+session.cookie_lifetime = {{ php_session_cookie_lifetime }}
 session.cookie_path = /
 session.cookie_domain =
 session.cookie_httponly =
 
 session.serialize_handler = php
 
-session.gc_probability = 1
-session.gc_divisor = 1000
-session.gc_maxlifetime = 1440
+session.gc_probability = {{ php_session_gc_probability }}
+session.gc_divisor = {{ php_session_gc_divisor }}
+session.gc_maxlifetime = {{ php_session_gc_maxlifetime }}
 
 session.bug_compat_42 = Off
 session.bug_compat_warn = Off
