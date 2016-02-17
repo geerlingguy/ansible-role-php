@@ -77,6 +77,8 @@ By default, all the extra defaults below are applied through the php.ini include
     php_session_gc_probability: 1
     php_session_gc_divisor: 1000
     php_session_gc_maxlifetime: 1440
+    php_session_save_handler: files
+    php_session_save_path: ''
 
 Various defaults for PHP. Only used if `php_use_managed_ini` is set to `true`.
 
