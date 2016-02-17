@@ -21,3 +21,5 @@ __php_apc_conf_filename: 20-apcu.ini
 __php_opcache_conf_filename: 05-opcache.ini
 __php_fpm_daemon: php5-fpm
 __php_fpm_pool_conf_path: "/etc/php5/fpm/pool.d/www.conf"
+
+php_fpm_listen: "unix://var/run/php5-fpm.sock"
