@@ -170,7 +170,10 @@ pgsql.log_notice = 0
 bcmath.scale = 0
 
 [Session]
-session.save_handler = files
+session.save_handler = {{ php_session_save_handler }}
+{% if php_session_save_path %}
+    session.save_path = {{ php_session_save_path }}
+{% endif %}
 session.use_cookies = 1
 session.use_only_cookies = 1
 session.name = PHPSESSID
