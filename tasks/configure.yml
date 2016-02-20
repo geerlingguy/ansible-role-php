@@ -8,6 +8,8 @@
     - "{{ php_conf_path }}"
     - "{{ php_extension_conf_path }}"
 
+- debug: var=php_conf_path
+
 - name: Place PHP configuration file in place.
   template:
     src: php.ini.j2
