@@ -202,12 +202,12 @@ script:
 
   # Test (the clue version needs to be tested manually).
   - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm php -i | grep 'memory_limit.*191' || true
-  - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm curl -s --header Host:test.dev localhost | grep 'memory_limit.*191M'
+  - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm curl --header Host:test.dev localhost | grep 'memory_limit.*191M'
 
   # Debug
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ls -la /etc/php5'
   - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm php -i | grep 'memory_limit' || true
-  - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm curl -s --header Host:test.dev localhost | grep 'memory_limit' || true
+  - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm curl --header Host:test.dev localhost | grep 'memory_limit' || true
 
   # Clean up
   - 'sudo docker stop "$(cat ${container_id})"'
