@@ -6,6 +6,7 @@
     php_version: 5.6
     php_enablerepo: "remi,remi-php56"
     php_memory_limit: "191M"
+    php_webserver_daemon: "nginx"
 
     php_enable_php_fpm: true
     php_fpm_listen: "127.0.0.1:9000"

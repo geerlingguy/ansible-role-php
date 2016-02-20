@@ -14,7 +14,7 @@ __php_packages:
 __php_webserver_daemon: "apache2"
 
 # Vendor-specific configuration paths on Debian/Ubuntu make my brain asplode.
-__php_conf_path: "{{ '/etc/php5/apache2' if php_webserver_daemon == 'apache2' else '/etc/php5/fpm' if php_enable_php_fpm else '/etc/php5' }}"
+__php_conf_path: "{{ '/etc/php5/fpm' if php_enable_php_fpm else '/etc/php5/apache2' if php_webserver_daemon == 'apache2' else '/etc/php5/cli' }}"
 __php_extension_conf_path: "{{ __php_conf_path }}/conf.d"
 
 __php_apc_conf_filename: 20-apcu.ini
