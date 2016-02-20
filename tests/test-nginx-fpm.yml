@@ -11,10 +11,22 @@
     php_enable_php_fpm: true
     php_fpm_listen: "127.0.0.1:9000"
 
-    nginx_hosts:
-      - server: "test.dev"
-        root: "/var/www/test/"
-        is_php: true
+    nginx_vhosts:
+      - listen: "80"
+        server_name: "test.dev"
+        root: "/var/www/test"
+        index: "index.php"
+        error_page: ""
+        access_log: ""
+        error_log: ""
+        extra_parameters: |
+          location ~ \.php$ {
+            fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            fastcgi_pass 127.0.0.1:9000
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
+          }
 
   pre_tasks:
     - name: Ensure build dependencies are installed (RedHat).
