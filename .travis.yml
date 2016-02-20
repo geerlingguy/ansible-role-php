@@ -162,8 +162,8 @@ script:
   - 'sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ${distribution}-${version}:ansible "${init}" > "${container_id}"'
 
   # Setup test
-  - sudo docker exec "$(cat ${container_id})" hostname test.dev
-  - sudo docker exec "$(cat ${container_id})" mkdir -p /var/www/test
+  - 'sudo docker exec "$(cat ${container_id})" hostname test.dev'
+  - 'sudo docker exec "$(cat ${container_id})" mkdir -p /var/www/test'
   - sudo docker exec "$(cat ${container_id})" bash -c 'echo "<?php phpinfo(); ?>" >| /var/www/test/index.php'
 
   # Install dependencies.

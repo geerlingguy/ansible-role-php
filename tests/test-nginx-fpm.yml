@@ -17,15 +17,15 @@
         root: "/var/www/test"
         index: "index.php"
         extra_parameters: |
-          location ~ \.php$ {
-            fastcgi_split_path_info ^(.+?\.php)(|/.*)$;
-            fastcgi_index index.php;
-            fastcgi_param SCRIPT_FILENAME $request_filename;
-            fastcgi_intercept_errors on;
-            fastcgi_read_timeout 120;
-            include fastcgi_params;
-            fastcgi_pass 127.0.0.1:9000
-          }
+              location ~ \.php$ {
+                fastcgi_split_path_info ^(.+?\.php)(|/.*)$;
+                fastcgi_index index.php;
+                fastcgi_param SCRIPT_FILENAME $request_filename;
+                fastcgi_intercept_errors on;
+                fastcgi_read_timeout 120;
+                include fastcgi_params;
+                fastcgi_pass 127.0.0.1:9000
+              }
 
   pre_tasks:
     - name: Ensure build dependencies are installed (RedHat).
