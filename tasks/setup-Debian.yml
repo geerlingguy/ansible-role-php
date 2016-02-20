@@ -7,4 +7,19 @@
     name: "{{ item }}"
     state: installed
   with_items: php_packages
+  register: php_package_install
+  notify: restart webserver
+
+- name: Delete APC configuration file if this role will provide one.
+  file:
+    path: "{{ php_extension_conf_path }}/{{ php_apc_conf_filename }}"
+    state: absent
+  when: php_enable_apc and php_package_install.changed
+  notify: restart webserver
+
+- name: Delete OpCache configuration file if this role will provide one.
+  file:
+    path: "{{ php_extension_conf_path }}/{{ php_opcache_conf_filename }}"
+    state: absent
+  when: php_opcache_enable and php_package_install.changed
   notify: restart webserver
