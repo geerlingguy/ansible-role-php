@@ -43,30 +43,30 @@ env:
   #  PHP_VERSION: 5.6
 
   # Test without any webserver
-  - distribution: centos
-    version: 6
-    init: /sbin/init
-    run_opts: ""
-    SITE: no-webserver
-    PHP_VERSION: 5.6
-  - distribution: centos
-    version: 7
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    SITE: no-webserver
-    PHP_VERSION: 5.6
-  - distribution: ubuntu
-    version: 14.04
-    init: /sbin/init
-    run_opts: ""
-    SITE: no-webserver
-    PHP_VERSION: 5.6
-  - distribution: ubuntu
-    version: 12.04
-    init: /sbin/init
-    run_opts: ""
-    SITE: no-webserver
-    PHP_VERSION: 5.6
+  #- distribution: centos
+  #  version: 6
+  #  init: /sbin/init
+  #  run_opts: ""
+  #  SITE: no-webserver
+  #  PHP_VERSION: 5.6
+  #- distribution: centos
+  #  version: 7
+  #  init: /usr/lib/systemd/systemd
+  #  run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  #  SITE: no-webserver
+  #  PHP_VERSION: 5.6
+  #- distribution: ubuntu
+  #  version: 14.04
+  #  init: /sbin/init
+  #  run_opts: ""
+  #  SITE: no-webserver
+  #  PHP_VERSION: 5.6
+  #- distribution: ubuntu
+  #  version: 12.04
+  #  init: /sbin/init
+  #  run_opts: ""
+  #  SITE: no-webserver
+  #  PHP_VERSION: 5.6
 
   # Test Apache with FPM
   - distribution: centos
@@ -75,76 +75,76 @@ env:
     run_opts: ""
     SITE: apache-fpm
     PHP_VERSION: 5.6
-  - distribution: centos
-    version: 7
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    SITE: apache-fpm
-    PHP_VERSION: 5.6
-  - distribution: ubuntu
-    version: 14.04
-    init: /sbin/init
-    run_opts: ""
-    SITE: apache-fpm
-    PHP_VERSION: 5.6
-  - distribution: ubuntu
-    version: 12.04
-    init: /sbin/init
-    run_opts: ""
-    SITE: apache-fpm
-    PHP_VERSION: 5.6
+  # - distribution: centos
+  #   version: 7
+  #   init: /usr/lib/systemd/systemd
+  #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  #   SITE: apache-fpm
+  #   PHP_VERSION: 5.6
+  # - distribution: ubuntu
+  #   version: 14.04
+  #   init: /sbin/init
+  #   run_opts: ""
+  #   SITE: apache-fpm
+  #   PHP_VERSION: 5.6
+  # - distribution: ubuntu
+  #   version: 12.04
+  #   init: /sbin/init
+  #   run_opts: ""
+  #   SITE: apache-fpm
+  #   PHP_VERSION: 5.6
 
   # Test Nginx with FPM
-  - distribution: centos
-    version: 6
-    init: /sbin/init
-    run_opts: ""
-    SITE: nginx-fpm
-    PHP_VERSION: 5.6
-  - distribution: centos
-    version: 7
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    SITE: nginx-fpm
-    PHP_VERSION: 5.6
-  - distribution: ubuntu
-    version: 14.04
-    init: /sbin/init
-    run_opts: ""
-    SITE: nginx-fpm
-    PHP_VERSION: 5.6
-  - distribution: ubuntu
-    version: 12.04
-    init: /sbin/init
-    run_opts: ""
-    SITE: nginx-fpm
-    PHP_VERSION: 5.6
+  #- distribution: centos
+  #  version: 6
+  #  init: /sbin/init
+  #  run_opts: ""
+  #  SITE: nginx-fpm
+  #  PHP_VERSION: 5.6
+  #- distribution: centos
+  #  version: 7
+  #  init: /usr/lib/systemd/systemd
+  #  run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  #  SITE: nginx-fpm
+  #  PHP_VERSION: 5.6
+  #- distribution: ubuntu
+  #  version: 14.04
+  #  init: /sbin/init
+  #  run_opts: ""
+  #  SITE: nginx-fpm
+  #  PHP_VERSION: 5.6
+  #- distribution: ubuntu
+  #  version: 12.04
+  #  init: /sbin/init
+  #  run_opts: ""
+  #  SITE: nginx-fpm
+  #  PHP_VERSION: 5.6
 
-  # Test Apache with mod_php
-  - distribution: centos
-    version: 6
-    init: /sbin/init
-    run_opts: ""
-    SITE: apache-mod_php
-    PHP_VERSION: 5.6
-  - distribution: centos
-    version: 7
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    SITE: apache-mod_php
-    PHP_VERSION: 5.6
-  - distribution: ubuntu
-    version: 14.04
-    init: /sbin/init
-    run_opts: ""
-    SITE: apache-mod_php
-    PHP_VERSION: 5.6
-  - distribution: ubuntu
-    version: 12.04
-    init: /sbin/init
-    run_opts: ""
-    SITE: apache-mod_php
-    PHP_VERSION: 5.6
+  ## Test Apache with mod_php
+  #- distribution: centos
+  #  version: 6
+  #  init: /sbin/init
+  #  run_opts: ""
+  #  SITE: apache-mod_php
+  #  PHP_VERSION: 5.6
+  #- distribution: centos
+  #  version: 7
+  #  init: /usr/lib/systemd/systemd
+  #  run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  #  SITE: apache-mod_php
+  #  PHP_VERSION: 5.6
+  #- distribution: ubuntu
+  #  version: 14.04
+  #  init: /sbin/init
+  #  run_opts: ""
+  #  SITE: apache-mod_php
+  #  PHP_VERSION: 5.6
+  #- distribution: ubuntu
+  #  version: 12.04
+  #  init: /sbin/init
+  #  run_opts: ""
+  #  SITE: apache-mod_php
+  #  PHP_VERSION: 5.6
 
 services:
   - docker
@@ -184,7 +184,7 @@ script:
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ls -l /var/log'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm cat /var/log/php5-fpm/err.log || true'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm cat /var/log/apache2/error.log || true'
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm cat /var/log/httpd/error.log || true'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm cat /var/log/httpd/error_log || true'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm cat /var/log/nginx/error.log || true'
   - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm php -i | grep 'memory_limit' || true
   - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm curl --header Host:test.dev localhost
