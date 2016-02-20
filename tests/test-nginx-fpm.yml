@@ -12,13 +12,10 @@
     php_fpm_listen: "127.0.0.1:9000"
 
     nginx_vhosts:
-      - listen: "80"
+      - listen: "80 default_server"
         server_name: "test.dev"
         root: "/var/www/test"
         index: "index.php"
-        error_page: ""
-        access_log: ""
-        error_log: ""
         extra_parameters: |
           location ~ \.php$ {
             fastcgi_split_path_info ^(.+\.php)(/.+)$;
