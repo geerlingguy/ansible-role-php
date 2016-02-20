@@ -181,7 +181,7 @@ script:
   # Debug
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ls -la /etc/php5'
   - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm php -i | grep 'memory_limit' || true
-  - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm curl --header Host:test.dev localhost | grep 'memory_limit' || true
+  - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm curl --header Host:test.dev localhost
 
   # Clean up
   - 'sudo docker stop "$(cat ${container_id})"'
