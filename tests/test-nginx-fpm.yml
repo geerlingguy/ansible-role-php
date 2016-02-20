@@ -24,7 +24,7 @@
                 fastcgi_intercept_errors on;
                 fastcgi_read_timeout 120;
                 include fastcgi_params;
-                fastcgi_pass 127.0.0.1:9000
+                fastcgi_pass 127.0.0.1:9000;
               }
 
   pre_tasks:
