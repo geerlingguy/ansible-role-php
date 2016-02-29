@@ -5,6 +5,7 @@
     php_enable_webserver: false
     php_version: 5.6
     php_enablerepo: "remi,remi-php56"
+    php_opcache_enable: "0"
 
   pre_tasks:
     - name: Ensure build dependencies are installed (RedHat).
