@@ -37,6 +37,7 @@
     - automake
     - libtool
     - bison
+    - pkg-config
     - re2c
     - libxml2-dev
     - libcurl4-openssl-dev
