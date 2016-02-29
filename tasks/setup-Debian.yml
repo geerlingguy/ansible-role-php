@@ -6,7 +6,7 @@
   apt:
     name: "{{ item }}"
     state: installed
-  with_items: php_packages
+  with_items: "{{ php_packages }}"
   register: php_package_install
   notify: restart webserver
 

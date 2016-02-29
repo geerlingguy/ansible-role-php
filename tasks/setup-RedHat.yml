@@ -4,5 +4,5 @@
     name: "{{ item }}"
     state: installed
     enablerepo: "{{ php_enablerepo }}"
-  with_items: php_packages
+  with_items: "{{ php_packages }}"
   notify: restart webserver
