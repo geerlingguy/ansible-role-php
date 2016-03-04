@@ -13,15 +13,15 @@
     php_webserver_daemon: "{{ __php_webserver_daemon }}"
   when: php_webserver_daemon is not defined
 
-- name: Define php_conf_path.
+- name: Define php_conf_paths.
   set_fact:
-    php_conf_path: "{{ __php_conf_path }}"
-  when: php_conf_path is not defined
+    php_conf_paths: "{{ __php_conf_paths }}"
+  when: php_conf_paths is not defined
 
-- name: Define php_extension_conf_path.
+- name: Define php_extension_conf_paths.
   set_fact:
-    php_extension_conf_path: "{{ __php_extension_conf_path }}"
-  when: php_extension_conf_path is not defined
+    php_extension_conf_paths: "{{ __php_extension_conf_paths }}"
+  when: php_extension_conf_paths is not defined
 
 - name: Define php_apc_conf_filename.
   set_fact:
@@ -32,6 +32,11 @@
   set_fact:
     php_opcache_conf_filename: "{{ __php_opcache_conf_filename }}"
   when: php_opcache_conf_filename is not defined
+
+- name: Define php_fpm_conf_path.
+  set_fact:
+    php_fpm_conf_path: "{{ __php_fpm_conf_path }}"
+  when: php_fpm_conf_path is not defined
 
 # Setup/install tasks.
 - include: setup-RedHat.yml
