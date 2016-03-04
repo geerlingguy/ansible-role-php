@@ -18,7 +18,7 @@ DAEMON=/usr/sbin/$NAME
 DAEMON_ARGS="--daemonize --fpm-config {{ php_fpm_conf_path }}/php-fpm.conf"
 PIDFILE=/var/run/{{ php_fpm_daemon }}.pid
 TIMEOUT=30
-SCRIPTNAME=/etc/init.d/$NAME
+SCRIPTNAME={{ php_fpm_init_path }}
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0

@@ -29,3 +29,4 @@ __php_fpm_daemon: php-fpm
 __php_fpm_conf_path: "/etc/fpm"
 __php_fpm_pool_conf_dir: "/etc/php-fpm.d"
 __php_fpm_pool_conf_path: "{{ __php_fpm_pool_conf_dir }}/www.conf"
+__php_fpm_init_path: "/etc/rc.d/init.d/{{ __php_fpm_daemon }}"
