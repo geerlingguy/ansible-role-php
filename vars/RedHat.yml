@@ -18,7 +18,7 @@ __php_packages:
 __php_webserver_daemon: "httpd"
 
 __php_conf_path: /etc
-php_extension_conf_path: /etc/php.d
+__php_extension_conf_path: /etc/php.d
 
 __php_apc_conf_filename: 50-apc.ini
 __php_opcache_conf_filename: 10-opcache.ini
