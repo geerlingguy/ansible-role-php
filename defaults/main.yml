@@ -77,7 +77,7 @@ php_source_make_command: "make"
 php_source_configure_command: >
   ./configure
   --prefix={{ php_source_install_path }}
-  --with-config-file-path={{ php_conf_path }}
+  --with-config-file-path={{ php_conf_paths | first }}
   --enable-mbstring
   --enable-zip
   --enable-bcmath
