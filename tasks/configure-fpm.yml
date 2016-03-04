@@ -1,4 +1,9 @@
 ---
+- name: Define php_fpm_pool_conf_dir.
+  set_fact:
+    php_fpm_pool_conf_dir: "{{ __php_fpm_pool_conf_dir }}"
+  when: php_fpm_pool_conf_dir is not defined
+
 - name: Define php_fpm_pool_conf_path.
   set_fact:
     php_fpm_pool_conf_path: "{{ __php_fpm_pool_conf_path }}"
