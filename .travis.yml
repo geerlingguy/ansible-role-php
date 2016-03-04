@@ -206,8 +206,13 @@ script:
   - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm curl --header Host:test.dev localhost | grep 'memory_limit.*191M'
 
   # Debug
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm service php5-fpm status'
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ls -l /var/log'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ls -l /etc/php5/ || true'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ls -l /etc/php5/fpm || true'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ls -l /etc/ || true'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ls -l /etc/php.d/ || true'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ls -l /etc/fpm/ || true'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ls -l /etc/php-fpm.d/ || true'
+
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm cat /var/log/php5-fpm/err.log || true'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm cat /var/log/apache2/error.log || true'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm cat /var/log/httpd/error_log || true'
