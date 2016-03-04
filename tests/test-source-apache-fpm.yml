@@ -7,7 +7,7 @@
     php_source_clone_dir: /root/php-src
     php_source_make_command: "make --jobs=2"
     php_source_version: "php-7.0.3"
-    php_memory_limit: "191M"
+    php_memory_limit: "192M"
 
     php_enable_php_fpm: true
     php_fpm_listen: "127.0.0.1:9000"
