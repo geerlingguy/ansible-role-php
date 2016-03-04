@@ -1,0 +1,40 @@
+---
+- hosts: all
+
+  vars:
+    php_enable_webserver: false
+    php_install_from_source: true
+    php_source_clone_dir: /root/php-src
+    php_source_make_command: "make --jobs=2"
+    php_source_version: "php-7.0.3"
+    php_memory_limit: "192M"
+    php_webserver_daemon: "nginx"
+
+    php_enable_php_fpm: true
+    php_fpm_listen: "127.0.0.1:9000"
+
+    nginx_vhosts:
+      - listen: "80 default_server"
+        server_name: "test.dev"
+        root: "/var/www/test"
+        index: "index.php"
+        extra_parameters: |
+              location ~ \.php$ {
+                fastcgi_split_path_info ^(.+?\.php)(|/.*)$;
+                fastcgi_index index.php;
+                fastcgi_param SCRIPT_FILENAME $request_filename;
+                fastcgi_intercept_errors on;
+                fastcgi_read_timeout 120;
+                include fastcgi_params;
+                fastcgi_pass 127.0.0.1:9000;
+              }
+
+  pre_tasks:
+    - name: Ensure build dependencies are installed (RedHat).
+      yum: name=which state=present
+      when: ansible_os_family == 'RedHat'
+
+  roles:
+    - { role: geerlingguy.repo-remi, when: ansible_os_family == 'RedHat' }
+    - geerlingguy.nginx
+    - role_under_test

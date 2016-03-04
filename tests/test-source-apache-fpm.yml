@@ -1,0 +1,34 @@
+---
+- hosts: all
+
+  vars:
+    php_enable_webserver: false
+    php_install_from_source: true
+    php_source_clone_dir: /root/php-src
+    php_source_make_command: "make --jobs=2"
+    php_source_version: "php-7.0.3"
+    php_memory_limit: "191M"
+
+    php_enable_php_fpm: true
+    php_fpm_listen: "127.0.0.1:9000"
+
+    apache_vhosts:
+      - servername: "test.dev"
+        documentroot: "/var/www/test/"
+        extra_parameters: |
+              ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/test/"
+
+    apache_mods_enabled:
+      - proxy.load
+      - proxy_fcgi.load
+
+  pre_tasks:
+    - name: Ensure build dependencies are installed (RedHat).
+      yum: name=which state=present
+      when: ansible_os_family == 'RedHat'
+
+  roles:
+    - { role: geerlingguy.repo-remi, when: ansible_os_family == 'RedHat' }
+    - geerlingguy.apache
+    - geerlingguy.apache-php-fpm
+    - role_under_test
