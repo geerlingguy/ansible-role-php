@@ -55,18 +55,18 @@ env:
     run_opts: ""
     SITE: source-apache-fpm
     PHP_VERSION: 7.0.3
-  # - distribution: centos
-  #   version: 7
-  #   init: /usr/lib/systemd/systemd
-  #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  #   SITE: source-nginx-fpm
-  #   PHP_VERSION: 7.0.3
-  # - distribution: ubuntu
-  #   version: 14.04
-  #   init: /sbin/init
-  #   run_opts: ""
-  #   SITE: source-nginx-fpm
-  #   PHP_VERSION: 7.0.3
+  - distribution: centos
+    version: 7
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    SITE: source-nginx-fpm
+    PHP_VERSION: 7.0.3
+  - distribution: ubuntu
+    version: 14.04
+    init: /sbin/init
+    run_opts: ""
+    SITE: source-nginx-fpm
+    PHP_VERSION: 7.0.3
 
   # Test without any webserver
   #- distribution: centos
