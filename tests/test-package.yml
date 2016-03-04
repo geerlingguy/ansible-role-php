@@ -4,6 +4,7 @@
   vars:
     php_enable_webserver: false
     php_version: 5.6
+    php_memory_limit: "192M"
     php_enablerepo: "remi,remi-php56"
 
   pre_tasks:

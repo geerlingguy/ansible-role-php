@@ -80,6 +80,9 @@ script:
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm php --version'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm /usr/bin/php --version | grep -qF "PHP $PHP_VERSION"'
 
+  # Ensure PHP configurations have taken effect.
+  - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm php -i | grep 'memory_limit.*192'
+
   # Clean up
   - 'sudo docker stop "$(cat ${container_id})"'
 
