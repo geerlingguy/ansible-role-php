@@ -207,7 +207,7 @@ script:
 
 
   # Debug
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm systemctl status php-fpm.service || true'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm systemctl status php-fpm.service -l || true'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm service php-fpm status || true'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ls -l /etc/php5/ || true'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ls -l /etc/php5/fpm || true'
