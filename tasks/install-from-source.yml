@@ -54,6 +54,11 @@
     - libssl-dev
   when: ansible_os_family == 'Debian'
 
+- name: Define php_fpm_daemon (if not defined already).
+  set_fact:
+    php_fpm_daemon: "php-fpm"
+  when: php_fpm_daemon is not defined
+
 - name: Check if gmp.h is already in a location accessible to gcc.
   stat: path=/usr/include/gmp.h
   register: gmp_file
