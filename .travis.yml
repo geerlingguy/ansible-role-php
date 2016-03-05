@@ -2,20 +2,6 @@
 sudo: required
 
 env:
-  # Only test source install on latest supported OSes.
-  - distribution: centos
-    version: 7
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    SITE: source
-    PHP_VERSION: 7.0.3
-  - distribution: ubuntu
-    version: 14.04
-    init: /sbin/init
-    run_opts: ""
-    SITE: source
-    PHP_VERSION: 7.0.3
-
   # Test package install on all supported OSes.
   - distribution: centos
     version: 6
@@ -79,6 +65,10 @@ script:
 
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm php --version'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm /usr/bin/php --version | grep -qF "PHP $PHP_VERSION"'
+
+  # Manual test necessary.
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm php -m | grep -i opcache || true'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm php -m | grep -i apc || true'
 
   # Clean up
   - 'sudo docker stop "$(cat ${container_id})"'

@@ -5,4 +5,5 @@
     state: installed
     enablerepo: "{{ php_enablerepo }}"
   with_items: "{{ php_packages }}"
+  register: php_package_install
   notify: restart webserver
