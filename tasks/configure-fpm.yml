@@ -1,13 +1,7 @@
 ---
-- name: Define php_fpm_daemon.
-  set_fact:
-    php_fpm_daemon: "{{ __php_fpm_daemon }}"
-  when: php_fpm_daemon is not defined
-
-- name: Define php_fpm_pool_conf_path.
-  set_fact:
-    php_fpm_pool_conf_path: "{{ __php_fpm_pool_conf_path }}"
-  when: php_fpm_pool_conf_path is not defined
+- name: Check if php-fpm pool config exists.
+  stat: "path={{ php_fpm_pool_conf_path }}"
+  register: php_fpm_pool_conf_file
 
 - name: Configure php-fpm pool (if enabled).
   lineinfile:
@@ -28,7 +22,7 @@
       line: "pm.min_spare_servers = {{ php_fpm_pm_min_spare_servers }}"
     - regexp: '^pm\.max_spare_servers.?=.+$'
       line: "pm.max_spare_servers = {{ php_fpm_pm_max_spare_servers }}"
-  when: php_enable_php_fpm
+  when: php_enable_php_fpm and php_fpm_pool_conf_file.stat.exists
   notify: restart php-fpm
 
 - name: Ensure php-fpm is started and enabled at boot (if configured).

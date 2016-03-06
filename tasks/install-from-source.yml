@@ -130,7 +130,7 @@
 - name: Ensure php-fpm init script is installed.
   template:
     src: fpm-init.j2
-    dest: "/etc/init.d/{{ php_fpm_daemon }}"
+    dest: "{{ php_fpm_init_path }}"
     mode: 0755
   when: "'--enable-fpm' in php_source_configure_command"
   notify: restart php-fpm

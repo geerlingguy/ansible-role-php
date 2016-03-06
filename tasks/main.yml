@@ -33,10 +33,30 @@
     php_opcache_conf_filename: "{{ __php_opcache_conf_filename }}"
   when: php_opcache_conf_filename is not defined
 
+- name: Define php_fpm_daemon.
+  set_fact:
+    php_fpm_daemon: "{{ __php_fpm_daemon }}"
+  when: php_fpm_daemon is not defined
+
 - name: Define php_fpm_conf_path.
   set_fact:
     php_fpm_conf_path: "{{ __php_fpm_conf_path }}"
   when: php_fpm_conf_path is not defined
+
+- name: Define php_fpm_pool_conf_dir.
+  set_fact:
+    php_fpm_pool_conf_dir: "{{ __php_fpm_pool_conf_dir }}"
+  when: php_fpm_pool_conf_dir is not defined
+
+- name: Define php_fpm_pool_conf_path.
+  set_fact:
+    php_fpm_pool_conf_path: "{{ __php_fpm_pool_conf_path }}"
+  when: php_fpm_pool_conf_path is not defined
+
+- name: Define php_fpm_init_path.
+  set_fact:
+    php_fpm_init_path: "{{ __php_fpm_init_path }}"
+  when: php_fpm_init_path is not defined
 
 # Setup/install tasks.
 - include: setup-RedHat.yml

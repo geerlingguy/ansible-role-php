@@ -1,2 +1,5 @@
 ---
 - src: geerlingguy.repo-remi
+- src: geerlingguy.nginx
+- src: geerlingguy.apache
+- src: geerlingguy.apache-php-fpm

@@ -28,4 +28,6 @@ __php_apc_conf_filename: 20-apcu.ini
 __php_opcache_conf_filename: 05-opcache.ini
 __php_fpm_daemon: php5-fpm
 __php_fpm_conf_path: "/etc/php5/fpm"
-__php_fpm_pool_conf_path: "{{ __php_fpm_conf_path }}/pool.d/www.conf"
+__php_fpm_pool_conf_dir: "{{ __php_fpm_conf_path }}/pool.d"
+__php_fpm_pool_conf_path: "{{ __php_fpm_pool_conf_dir }}/www.conf"
+__php_fpm_init_path: "/etc/init.d/{{ __php_fpm_daemon }}"
