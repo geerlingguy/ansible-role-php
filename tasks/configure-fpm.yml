@@ -9,6 +9,14 @@
     php_fpm_pool_conf_path: "{{ __php_fpm_pool_conf_path }}"
   when: php_fpm_pool_conf_path is not defined
 
+- name: Ensure the default pool directory exists.
+  file:
+    path: "{{ php_fpm_pool_conf_path | dirname }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
 - name: Ensure the default pool exists.
   copy:
     src: www.conf
