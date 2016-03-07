@@ -9,6 +9,15 @@
     php_fpm_pool_conf_path: "{{ __php_fpm_pool_conf_path }}"
   when: php_fpm_pool_conf_path is not defined
 
+- name: Ensure the default pool exists.
+  copy:
+    src: www.conf
+    dest: "{{ php_fpm_pool_conf_path }}"
+    owner: root
+    group: root
+    mode: 0644
+    force: no
+
 - name: Configure php-fpm pool (if enabled).
   lineinfile:
     dest: "{{ php_fpm_pool_conf_path }}"
