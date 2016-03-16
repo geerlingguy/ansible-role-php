@@ -17,7 +17,7 @@ NAME={{ php_fpm_daemon }}
 DAEMON=/usr/sbin/$NAME
 DAEMON_ARGS="--daemonize --fpm-config {{ php_fpm_conf_path }}/php-fpm.conf"
 PIDFILE=/var/run/{{ php_fpm_daemon }}.pid
-TIMEOUT=30
+TIMEOUT=2
 SCRIPTNAME=/etc/init.d/$NAME
 
 # Exit if the package is not installed
@@ -85,7 +85,7 @@ do_stop()
   # that waits for the process to drop all resources that could be
   # needed by services started subsequently.  A last resort is to
   # sleep for some time.
-  start-stop-daemon --stop --quiet --oknodo --retry=0/30/TERM/5/KILL/5 --exec $DAEMON
+  start-stop-daemon --stop --quiet --oknodo --retry=0/$TIMEOUT/TERM/5/KILL/5 --exec $DAEMON
   [ "$?" = 2 ] && return 2
   # Many daemons don't delete their pidfiles when they exit.
   rm -f $PIDFILE
