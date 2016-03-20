@@ -1,0 +1,10 @@
+---
+- name: Enable APC module.
+  command: >
+    php5enmod apcu
+  when: php_enable_apc
+
+- name: Enable Opcache module.
+  command: >
+    php5enmod opcache
+  when: php_opcache_enable
