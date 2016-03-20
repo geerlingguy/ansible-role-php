@@ -20,12 +20,10 @@ __php_conf_paths:
   - /etc/php5/cli
 
 __php_extension_conf_paths:
-  - /etc/php5/fpm/conf.d
-  - /etc/php5/apache2/conf.d
-  - /etc/php5/cli/conf.d
+  - /etc/php5/mods-available
 
-__php_apc_conf_filename: 20-apcu.ini
-__php_opcache_conf_filename: 05-opcache.ini
+__php_apc_conf_filename: apcu.ini
+__php_opcache_conf_filename: opcache.ini
 __php_fpm_daemon: php5-fpm
 __php_fpm_conf_path: "/etc/php5/fpm"
 __php_fpm_pool_conf_path: "{{ __php_fpm_conf_path }}/pool.d/www.conf"

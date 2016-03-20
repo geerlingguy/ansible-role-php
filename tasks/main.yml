@@ -65,3 +65,7 @@
 
 # Configure PHP-FPM.
 - include: configure-fpm.yml
+
+# Configure Debian.
+- include: configure-Debian.yml
+  when: ansible_os_family == 'Debian'
