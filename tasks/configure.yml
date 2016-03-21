@@ -8,13 +8,13 @@
     - "{{ php_conf_paths }}"
     - "{{ php_extension_conf_paths }}"
 
-- name: Place PHP configuration file in place.
+- name: Place custom PHP configuration file in place.
   template:
-    src: php.ini.j2
-    dest: "{{ item }}/php.ini"
+    src: custom.ini.j2
+    dest: "{{ item }}/{{ php_custom_conf_filename }}"
     owner: root
     group: root
     mode: 0644
-  with_items: "{{ php_conf_paths }}"
+  with_items: "{{ php_extension_conf_paths }}"
   notify: restart webserver
   when: php_use_managed_ini

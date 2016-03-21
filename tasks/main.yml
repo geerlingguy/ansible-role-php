@@ -28,6 +28,11 @@
     php_extension_conf_paths: "{{ __php_extension_conf_paths }}"
   when: php_extension_conf_paths is not defined
 
+- name: Define php_custom_conf_filename.
+  set_fact:
+    php_custom_conf_filename: "{{ __php_custom_conf_filename }}"
+  when: php_custom_conf_filename is not defined
+
 - name: Define php_apc_conf_filename.
   set_fact:
     php_apc_conf_filename: "{{ __php_apc_conf_filename }}"
