@@ -15,6 +15,12 @@ galaxy_info:
   - name: Debian
     versions:
     - all
+  - name: FreeBSD
+    versions:
+    - 9.0
+    - 9.1
+    - 9.2
+    - 9.3
   - name: Ubuntu
     versions:
     - all
