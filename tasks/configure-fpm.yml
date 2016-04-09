@@ -10,11 +10,11 @@
   when: php_fpm_pool_conf_path is not defined
 
 - name: Obtain status of {{ php_fpm_pool_conf_path | dirname }}
-  stat: path={{ php_fpm_pool_conf_path | dirname }}
+  stat: path={{ php_fpm_pool_conf_path }}
   register: php_fpm_pool_conf_path_dir_stat
 
 - name: Ensure the default pool directory exists.
-  when: php_fpm_pool_conf_path_dir_stat.stat.isdir is not defined
+  when: php_fpm_pool_conf_path_dir_stat.stat.islink is not defined
   file:
     path: "{{ php_fpm_pool_conf_path | dirname }}"
     state: directory
