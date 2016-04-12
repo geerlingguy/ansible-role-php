@@ -9,18 +9,19 @@
     php_fpm_pool_conf_path: "{{ __php_fpm_pool_conf_path }}"
   when: php_fpm_pool_conf_path is not defined
 
-- name: Obtain status of {{ php_fpm_pool_conf_path | dirname }}
-  stat: path={{ php_fpm_pool_conf_path | dirname }}
+- name: Stat php_fpm_pool_conf_path
+  stat:
+    path: "{{ php_fpm_pool_conf_path | dirname }}"
   register: php_fpm_pool_conf_path_dir_stat
 
 - name: Ensure the default pool directory exists.
-  when: php_fpm_pool_conf_path_dir_stat.stat.islnk is not defined
   file:
     path: "{{ php_fpm_pool_conf_path | dirname }}"
     state: directory
     owner: root
     group: root
     mode: 0755
+  when: php_fpm_pool_conf_path_dir_stat.stat.islnk is not defined
 
 - name: Ensure the default pool exists.
   copy:
