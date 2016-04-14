@@ -98,6 +98,7 @@ When installing Opcache, depending on the system and whether running PHP as a we
     php_opcache_max_accelerated_files: "4096"
     php_opcache_max_wasted_percentage: "5"
     php_opcache_validate_timestamps: "1"
+    php_opcache_revalidate_path: "1"
     php_opcache_revalidate_freq: "2"
     php_opcache_max_file_size: "0"
 
