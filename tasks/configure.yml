@@ -29,7 +29,9 @@
     mode: 0644
   with_items: "{{ php_extension_conf_paths }}"
   when: php_enable_apc
-  notify: restart webserver
+  notify:
+    - restart webserver
+    - restart php-fpm
 
 - name: Place OpCache configuration file in place.
   template:
@@ -41,4 +43,6 @@
     mode: 0644
   with_items: "{{ php_extension_conf_paths }}"
   when: php_opcache_enable
-  notify: restart webserver
+  notify:
+    - restart webserver
+    - restart php-fpm
