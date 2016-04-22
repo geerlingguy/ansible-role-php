@@ -54,6 +54,12 @@
     - libssl-dev
   when: ansible_os_family == 'Debian'
 
+- name: Ensure dependencies for building from source are installed (Ubuntu).
+  apt: "pkg={{ item }} state=installed"
+  with_items:
+    - libreadline-dev
+  when: ansible_distribution == "Ubuntu"
+
 - name: Define php_fpm_daemon (if not defined already).
   set_fact:
     php_fpm_daemon: "php-fpm"
