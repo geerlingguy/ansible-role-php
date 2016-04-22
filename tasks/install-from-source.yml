@@ -78,7 +78,7 @@
 
 - name: Clone the PHP repository.
   git:
-    repo: https://git.php.net/repository/php-src.git
+    repo: https://github.com/php/php-src.git
     dest: "{{ php_source_clone_dir }}"
     version: "{{ php_source_version }}"
     accept_hostkey: yes
