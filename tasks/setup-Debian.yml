@@ -5,7 +5,7 @@
 - name: Ensure PHP packages are installed.
   apt:
     name: "{{ item }}"
-    state: "{{ php_repostate }}"
+    state: "{{ php_packages_state }}"
   with_items: "{{ php_packages }}"
   register: php_package_install
   notify: restart webserver
