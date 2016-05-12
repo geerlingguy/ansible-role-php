@@ -107,22 +107,20 @@ OpCache ini directives that are often customized on a system. Make sure you have
 
 The platform-specific opcache configuration filename. Generally the default should work, but in some cases, you may need to override the filename.
 
-### APC-related Variables
+### APCu-related Variables
 
     php_enable_apc: true
 
-Whether to enable APC. Other APC variables will be ineffective if this is set to false.
+Whether to enable APCu. Other APCu variables will be ineffective if this is set to false.
 
     php_apc_enabled_in_ini: false
 
-When installing APC, depending on the system and whether running PHP as a webserver module or standalone via `php-fpm`, you might need the line `extension=apc.so` in `apc.ini`. If you need that line added (e.g. you're running `php-fpm`), set this variable to true.
+When installing APCu, depending on the system and whether running PHP as a webserver module or standalone via `php-fpm`, you might need the line `extension=apc.so` in `apc.ini`. If you need that line added (e.g. you're running `php-fpm`), set this variable to true.
 
-    php_apc_cache_by_default: "1"
     php_apc_shm_size: "96M"
-    php_apc_stat: "1"
     php_apc_enable_cli: "0"
 
-APC ini directives that are often customized on a system. Set `php_apc_cache_by_default` to 0 to disable APC by default (so you could just enable it for one codebase if you have a *lot* of code on a server). Set the `php_apc_shm_size` so it will hold all your application code in memory with a little overhead (fragmentation or APC running out of memory will slow down PHP *dramatically*).
+APCu ini directives that are often customized on a system. Set the `php_apc_shm_size` so it will hold all cache entries in memory with a little overhead (fragmentation or APC running out of memory will slow down PHP *dramatically*).
 
     php_apc_conf_filename: [platform-specific]
 
@@ -132,10 +130,8 @@ The platform-specific APC configuration filename. Generally the default should w
 
 If you use APC, you will need to make sure APC is installed (it is installed by default, but if you customize the `php_packages` list, you need to include APC in the list):
 
-  - *On RHEL/CentOS systems*: Make sure `php-pecl-apc` is in the list of `php_packages`.
-  - *On Debian/Ubuntu systems*: Make sure `php-apc` is in the list of `php_packages`.
-
-You can also install APC via `pecl`, but it's simpler to manage the installation with the system's package manager.
+  - *On RHEL/CentOS systems*: Make sure `php-pecl-apcu` is in the list of `php_packages`.
+  - *On Debian/Ubuntu systems*: Make sure `php-apcu` is in the list of `php_packages`.
 
 ### Installing from Source
 
@@ -197,7 +193,7 @@ None.
       - php-gd
       - php-mbstring
       - php-pdo
-      - php-pecl-apc
+      - php-pecl-apcu
       - php-xml
       ...
 

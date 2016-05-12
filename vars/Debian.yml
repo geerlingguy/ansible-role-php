@@ -9,7 +9,7 @@ __php_packages:
   - php5-fpm
   - php5-gd
   - php-pear
-  - php-apc
+  - php-apcu
   - libpcre3-dev
 __php_webserver_daemon: "apache2"
 

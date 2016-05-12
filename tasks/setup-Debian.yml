@@ -10,7 +10,7 @@
   register: php_package_install
   notify: restart webserver
 
-- name: Delete APC configuration file if this role will provide one.
+- name: Delete APCu configuration file if this role will provide one.
   file:
     path: "{{ item }}/{{ php_apc_conf_filename }}"
     state: absent
