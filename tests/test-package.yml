@@ -15,6 +15,23 @@
       apt_repository: repo='ppa:ondrej/php'
       when: ansible_os_family == 'Debian'
 
+    - name: Override package list manually for Ubuntu 12.04.
+      set_fact:
+        php_packages:
+          - php7.0-common
+          - php7.0-cli
+          - php7.0-dev
+          - php7.0-fpm
+          - libpcre3-dev
+          - php7.0-gd
+          - php7.0-curl
+          - php7.0-imap
+          - php7.0-json
+          - php7.0-opcache
+          - php7.0-xml
+          - php7.0-mbstring
+      when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '12.04'
+
   roles:
     - { role: geerlingguy.repo-remi, when: ansible_os_family == 'RedHat' }
     - role_under_test
