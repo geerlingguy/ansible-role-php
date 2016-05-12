@@ -6,7 +6,7 @@ Installs PHP on RedHat/CentOS and Debian/Ubuntu servers.
 
 ## Requirements
 
-Must be running a separate web server, such as Nginx or Apache.
+If you're using an older LTS release of Ubuntu or RHEL, with an old/outdated version of PHP, you need to use a repo or PPA with a maintained PHP version, as this role only works with [PHP versions that are currently supported](http://php.net/supported-versions.php) by the PHP community.
 
 ## Role Variables
 
@@ -16,7 +16,7 @@ Available variables are listed below, along with default values (see `defaults/m
 
 A list of the PHP packages to install (OS-specific by default). You'll likely want to install common packages like `php`, `php-cli`, `php-devel` and `php-pdo`, and you can add in whatever other packages you'd like (for example, `php-gd` for image manipulation, or `php-ldap` if you need to connect to an LDAP server for authentication).
 
-_Note: If you're using Debian/Ubuntu, you may also need to install `libapache2-mod-fastcgi` (for cgi/PHP-FPM) or `libapache2-mod-php5` (or a similar package depending on PHP version) if you want to use `mod_php` with Apache._
+_Note: If you're using Debian/Ubuntu, you also need to install `libapache2-mod-fastcgi` (for cgi/PHP-FPM) or `libapache2-mod-php5` (or a similar package depending on PHP version) if you want to use `mod_php` with Apache._
 
     php_enable_webserver: true
 
