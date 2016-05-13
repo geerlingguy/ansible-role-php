@@ -34,7 +34,7 @@ env:
     init: /sbin/init
     run_opts: ""
     SITE: package
-    PHP_VERSION: 7.0
+    PHP_VERSION: 5.6
 
 services:
   - docker
