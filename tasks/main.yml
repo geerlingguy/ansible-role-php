@@ -28,6 +28,11 @@
     php_apc_conf_filename: "{{ __php_apc_conf_filename }}"
   when: php_apc_conf_filename is not defined
 
+- name: Define php_opcache_conf_filename (Ubuntu 16.04).
+  set_fact:
+    php_opcache_conf_filename: "10-opcache.ini"
+  when: php_opcache_conf_filename is not defined and ansible_distribution_version == "16.04"
+
 - name: Define php_opcache_conf_filename.
   set_fact:
     php_opcache_conf_filename: "{{ __php_opcache_conf_filename }}"
