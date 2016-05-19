@@ -32,3 +32,6 @@ __php_opcache_conf_filename: 05-opcache.ini
 __php_fpm_daemon: php7.0-fpm
 __php_fpm_conf_path: "/etc/php/7.0/fpm"
 __php_fpm_pool_conf_path: "{{ __php_fpm_conf_path }}/pool.d/www.conf"
+
+__php_fpm_pool_user: www-data
+__php_fpm_pool_group: www-data
