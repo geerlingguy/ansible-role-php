@@ -48,6 +48,14 @@
   when: php_enable_apc
   notify: restart webserver
 
+- name: Remove APCu configuration file if disabled
+  file:
+    path: "{{ item }}/{{ php_apc_conf_filename }}"
+    state: absent
+  with_items: "{{ php_extension_conf_paths }}"
+  when: not php_enable_apc
+  notify: restart webserver
+
 - name: Check for PHP-installed OpCache configuration file(s)
   find:
     paths: "{{ item }}"
@@ -75,4 +83,12 @@
     mode: 0644
   with_items: "{{ php_extension_conf_paths }}"
   when: php_opcache_enable
+  notify: restart webserver
+
+- name: Remove OpCache configuration file if disabled
+  file:
+    path: "{{ item }}/{{ php_opcache_conf_filename }}"
+    state: absent
+  with_items: "{{ php_extension_conf_paths }}"
+  when: not php_opcache_enable
   notify: restart webserver
