@@ -19,6 +19,23 @@
   notify: restart webserver
   when: php_use_managed_ini
 
+- name: Check for PHP-installed APCu configuration file(s)
+  find:
+    paths: "{{ item }}"
+    contains: 'extension(\s+)?=(\s+)?apc[u]?\.so'
+  register: php_installed_apc_confs
+  with_items: "{{ php_extension_conf_paths }}"
+
+- name: Remove any PHP-installed APCu configuration files in favor of role configuration
+  file:
+    path: "{{ item.1.path }}"
+    state: absent
+  when: php_apc_conf_filename != (item.1.path.split('/') | last)
+  with_subelements: 
+    - "{{ php_installed_apc_confs.results }}"
+    - files
+  notify: restart webserver
+
 - name: Place APCu configuration file in place.
   template:
     src: apc.ini.j2
@@ -29,6 +46,23 @@
     mode: 0644
   with_items: "{{ php_extension_conf_paths }}"
   when: php_enable_apc
+  notify: restart webserver
+
+- name: Check for PHP-installed OpCache configuration file(s)
+  find:
+    paths: "{{ item }}"
+    contains: 'zend_extension(\s+)?=(\s+)?opcache\.so'
+  register: php_installed_opcache_confs
+  with_items: "{{ php_extension_conf_paths }}"
+
+- name: Remove any PHP-installed OpCache configuration files in favor of role configuration
+  file:
+    path: "{{ item.1.path }}"
+    state: absent
+  when: php_opcache_conf_filename != (item.1.path.split('/') | last)
+  with_subelements: 
+    - "{{ php_installed_opcache_confs.results }}"
+    - files
   notify: restart webserver
 
 - name: Place OpCache configuration file in place.

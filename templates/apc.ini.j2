@@ -1,7 +1,5 @@
-{% if php_apc_enabled_in_ini %}
 extension=apcu.so
 extension=apc.so
-{% endif %}
 apc.shm_size={{ php_apc_shm_size }}
 apc.enable_cli={{ php_apc_enable_cli }}
 apc.rfc1867=1
