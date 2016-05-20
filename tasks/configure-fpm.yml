@@ -19,7 +19,7 @@
     path: "{{ php_fpm_pool_conf_path | dirname }}"
     state: directory
     owner: root
-    group: root
+    group: "{{ php_root_group }}"
     mode: 0755
   when: php_fpm_pool_conf_path_dir_stat.stat.islnk is not defined
 
@@ -28,7 +28,7 @@
     src: www.conf
     dest: "{{ php_fpm_pool_conf_path }}"
     owner: root
-    group: root
+    group: "{{ php_root_group }}"
     mode: 0644
     force: no
 
