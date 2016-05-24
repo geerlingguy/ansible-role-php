@@ -77,6 +77,12 @@ script:
   # Ensure PHP configurations have taken effect.
   - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm php -i | grep 'memory_limit.*192'
 
+  # Ensure php apcu extension loaded
+  - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm php -i | grep -i 'apc.enabled'
+
+  # Ensure php opcache extension loaded
+  - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm php -i | grep 'opcache.enable'
+
   # Clean up
   - 'sudo docker stop "$(cat ${container_id})"'
 
