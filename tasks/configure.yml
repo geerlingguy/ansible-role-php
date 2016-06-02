@@ -19,7 +19,7 @@
   notify: restart webserver
   when: php_use_managed_ini
 
-- name: Place APC configuration file in place.
+- name: Place APCu configuration file in place.
   template:
     src: apc.ini.j2
     dest: "{{ item }}/{{ php_apc_conf_filename }}"

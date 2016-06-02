@@ -8,33 +8,27 @@ env:
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     SITE: source
-    PHP_VERSION: 7.0.3
+    PHP_VERSION: 7.0.5
   - distribution: ubuntu
     version: 14.04
     init: /sbin/init
     run_opts: ""
     SITE: source
-    PHP_VERSION: 7.0.3
+    PHP_VERSION: 7.0.5
 
   # Test package install on all supported OSes.
-  - distribution: centos
-    version: 6
-    init: /sbin/init
-    run_opts: ""
-    SITE: package
-    PHP_VERSION: 5.6
   - distribution: centos
     version: 7
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     SITE: package
-    PHP_VERSION: 5.6
+    PHP_VERSION: 7.0
   - distribution: ubuntu
     version: 14.04
     init: /sbin/init
     run_opts: ""
     SITE: package
-    PHP_VERSION: 5.6
+    PHP_VERSION: 7.0
   - distribution: ubuntu
     version: 12.04
     init: /sbin/init
@@ -64,7 +58,7 @@ script:
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test-${SITE}.yml --syntax-check'
 
   # Test role.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test-${SITE}.yml'
+  - 'travis_wait 30 sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test-${SITE}.yml'
 
   # Test role idempotence.
   - >

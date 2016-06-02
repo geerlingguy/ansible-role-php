@@ -1,31 +1,34 @@
 ---
 __php_packages:
-  - php5
-  - php5-mcrypt
-  - php5-cli
-  - php5-common
-  - php5-curl
-  - php5-dev
-  - php5-fpm
-  - php5-gd
-  - php-pear
-  - php-apc
+  - php7.0-common
+  - php7.0-cli
+  - php7.0-dev
+  - php7.0-fpm
   - libpcre3-dev
+  - php7.0-gd
+  - php7.0-curl
+  - php7.0-imap
+  - php7.0-json
+  - php7.0-opcache
+  - php7.0-xml
+  - php7.0-mbstring
+  - php-sqlite3
+  - php-apcu
 __php_webserver_daemon: "apache2"
 
 # Vendor-specific configuration paths on Debian/Ubuntu make my brain asplode.
 __php_conf_paths:
-  - /etc/php5/fpm
-  - /etc/php5/apache2
-  - /etc/php5/cli
+  - /etc/php/7.0/fpm
+  - /etc/php/7.0/apache2
+  - /etc/php/7.0/cli
 
 __php_extension_conf_paths:
-  - /etc/php5/fpm/conf.d
-  - /etc/php5/apache2/conf.d
-  - /etc/php5/cli/conf.d
+  - /etc/php/7.0/fpm/conf.d
+  - /etc/php/7.0/apache2/conf.d
+  - /etc/php/7.0/cli/conf.d
 
 __php_apc_conf_filename: 20-apcu.ini
 __php_opcache_conf_filename: 05-opcache.ini
-__php_fpm_daemon: php5-fpm
-__php_fpm_conf_path: "/etc/php5/fpm"
+__php_fpm_daemon: php7.0-fpm
+__php_fpm_conf_path: "/etc/php/7.0/fpm"
 __php_fpm_pool_conf_path: "{{ __php_fpm_conf_path }}/pool.d/www.conf"
