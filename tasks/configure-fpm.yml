@@ -9,6 +9,16 @@
     php_fpm_pool_conf_path: "{{ __php_fpm_pool_conf_path }}"
   when: php_fpm_pool_conf_path is not defined
 
+- name: Define php_fpm_pool_user.
+  set_fact:
+    php_fpm_pool_user: "{{ __php_fpm_pool_user }}"
+  when: php_fpm_pool_user is not defined
+
+- name: Define php_fpm_pool_group.
+  set_fact:
+    php_fpm_pool_group: "{{ __php_fpm_pool_group }}"
+  when: php_fpm_pool_group is not defined
+
 - name: Stat php_fpm_pool_conf_path
   stat:
     path: "{{ php_fpm_pool_conf_path | dirname }}"
@@ -24,8 +34,8 @@
   when: php_fpm_pool_conf_path_dir_stat.stat.islnk is not defined
 
 - name: Ensure the default pool exists.
-  copy:
-    src: www.conf
+  template:
+    src: www.conf.j2
     dest: "{{ php_fpm_pool_conf_path }}"
     owner: root
     group: root
