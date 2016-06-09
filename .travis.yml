@@ -8,7 +8,7 @@ env:
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     SITE: source
-    PHP_VERSION: 7.0.5
+    PHP_VERSION: 7.0.7
   - distribution: ubuntu
     version: 14.04
     init: /sbin/init
