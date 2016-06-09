@@ -18,7 +18,6 @@ php_fpm_pm_max_spare_servers: 5
 php_executable: "php"
 
 # OpCache settings (useful for PHP >=5.5).
-php_opcache_enabled_in_ini: false
 php_opcache_enable: "1"
 php_opcache_enable_cli: "0"
 php_opcache_memory_consumption: "96"
@@ -32,7 +31,6 @@ php_opcache_blacklist_filename: ""
 
 # APCu settings.
 php_enable_apc: true
-php_apc_enabled_in_ini: false
 php_apc_shm_size: "96M"
 php_apc_enable_cli: "0"
 
