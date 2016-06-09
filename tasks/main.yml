@@ -56,6 +56,6 @@
 
 # Configure PHP.
 - include: configure.yml
-
-# Configure PHP-FPM.
+- include: configure-apcu.yml
+- include: configure-opcache.yml
 - include: configure-fpm.yml
