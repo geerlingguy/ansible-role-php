@@ -46,6 +46,11 @@ When using this role with PHP running as `php-fpm` instead of as a process insid
 
     php_enable_php_fpm: false
 
+The php-fpm process will, by default, start its process based on the above configuration. If, however, you would like to configure php-fpm without starting, set the variables as such:
+
+    php_enable_php_fpm: true
+    php_start_php_fpm: false
+
 If you're using Apache, you can easily get it configured to work with PHP-FPM using the [geerlingguy.apache-php-fpm](https://github.com/geerlingguy/ansible-role-apache-php-fpm) role.
 
     php_fpm_listen: "127.0.0.1:9000"

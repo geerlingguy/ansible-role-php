@@ -10,4 +10,4 @@
   service:
     name: "{{ php_fpm_daemon }}"
     state: restarted
-  when: php_enable_php_fpm
+  when: php_start_php_fpm
