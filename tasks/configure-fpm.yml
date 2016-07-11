@@ -68,6 +68,31 @@
   when: php_enable_php_fpm
   notify: restart php-fpm
 
+- name: Configure php-fpm log ownership (if php-fpm pool enabled).
+  file:
+    path: "/var/log/php-fpm"
+    state: directory
+    owner: "{{ php_fpm_pool_user }}"
+    group: "{{ php_fpm_pool_group }}"
+    recurse: yes
+  when: php_enable_php_fpm
+
+- name: Configure php-fpm session ownership (if php-fpm pool enabled).
+  file:
+    path: "/var/lib/php/session"
+    state: directory
+    group: "{{ php_fpm_pool_group }}"
+    recurse: yes
+  when: php_enable_php_fpm
+
+- name: Configure php-fpm wsdlcache ownership (if php-fpm pool enabled).
+  file:
+    path: "/var/lib/php/wsdlcache"
+    state: directory
+    group: "{{ php_fpm_pool_group }}"
+    recurse: yes
+  when: php_enable_php_fpm
+  
 - name: Ensure php-fpm is started and enabled at boot (if configured).
   service:
     name: "{{ php_fpm_daemon }}"
