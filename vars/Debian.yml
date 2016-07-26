@@ -1,5 +1,6 @@
 ---
 __php_packages:
+  - php7.0-bcmath
   - php7.0-common
   - php7.0-cli
   - php7.0-dev
