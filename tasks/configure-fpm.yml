@@ -74,3 +74,10 @@
     state: started
     enabled: yes
   when: php_enable_php_fpm
+
+- name: Ensure php-fpm is stopped and disable at boot (if configured).
+  service:
+    name: "{{ php_fpm_daemon }}"
+    state: stopped
+    enabled: no
+  when: not php_enable_php_fpm
