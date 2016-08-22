@@ -80,4 +80,6 @@
     name: "{{ php_fpm_daemon }}"
     state: stopped
     enabled: no
+  register: php_fpm_daemon_result
+  failed_when: "php_fpm_daemon_result|failed and 'could not find' not in php_fpm_daemon_result.msg"
   when: not php_enable_php_fpm
