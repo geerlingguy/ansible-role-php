@@ -2,23 +2,11 @@
 sudo: required
 
 env:
-  # Only test source install on latest supported OSes.
-  - distro: centos7
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    playbook: test-source.yml
-    php_version: 7.0.5
-  - distro: ubuntu1604
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    playbook: test-source.yml
-    php_version: 7.0.5
-
   # Test package install on all supported OSes.
   - distro: centos7
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    SITE: package
+    playbook: test.yml
     php_version: 7.0
   - distro: ubuntu1604
     init: /lib/systemd/systemd
@@ -35,6 +23,18 @@ env:
     run_opts: ""
     playbook: test.yml
     php_version: 5.6
+
+  # Only test source install on latest supported OSes.
+  - distro: centos7
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    playbook: test-source.yml
+    php_version: 7.0.5
+  - distro: ubuntu1604
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    playbook: test-source.yml
+    php_version: 7.0.5
 
 services:
   - docker

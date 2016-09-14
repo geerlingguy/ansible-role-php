@@ -15,4 +15,5 @@
       when: ansible_os_family == 'RedHat'
 
   roles:
+    - geerlingguy.git
     - role_under_test
