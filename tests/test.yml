@@ -23,5 +23,6 @@
       when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '12.04'
 
   roles:
-    - { role: geerlingguy.repo-remi, when: ansible_os_family == 'RedHat' }
+    - role: geerlingguy.repo-remi
+      when: ansible_os_family == 'RedHat'
     - role_under_test
