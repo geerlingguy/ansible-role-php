@@ -57,6 +57,10 @@
       line: "listen = {{ php_fpm_listen }}"
     - regexp: '^listen\.allowed_clients.?=.+$'
       line: "listen.allowed_clients = {{ php_fpm_listen_allowed_clients }}"
+    - regexp: '^listen\.owner.?=.+$'
+      line: "listen.owner = {{ php_fpm_pool_user }}"
+    - regexp: '^listen\.group.?=.+$'
+      line: "listen.group = {{ php_fpm_pool_group }}"
     - regexp: '^pm\.max_children.?=.+$'
       line: "pm.max_children = {{ php_fpm_pm_max_children }}"
     - regexp: '^pm\.start_servers.?=.+$'
