@@ -7,6 +7,10 @@
     php_enablerepo: "remi,remi-php70"
 
   pre_tasks:
+    - name: Update apt cache.
+      apt: update_cache=yes
+      when: ansible_os_family == 'Debian'
+
     - include_vars: test-vars-ubuntu1204.yml
       when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '12.04'
 
