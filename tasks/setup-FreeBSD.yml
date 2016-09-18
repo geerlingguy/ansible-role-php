@@ -1,0 +1,15 @@
+---
+- name: Ensure PHP packages are installed.
+  pkgng:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ php_packages }}"
+  notify: restart webserver
+
+- name: Enable php-fpm service
+  lineinfile:
+    dest: /etc/rc.conf
+    state: present
+    regexp: '^php_fpm_enable='
+    line: 'php_fpm_enable="YES"'
+  when: php_enable_php_fpm

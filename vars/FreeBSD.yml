@@ -1,0 +1,24 @@
+---
+__php_packages:
+  - php56
+  - php56-curl
+  - php56-json
+  - php56-opcache
+__php_webserver_daemon: "apache24"
+
+# Vendor-specific configuration paths on Debian/Ubuntu make my brain asplode.
+__php_conf_paths:
+  - /usr/local/etc/
+
+__php_extension_conf_paths:
+  - /usr/local/etc/php/
+
+__php_apc_conf_filename: 20-apcu.ini
+__php_opcache_conf_filename: 05-opcache.ini
+__php_fpm_daemon: php-fpm
+__php_fpm_conf_path: "/usr/local/etc/php-fpm"
+__php_fpm_pool_conf_path: "{{ __php_fpm_conf_path }}/pool.d/www.conf"
+
+__php_fpm_pool_user: www
+__php_fpm_pool_group: www
+__php_root_group: wheel
