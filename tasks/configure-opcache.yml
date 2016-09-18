@@ -21,7 +21,7 @@
     src: opcache.ini.j2
     dest: "{{ item }}/{{ php_opcache_conf_filename }}"
     owner: root
-    group: root
+    group: "{{ php_root_group }}"
     force: yes
     mode: 0644
   with_items: "{{ php_extension_conf_paths }}"
