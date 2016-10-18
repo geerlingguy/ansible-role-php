@@ -11,3 +11,9 @@
     name: "{{ php_fpm_daemon }}"
     state: restarted
   when: php_enable_php_fpm
+
+- name: reload php-fpm
+  service:
+    name: "{{ php_fpm_daemon }}"
+    state: reloaded
+  when: php_enable_php_fpm
