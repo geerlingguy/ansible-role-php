@@ -8,7 +8,6 @@ php_packages:
   - php5-dev
   - php5-fpm
   - php5-gd
-  - php-pear
   - libpcre3-dev
 php_conf_paths:
   - /etc/php5/fpm
