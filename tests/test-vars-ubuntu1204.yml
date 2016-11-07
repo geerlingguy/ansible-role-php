@@ -10,12 +10,12 @@ php_packages:
   - php5.6-gd
   - libpcre3-dev
 php_conf_paths:
-  - /etc/php5/fpm
-  - /etc/php5/apache2
-  - /etc/php5/cli
+  - /etc/php5.6/fpm
+  - /etc/php5.6/apache2
+  - /etc/php5.6/cli
 php_extension_conf_paths:
-  - /etc/php5/fpm/conf.d
-  - /etc/php5/apache2/conf.d
-  - /etc/php5/cli/conf.d
-php_fpm_daemon: php5-fpm
-php_fpm_conf_path: "/etc/php5/fpm"
+  - /etc/php5.6/fpm/conf.d
+  - /etc/php5.6/apache2/conf.d
+  - /etc/php5.6/cli/conf.d
+php_fpm_daemon: php5.6-fpm
+php_fpm_conf_path: "/etc/php5.6/fpm"
