@@ -1,13 +1,13 @@
 ---
 php_packages:
-  - php5
-  - php5-mcrypt
-  - php5-cli
-  - php5-common
-  - php5-curl
-  - php5-dev
-  - php5-fpm
-  - php5-gd
+  - php5.6
+  - php5.6-mcrypt
+  - php5.6-cli
+  - php5.6-common
+  - php5.6-curl
+  - php5.6-dev
+  - php5.6-fpm
+  - php5.6-gd
   - libpcre3-dev
 php_conf_paths:
   - /etc/php5/fpm
