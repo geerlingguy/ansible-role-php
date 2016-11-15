@@ -2,22 +2,22 @@
 - name: Define php_fpm_daemon.
   set_fact:
     php_fpm_daemon: "{{ __php_fpm_daemon }}"
-  when: php_fpm_daemon is not defined
+  when: php_fpm_daemon is undefined
 
 - name: Define php_fpm_pool_conf_path.
   set_fact:
     php_fpm_pool_conf_path: "{{ __php_fpm_pool_conf_path }}"
-  when: php_fpm_pool_conf_path is not defined
+  when: php_fpm_pool_conf_path is undefined
 
 - name: Define php_fpm_pool_user.
   set_fact:
     php_fpm_pool_user: "{{ __php_fpm_pool_user }}"
-  when: php_fpm_pool_user is not defined
+  when: php_fpm_pool_user is undefined
 
 - name: Define php_fpm_pool_group.
   set_fact:
     php_fpm_pool_group: "{{ __php_fpm_pool_group }}"
-  when: php_fpm_pool_group is not defined
+  when: php_fpm_pool_group is undefined
 
 - name: Stat php_fpm_pool_conf_path
   stat:
@@ -31,7 +31,7 @@
     owner: root
     group: root
     mode: 0755
-  when: php_fpm_pool_conf_path_dir_stat.stat.islnk is not defined
+  when: php_fpm_pool_conf_path_dir_stat.stat.islnk is undefined
 
 - name: Ensure the default pool exists.
   template:
