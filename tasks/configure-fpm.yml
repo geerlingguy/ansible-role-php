@@ -70,6 +70,7 @@
 
 - name: Enable fpm-init.sh | systemctl enable {{ php_fpm_daemon }}
   command: systemctl enable {{ php_fpm_daemon }}
+  when: (php_install_from_source == false) and (ansible_os_family == 'Debian')
 
 
 - name: Ensure php-fpm is started and enabled at boot (if configured).
