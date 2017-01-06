@@ -18,9 +18,9 @@ A list of the PHP packages to install (OS-specific by default). You'll likely wa
 
 _Note: If you're using Debian/Ubuntu, you also need to install `libapache2-mod-fastcgi` (for cgi/PHP-FPM) or `libapache2-mod-php7.0` (or a similar package depending on PHP version) if you want to use `mod_php` with Apache._
 
-    additional_php_packages: []
-    
-A list of additional PHP packages to install without overriding the default.
+    php_packages_extra: []
+
+A list of extra PHP packages to install without overriding the default list.
 
     php_enable_webserver: true
 
