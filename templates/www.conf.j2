@@ -1,5 +1,5 @@
 [www]
-listen = 127.0.0.1:9000
+listen = {{ php_fpm_listen }}
 listen.allowed_clients = 127.0.0.1
 user = {{ php_fpm_pool_user }}
 group = {{ php_fpm_pool_group }}
