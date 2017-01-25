@@ -41,6 +41,7 @@
     group: root
     mode: 0644
     force: no
+  when: php_fpm_create_default_pool
 
 - name: Configure php-fpm pool (if enabled).
   lineinfile:
@@ -65,7 +66,7 @@
       line: "pm.min_spare_servers = {{ php_fpm_pm_min_spare_servers }}"
     - regexp: '^pm\.max_spare_servers.?=.+$'
       line: "pm.max_spare_servers = {{ php_fpm_pm_max_spare_servers }}"
-  when: php_enable_php_fpm
+  when: php_enable_php_fpm and php_fpm_create_default_pool
   notify: restart php-fpm
 
 - name: Ensure php-fpm is started and enabled at boot (if configured).
