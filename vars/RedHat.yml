@@ -31,3 +31,6 @@ __php_fpm_pool_conf_path: "/etc/php-fpm.d/www.conf"
 
 __php_fpm_pool_user: apache
 __php_fpm_pool_group: apache
+__php_fpm_pool_listen_owner: apache
+__php_fpm_pool_listen_group: apache
+__php_fpm_pool_listen_mode: 0660

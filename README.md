@@ -62,6 +62,11 @@ If you're using Apache, you can easily get it configured to work with PHP-FPM us
     php_fpm_pm_start_servers: 5
     php_fpm_pm_min_spare_servers: 5
     php_fpm_pm_max_spare_servers: 5
+    php_fpm_pool_user: www-data
+    php_fpm_pool_group: www-data
+    php_fpm_pool_listen_owner: www-data
+    php_fpm_pool_listen_group: www-data
+    php_fpm_pool_listen_mode: 0660
 
 Specific settings inside the default `www.conf` PHP-FPM pool. If you'd like to manage additional settings, you can do so either by replacing the file with your own template or using `lineinfile` like this role does inside `tasks/configure.yml`.
 
