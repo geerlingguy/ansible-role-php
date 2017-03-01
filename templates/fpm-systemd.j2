@@ -4,8 +4,8 @@ After=syslog.target network.target
 
 [Service] 
 Type=notify
-PIDFile=/run/php/php5.6-fpm.pid
-ExecStart=/usr/sbin/{{ php_fpm_daemon }} --nodaemonize --fpm-config {{ php_fpm_conf_path }}
+PIDFile=/run/php/{{ php_fpm_daemon }}.pid
+ExecStart=/usr/sbin/{{ php_fpm_daemon }} --nodaemonize --fpm-config {{ php_fpm_conf_path }}/php-fpm.conf
 ExecReload=/bin/kill -USR2 $MAINPID
 LimitMEMLOCK=infinity
 LimitNOFILE=65535
