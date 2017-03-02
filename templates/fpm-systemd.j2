@@ -3,9 +3,9 @@ Description=The PHP FastCGI Process Manager
 After=syslog.target network.target
 
 [Service] 
-Type=notify
-PIDFile=/run/php/{{ php_fpm_daemon }}.pid
-ExecStart=/usr/sbin/{{ php_fpm_daemon }} --nodaemonize --fpm-config {{ php_fpm_conf_path }}/php-fpm.conf
+Type=forking
+PIDFile=/run/{{ php_fpm_daemon }}.pid
+ExecStart=/usr/sbin/{{ php_fpm_daemon }} --pid /run/{{ php_fpm_daemon }}.pid --fpm-config {{ php_fpm_conf_path }}/php-fpm.conf
 ExecReload=/bin/kill -USR2 $MAINPID
 LimitMEMLOCK=infinity
 LimitNOFILE=65535
