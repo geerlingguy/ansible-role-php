@@ -81,4 +81,4 @@
     name: "{{ php_fpm_daemon }}"
     state: started
     enabled: yes
-  when: php_enable_php_fpm and ansible_service_mgr != 'systemd'"
+  when: php_enable_php_fpm and ansible_service_mgr != 'systemd'
