@@ -41,7 +41,8 @@
     group: root
     mode: 0644
     force: no
-  when: php_fpm_create_default_pool
+  when: php_fpm_create_default_pool and php_enable_php_fpm
+
 
 - name: Configure php-fpm pool (if enabled).
   lineinfile:
