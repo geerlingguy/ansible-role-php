@@ -63,7 +63,7 @@ If you're using Apache, you can easily get it configured to work with PHP-FPM us
     php_fpm_pm_min_spare_servers: 5
     php_fpm_pm_max_spare_servers: 5
 
-Specific settings inside the default `www.conf` PHP-FPM pool. If you'd like to manage additional settings, you can do so either by replacing the file with your own template or using `lineinfile` like this role does inside `tasks/configure.yml`.
+Specific settings inside the default `www.conf` PHP-FPM pool. If you'd like to manage additional settings, you can do so either by replacing the file with your own template or using `lineinfile` like this role does inside `tasks/configure-fpm.yml`.
 
 ### php.ini settings
 
