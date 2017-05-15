@@ -9,6 +9,9 @@ env:
   - distro: fedora24
     playbook: test.yml
     php_version: 5.6
+  - distro: debian8
+    playbook: test.yml
+    php_version: 7.0
   - distro: ubuntu1604
     playbook: test.yml
     php_version: 7.0
@@ -48,6 +51,10 @@ script:
 
   # Ensure PHP configurations have taken effect.
   - docker exec --tty ${container_id} env TERM=xterm php -i | grep 'memory_limit.*192'
+
+  # Check the status of PHP-FPM (but don't fail if not found).
+  - docker exec --tty ${container_id} env TERM=xterm systemctl status php${php_version}-fpm status || true
+  - docker exec --tty ${container_id} env TERM=xterm systemctl status php-fpm status || true
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
