@@ -74,4 +74,5 @@
     name: "{{ php_fpm_daemon }}"
     state: started
     enabled: yes
+    use: service
   when: php_enable_php_fpm
