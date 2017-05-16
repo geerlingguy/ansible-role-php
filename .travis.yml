@@ -52,9 +52,18 @@ script:
   # Ensure PHP configurations have taken effect.
   - docker exec --tty ${container_id} env TERM=xterm php -i | grep 'memory_limit.*192'
 
-  # Check the status of PHP-FPM (but don't fail if not found).
-  - docker exec --tty ${container_id} env TERM=xterm systemctl --no-pager status php${php_version}-fpm status || true
-  - docker exec --tty ${container_id} env TERM=xterm systemctl --no-pager status php-fpm status || true
+  # Check the status of PHP-FPM.
+  - |
+    case "${distro}" in
+      "centos7"|"fedora24")
+        docker exec --tty ${container_id} env TERM=xterm systemctl --no-pager status php-fpm status
+        docker exec --tty ${container_id} env TERM=xterm systemctl --no-pager status php-fpm status | grep -qF "fpm.service; enabled"
+        ;;
+      "debian8"|"ubuntu1604")
+        docker exec --tty ${container_id} env TERM=xterm systemctl --no-pager status php${php_version}-fpm status
+        docker exec --tty ${container_id} env TERM=xterm systemctl --no-pager status php${php_version}-fpm status | grep -qF "fpm.service; enabled"
+        ;;
+    esac
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
