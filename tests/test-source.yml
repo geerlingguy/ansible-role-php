@@ -3,7 +3,6 @@
 
   vars:
     php_enable_webserver: false
-    php_enable_php_fpm: true
     php_install_from_source: true
     php_source_clone_dir: /root/php-src
     # Workaround for https://github.com/ansible/ansible-modules-core/issues/5457
