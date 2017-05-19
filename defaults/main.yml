@@ -48,7 +48,7 @@ php_apc_enable_cli: "0"
 # Any and all changes to /etc/php.ini will be your responsibility.
 php_use_managed_ini: true
 
-php_expose_php: "On"
+php_expose_php: "Off"
 php_memory_limit: "256M"
 php_max_execution_time: "60"
 php_max_input_time: "60"
