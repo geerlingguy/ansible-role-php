@@ -1,0 +1,186 @@
+Version 0.1.0
+ - Added bump version script
+ - Merge branch 'master' of https://github.com/geerlingguy/ansible-role-php
+ - Fixes #127: OpCache configuration filename has changed in Ubuntu 16.04.
+ - Issue #126: Use the correct package name.
+ - Fixes #126: Add PHP's SQLite extension in default packages.
+ - Fix broken test-package.yml.
+ - Update Ubuntu 12.04 variables to fix broken tests.
+ - Fix the default packages for Debian.
+ - Fixes #125: APCu not loading under PHP 7.
+ - Issue #124 test fix follow-up for Ubuntu 12.04.
+ - Switch all role defaults to assume PHP 7.x.
+ - Fixes #123: Officially drop support for unmaintained PHP versions.
+ - Fixes #69: APC is dead, long live OpCache and APCu.
+ - Per comments on PR106
+ - PR #109 Cleanup.
+ - Merge pull request #109 from robruma/bugfix/php-fpm_default_pool_dir_check
+ - Obtaining php-fpm pool directory status and creating only if the directory does not exist
+ - Updated readme for the php_repostate var
+ - Updated readme for the php_repostate var
+ - Users can now set the apt/yum module 'state' to be 'installed, latest, present' etc. This allows a user to test php55, swap a variable to enable the php56 repo, then re-run the ansible play to get different PHP packages.
+ - Fixes #105: Add travis_wait to fix Travis build failures when building PHP from source.
+ - Merge pull request #104 from geerlingguy/revert-103-patch-1
+ - Revert "Typo in php.ini mssql.compatibility_mode"
+ - Merge pull request #103 from Petrox/patch-1
+ - Typo in php.ini mssql.compatibility_mode
+ - Fixes #99: Allow override of output_buffering setting.
+ - Fixes #94: PHP-FPM init script for build from source causes 30s delay when stopping via systemd.
+ - Fix for previous commit. Ensure pool config directory exists.
+ - Fixes #92: Add a default pool.d/www.conf for FPM source install.
+ - Merge pull request #89 from oxyc/conf
+ - Define PHP-FPM daemon if it's not already defined.
+ - correct some paths
+ - Add test to verify configuration files are in place
+ - Add configurations to all possible conf directories
+ - Merge pull request #85 from oxyc/source-1204
+ - Issue #67: Fix install from source not finding openssl libs on Ubuntu 15.10
+ - Fix Ansible 2.x deprecation warnings.
+ - Follow-up to #83 - fix idempotence for Debian config symlinks.
+ - Merge branch 'oxyc-php-ini'
+ - Merge branch 'php-ini' of git://github.com/oxyc/ansible-role-php into oxyc-php-ini
+ - Closes #53, #60: Fix php.ini not applied for php-fpm on ubuntu
+ - Merge pull request #81 from wshafer/master
+ - Set always_populate_raw_post_data to -1 as setting is deprecated in 5.6
+ - Update Galaxy meta info.
+ - Fixes #58: Allow session save handler and path to be configured.
+ - Fixes #76: Wrong variable 'php_installed_version'.
+ - PR #79 Follow-up.
+ - Merge pull request #79 from ajsalminen/configurable_sessions
+ - Merge pull request #56 from juwai/master
+ - Merge pull request #80 from oxyc/docker
+ - Run tests for php 5.6
+ - Add missing rhel dependencies when building from source
+ - Add docker based tests
+ - Configuration options for PHP session handling.
+ - Add Travis build notifications.
+ - Merge pull request #72 from LewisW/configurable-pool-path
+ - Made php_fpm_pool_conf_path configurable - for PHP 7.
+ - Fix php_fpm_listen variable.
+ - More Travis test fixes.
+ - Test installation from source with specific Travis dir.
+ - Update PHP-FPM docs in README.
+ - Fixes #55 and Fixes #43: Extra basic configuration for PHP-FPM.
+ - Fixes #70: Get gooky Apache-specific packages out of default config.
+ - Merge pull request #68 from remicollet/patch-1
+ - Improve repo description
+ - Change php_version var to php_installed_version.
+ - Merge pull request #66 from pgilad/patch-1
+ - Use ansible jinja filter of version_compare
+ - Fixes #65: Make FPM init script more PHP-7-friendly.
+ - Fixes fix from #59, #57: Debian should actually be 05-opcache.ini.
+ - Fixes #59, #57: Set default opcache and apc filenames correctly, ensure opcache installed on EL.
+ - Merge pull request #62 from thom8/override_php_fpm_daemon
+ - Allow overriding php_fpm_daemon
+ - Merge pull request #1 from tjoelsson/EN-707
+ - Add if-condition for opcache blacklist filename
+ - Add blacklist file option to opcache config
+ - Make sure OpenSSL requirements are installed.
+ - Remove extra newline.
+ - Add php_source_install_gmp_path variable for better cross-distro/platform support.
+ - Remove ImageMagick from PHP default installation on RedHat.
+ - PR #51: Add documentation for newly-configurable filename variables.
+ - Merge pull request #51 from juwai/master
+ - Make `php_apc_conf_filename` and `php_opcache_conf_filename` configurable.
+ - Issue #45: Fix PHP-FPM setup and configuration when installing from source x3.
+ - Issue #45: Fix PHP-FPM setup and configuration when installing from source - for real.
+ - Issue #45: Fix PHP-FPM setup and configuration when installing from source.
+ - Fixes #45: Automatically add PHP FPM symlink when building from source.
+ - Make build configure script work for tagged releases.
+ - Fixes #44: Allow php executable to be configurable.
+ - Better order of README.
+ - Clone from source only when PHP is not installed.
+ - Fix tests by using proper libpng-dev package.
+ - Add concurrency to Travis job for faster run.
+ - Fixed tests for Travis.
+ - Nudge Travis to work properly.
+ - Fixes #35: Support compiling from source, PHP 7, and beyond!
+ - Add max_input_vars and max_input_time vars.
+ - Remove outdated TODO section from README.md.
+ - Follow-up to fix tests for #42.
+ - Fixes #42: Fails in --check mode.
+ - Merge pull request #41 from LewisW/patch-1
+ - Fixed typos in the Opcache section
+ - For #31: Document new php_expose_php option.
+ - Merge pull request #31 from o2web/master
+ - Issue #24: Document new PHP OpCache configuration variables.
+ - Fixes #24: Configure OpCache for PHP >= 5.5.
+ - Minimum Ansible version is 1.8 due to file module follow usage.
+ - Add php_display_startup_errors to README.
+ - Clean up default php.ini and add php_display_startup_errors variable.
+ - Fixes #33: php_extension_conf_path can be a symlink
+ - Fixes #32: Fix php_extension_conf_path for Debian webserver insanity
+ - Add option to disable expose_php
+ - Merge pull request #29 from o2web/master
+ - Add configurable max post size
+ - Fixes #26: Install APC by default on Debian/Ubuntu systems.
+ - Better explanation of PHP-fpm usage.
+ - Fixes #25: Add php_apc_enable_cli variable.
+ - Update README to knock Travis back in order.
+ - Issue #17: Fix for proper configuration paths in Debian/Ubuntu for apache2.
+ - Add php_apc_stat variable.
+ - PR #21: Adjust apt cache update so it doesn't run every time.
+ - Merge pull request #21 from M1r1k/master
+ - Fixes #17: Use proper configuration paths in Debian/Ubuntu.
+ - Avoid expired caches
+ - Add php_realpath_cache_size variable.
+ - Merge pull request #20 from mikebell/master
+ - Fix for mixing php-fpm variable in configure task
+ - Issue #13: php-fpm daemon name is different in Debian-based distros.
+ - Issue #19: Allow self-managed php.ini, and related cleanup.
+ - Issue #8: Allow error reporting to be enabled or disabled.
+ - Issue #18: Fix php_webserver_daemon and add EL7.
+ - Fix Travis tests.
+ - Allow php_webserver_daemon to be overridden.
+ - Update test.
+ - Merge pull request #15 from LewisW/master
+ - Update Debian.yml
+ - Add php-pear to default packages.
+ - Merge pull request #7 from seschwar/master
+ - Formatting.
+ - Merge pull request #11 from LewisW/patch-1
+ - Added assurance that config directories exist
+ - Update README to reflect ability to disable APC.
+ - Merge pull request #10 from ricoli/optional-apc
+ - add option for apc
+ - make apc optional
+ - Make PHP option short_open_tag configurable
+ - Adding docs for new php_sendmail_path var.
+ - Merge pull request #5 from allgood2386/master
+ - renaming sendmail variable to remain consistant with nameing conventions
+ - Install current version of Ansible when testing instead of 1.5.0.
+ - Merge pull request #4 from ajsalminen/allow_package_override
+ - Add php-fpm to defaults for Debian/RedHat.
+ - Add php_apc_enabled_in_ini option.
+ - Make it possible to override php_packages.
+ - adding a sendmail path variable incase you wanted to set up something like mailcatcher or non-standard mail config"
+ - Merge pull request #2 from kosssi/remove-dependency
+ - Remove geerlingguy.apache dependency
+ - Add ability to ignore webserver entirely.
+ - Add 'restart php-fpm' handler.
+ - Updated task to take out testing parameter.
+ - Move variables to defaults.
+ - Add 'restart webserver' handler.
+ - Add php-fpm support, remove Apache dependency (works with Nginx).
+ - Add php5-curl package.
+ - Final update for Travis-related work.
+ - Use the correct role name (since this role is not downloaded via galaxy).
+ - Another minor Travis test.
+ - Testing Travis a little more.
+ - Another attempt to get ansible.cfg to work.
+ - Updated project description.
+ - Updated test to simply test the Ansible roles required.
+ - Add apache role to test.
+ - Update travis config to install dependency.
+ - Fix missing handlers file in test.yml.
+ - Add test to make sure PHP is installed.
+ - Add Travis CI integration.
+ - Add Debian/Ubuntu support to PHP role.
+ - Updated README.md
+ - Updated dependencies.
+ - Added Galaxy info to meta info.
+ - Add one more TODO to readme.
+ - Add TODOs to readme.
+ - Initial commit of meta, tasks, templates, and vars.
+ - Added README.md.
+
