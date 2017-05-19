@@ -1,4 +1,11 @@
 ---
+- name: Ensure PHP repo available.
+  apt_repository:
+    state: present
+    repo: "{{ php_enablerepo }}"
+  notify: restart webserver
+  when: php_enablerepo != ''
+
 - name: Update apt cache.
   apt: update_cache=yes cache_valid_time=86400
 
