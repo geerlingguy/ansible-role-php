@@ -76,6 +76,10 @@
   failed_when: false
   register: php_installed
 
+- name: Make sure we can clone PHP repository using git.
+  apt: name=git state=present
+  when: php_installed|failed
+
 - name: Clone the PHP repository.
   git:
     repo: https://git.php.net/repository/php-src.git
