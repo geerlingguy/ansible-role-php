@@ -6,7 +6,7 @@
 - name: Define php_packages.
   set_fact:
     php_packages: "{{ __php_packages | list }}"
-  when: php_packages is not defined
+  when: php_packages is undefined
 
 - name: Define extra php_packages.
   set_fact:
@@ -16,37 +16,37 @@
 - name: Define php_webserver_daemon.
   set_fact:
     php_webserver_daemon: "{{ __php_webserver_daemon }}"
-  when: php_webserver_daemon is not defined
+  when: php_webserver_daemon is undefined
 
 - name: Define php_conf_paths.
   set_fact:
     php_conf_paths: "{{ __php_conf_paths }}"
-  when: php_conf_paths is not defined
+  when: php_conf_paths is undefined
 
-- name: Define php_extension_conf_paths.
+- name: Define php_extension_conf_paths test
   set_fact:
     php_extension_conf_paths: "{{ __php_extension_conf_paths }}"
-  when: php_extension_conf_paths is not defined
+  when: php_extension_conf_paths is undefined
 
 - name: Define php_apc_conf_filename.
   set_fact:
     php_apc_conf_filename: "{{ __php_apc_conf_filename }}"
-  when: php_apc_conf_filename is not defined
+  when: php_apc_conf_filename is undefined
 
 - name: Define php_opcache_conf_filename (Ubuntu 16.04).
   set_fact:
     php_opcache_conf_filename: "10-opcache.ini"
-  when: php_opcache_conf_filename is not defined and ansible_distribution_version == "16.04"
+  when: php_opcache_conf_filename is undefined and ansible_distribution_version == "16.04"
 
 - name: Define php_opcache_conf_filename.
   set_fact:
     php_opcache_conf_filename: "{{ __php_opcache_conf_filename }}"
-  when: php_opcache_conf_filename is not defined
+  when: php_opcache_conf_filename is undefined
 
 - name: Define php_fpm_conf_path.
   set_fact:
     php_fpm_conf_path: "{{ __php_fpm_conf_path }}"
-  when: php_fpm_conf_path is not defined
+  when: php_fpm_conf_path is undefined
 
 # Setup/install tasks.
 - include: setup-RedHat.yml
