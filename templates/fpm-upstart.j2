@@ -1,0 +1,8 @@
+description "PHP FastCGI Process Manager"
+
+start on (net-device-up and local-filesystems)
+stop on runlevel [016]
+
+expect fork
+respawn
+exec /usr/sbin/php-fpm --fpm-config /opt/php/etc/php-fpm.conf

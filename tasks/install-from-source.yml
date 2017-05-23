@@ -54,6 +54,12 @@
     - libssl-dev
   when: ansible_os_family == 'Debian'
 
+- name: Ensure dependencies for building from source are installed (Ubuntu).
+  apt: "pkg={{ item }} state=installed"
+  with_items:
+    - libreadline-dev
+  when: ansible_distribution == "Ubuntu"
+
 - name: Define php_fpm_daemon (if not defined already).
   set_fact:
     php_fpm_daemon: "php-fpm"
@@ -78,7 +84,7 @@
 
 - name: Clone the PHP repository.
   git:
-    repo: https://git.php.net/repository/php-src.git
+    repo: https://github.com/php/php-src.git
     dest: "{{ php_source_clone_dir }}"
     version: "{{ php_source_version }}"
     accept_hostkey: yes
@@ -127,12 +133,22 @@
     state: link
   when: "'--enable-fpm' in php_source_configure_command"
 
+- name: Ensure php-fpm upstart script is installed.
+  template:
+    src: fpm-upstart.j2
+    dest: "/etc/init/{{ php_fpm_daemon }}.conf"
+    mode: 0755
+  when: ("'--enable-fpm' in php_source_configure_command") and
+        ( ansible_distribution == "Ubuntu" )
+  notify: restart php-fpm
+
 - name: Ensure php-fpm init script is installed.
   template:
     src: fpm-init.j2
     dest: "/etc/init.d/{{ php_fpm_daemon }}"
     mode: 0755
-  when: "'--enable-fpm' in php_source_configure_command"
+  when: ("'--enable-fpm' in php_source_configure_command") and not
+        ( ansible_distribution == "Ubuntu" )
   notify: restart php-fpm
 
 - name: Ensure php-fpm config directory exists.
@@ -148,3 +164,11 @@
     mode: 0644
   when: "'--enable-fpm' in php_source_configure_command"
   notify: restart php-fpm
+
+- name: Ensure php-fpm logfile is writeable
+  file:
+    path: "/var/log/php-fpm.log"
+    state: touch
+    owner: www-data
+    group: www-data
+    mode: 644
