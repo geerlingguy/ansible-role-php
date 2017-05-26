@@ -145,6 +145,20 @@ If you use APC, you will need to make sure APC is installed (it is installed by 
   - *On RHEL/CentOS systems*: Make sure `php-pecl-apcu` is in the list of `php_packages`.
   - *On Debian/Ubuntu systems*: Make sure `php-apcu` is in the list of `php_packages`.
 
+### mcrypt-related Variables
+
+    php_enable_mcrypt: true
+
+Whether to enable mcrypt module.
+
+#### Ensuring APC is installed
+
+If you use mcrypt, you will need to make sure mcrypt is installed (it is installed by default, but if you customize the `php_packages` list, you need to include mcrypt in the list):
+
+  - *On RHEL/CentOS systems*: Make sure `php-mcrypt` is in the list of `php_packages`.
+  - *On Debian/Ubuntu systems*: Make sure `php-mcrypt` is in the list of `php_packages`.
+
+
 ### Installing from Source
 
 If you need a specific version of PHP, or would like to test the latest (e.g. master) version of PHP, there's a good chance there's no suitable package already available in your platform's package manager. In these cases, you may choose to install PHP from source by compiling it directly.

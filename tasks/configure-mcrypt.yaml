@@ -1,0 +1,37 @@
+---
+- name: Check for existing mcrypt config files.
+  find:
+    paths: "{{ item }}"
+    contains: 'extension(\s+)?=(\s+)?mcrypt\.so'
+  register: php_installed_mcrypt_confs
+  with_items: "{{ php_extension_conf_paths }}"
+
+- name: Remove any non-role-supplied mcrypt config files.
+  file:
+    path: "{{ item.1.path }}"
+    state: absent
+  when: php_mcrypt_conf_filename != (item.1.path.split('/') | last)
+  with_subelements:
+    - "{{ php_installed_mcrypt_confs.results }}"
+    - files
+  notify: restart webserver
+
+- name: Ensure mcrypt config file is present.
+  template:
+    src: mcrypt.ini.j2
+    dest: "{{ item }}/{{ php_mcrypt_conf_filename }}"
+    owner: root
+    group: root
+    force: yes
+    mode: 0644
+  with_items: "{{ php_extension_conf_paths }}"
+  when: php_mcrypt_enable
+  notify: restart webserver
+
+- name: Remove mcrypt config file if is disabled.
+  file:
+    path: "{{ item }}/{{ php_mcrypt_conf_filename }}"
+    state: absent
+  with_items: "{{ php_extension_conf_paths }}"
+  when: not php_mcrypt_enable
+  notify: restart webserver
