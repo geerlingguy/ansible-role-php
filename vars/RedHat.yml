@@ -15,6 +15,7 @@ __php_packages:
   - php-pecl-apcu
   - php-xml
   - php-xmlrpc
+  - php-mcrypt
 __php_webserver_daemon: "httpd"
 
 __php_conf_paths:
@@ -25,6 +26,7 @@ __php_extension_conf_paths:
 
 __php_apc_conf_filename: 50-apc.ini
 __php_opcache_conf_filename: 10-opcache.ini
+__php_mcrypt_conf_filename: 50-mcrypt.ini
 __php_fpm_daemon: php-fpm
 __php_fpm_conf_path: "/etc/fpm"
 __php_fpm_pool_conf_path: "/etc/php-fpm.d/www.conf"
