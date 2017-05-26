@@ -1,0 +1,7 @@
+---
+- name: Load PHP modules that if not automatically loaded with php5enmod
+  shell: /usr/sbin/php5enmod "{{ item }}"
+  with_items: "{{ php_load_modules|list }}"
+  register: reg_php_load_module
+  changed_when: reg_php_load_module.stdout != ""
+  notify: restart webserver
