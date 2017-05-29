@@ -22,6 +22,10 @@ _Note: If you're using Debian/Ubuntu, you also need to install `libapache2-mod-f
 
 A list of extra PHP packages to install without overriding the default list.
 
+    php_load_modules: []
+
+A list of modules to load on Debian, if not automatically loaded.
+
     php_enable_webserver: true
 
 If your usage of PHP is tied to a web server (e.g. Apache or Nginx), leave this default value. If you are using PHP server-side or to run some small application, set this value to `false` so this role doesn't attempt to interact with a web server.
