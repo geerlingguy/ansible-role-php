@@ -11,7 +11,7 @@ php_packages_state: installed
 php_install_recommends: yes
 
 # Enable PHP5 Modules on Debian if not automatically loaded. (List)
-php_enable_modules: []
+php_load_modules: []
 
 # Set this to false if you're not using PHP with Apache/Nginx/etc.
 php_enable_webserver: true
