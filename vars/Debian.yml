@@ -14,6 +14,7 @@ __php_packages:
   - php7.0-mbstring
   - php-sqlite3
   - php-apcu
+  - php-mcrypt
 __php_webserver_daemon: "apache2"
 
 # Vendor-specific configuration paths on Debian/Ubuntu make my brain asplode.
@@ -28,6 +29,7 @@ __php_extension_conf_paths:
   - /etc/php/7.0/cli/conf.d
 
 __php_apc_conf_filename: 20-apcu.ini
+__php_mcrypt_conf_filename: 20-mcrypt.ini
 __php_opcache_conf_filename: 05-opcache.ini
 __php_fpm_daemon: php7.0-fpm
 __php_fpm_conf_path: "/etc/php/7.0/fpm"
