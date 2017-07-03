@@ -25,7 +25,7 @@
     force: yes
     mode: 0644
   with_items: "{{ php_extension_conf_paths }}"
-  when: php_mcrypt_enable
+  when: php_enable_mcrypt
   notify: restart webserver
 
 - name: Remove mcrypt config file if is disabled.
@@ -33,5 +33,5 @@
     path: "{{ item }}/{{ php_mcrypt_conf_filename }}"
     state: absent
   with_items: "{{ php_extension_conf_paths }}"
-  when: not php_mcrypt_enable
+  when: not php_enable_mcrypt
   notify: restart webserver
