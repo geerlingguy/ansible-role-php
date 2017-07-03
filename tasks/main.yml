@@ -71,3 +71,5 @@
   static: no
 - include: configure-fpm.yml
   static: no
+- include: configure-mcrypt.yml
+  static: no
