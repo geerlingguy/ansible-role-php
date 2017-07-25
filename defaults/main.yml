@@ -78,6 +78,7 @@ php_session_save_path: ''
 php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
 php_display_errors: "Off"
 php_display_startup_errors: "Off"
+php_html_errors: "On"
 
 # Install PHP from source (instead of using a package manager) with these vars.
 php_install_from_source: false
