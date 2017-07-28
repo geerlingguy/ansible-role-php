@@ -44,7 +44,7 @@ php_enable_apc: true
 php_apc_shm_size: "96M"
 php_apc_enable_cli: "0"
 
-# Custom php.ini template. This shoule point to a template file that will be
+# Custom php.ini template. This should point to a template file that will be
 # used to produce php.ini. You should make sure that the following options are
 # actually used in your template (if you need them).
 php_ini_template_file: php.ini.j2
