@@ -23,6 +23,7 @@ __php_conf_paths:
 __php_extension_conf_paths:
   - /etc/php.d
 
+__php_custom_conf_filename: zzz_custom.ini
 __php_apc_conf_filename: 50-apc.ini
 __php_opcache_conf_filename: 10-opcache.ini
 __php_fpm_daemon: php-fpm
