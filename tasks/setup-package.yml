@@ -1,0 +1,9 @@
+---
+- name: Ensure PHP packages are installed.
+  package:
+    name: "{{ item }}"
+    state: "{{ php_packages_state }}"
+  with_items: "{{ php_packages }}"
+  notify:
+    - restart webserver
+    - restart php-fpm

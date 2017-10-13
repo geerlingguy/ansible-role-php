@@ -57,6 +57,10 @@
   when: (php_install_from_source == false) and (ansible_os_family == 'Debian')
   static: no
 
+- include: setup-package.yml
+  when: (php_install_from_source == false) and (ansible_os_family != 'Debian') and (ansible_os_family != 'RedHat')
+  static: no
+
 # Install PHP from source when php_install_from_source is true.
 - include: install-from-source.yml
   when: php_install_from_source == true
