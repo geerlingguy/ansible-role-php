@@ -12,6 +12,12 @@ If you're using an older LTS release of Ubuntu or RHEL, with an old/outdated ver
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
+    php_version: "7.0"
+
+PHP version to install.
+
+_Note: only works on Debian/Ubuntu and may require adding additional PHP repository like `ondrej/php` to work._
+
     php_packages: []
 
 A list of the PHP packages to install (OS-specific by default). You'll likely want to install common packages like `php`, `php-cli`, `php-devel` and `php-pdo`, and you can add in whatever other packages you'd like (for example, `php-gd` for image manipulation, or `php-ldap` if you need to connect to an LDAP server for authentication).
