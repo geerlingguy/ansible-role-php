@@ -78,48 +78,47 @@
   failed_when: false
   register: php_installed
 
-- name: Clone the PHP repository.
-  git:
-    repo: "{{ php_source_repo }}"
-    dest: "{{ php_source_clone_dir }}"
-    version: "{{ php_source_version }}"
-    accept_hostkey: true
-    depth: "{{ php_source_clone_depth }}"
-  when: php_installed.rc != 0
+- block:
 
-- name: Ensure PHP installation path exists.
-  file:
-    path: "{{ php_source_install_path }}"
-    state: directory
-    mode: 0755
-  when: php_installed.rc != 0
+   - name: Clone the PHP repository.
+     git:
+       repo: "{{ php_source_repo }}"
+       dest: "{{ php_source_clone_dir }}"
+       version: "{{ php_source_version }}"
+       accept_hostkey: yes
+       depth: "{{ php_source_clone_depth }}"
 
-- name: Build configure script.
-  command: >
-    ./buildconf --force
-    chdir={{ php_source_clone_dir }}
-  when: php_installed.rc != 0
+   - name: Ensure PHP installation path exists.
+     file:
+       path: "{{ php_source_install_path }}"
+       state: directory
+       mode: 0755
 
-- name: Run configure script.
-  command: >
-    {{ php_source_configure_command }}
-    chdir={{ php_source_clone_dir }}
-  when: php_installed.rc != 0
+   - name: Build configure script.
+     shell: >
+       ./buildconf --force
+       chdir={{ php_source_clone_dir }}
 
-- name: Make and install PHP.
-  command: >
-    {{ item }}
-    chdir={{ php_source_clone_dir }}
-  with_items:
-    - "{{ php_source_make_command }}"
-    - make install
-  when: php_installed.rc != 0
+   - name: Run configure script.
+     shell: >
+       {{ php_source_configure_command }}
+       chdir={{ php_source_clone_dir }}
 
-- name: Ensure php executable is symlinked into a standard path.
-  file:
-    src: "{{ php_source_install_path }}/bin/php"
-    dest: /usr/bin/php
-    state: link
+   - name: Make and install PHP.
+     shell: >
+       {{ item }}
+       chdir={{ php_source_clone_dir }}
+     with_items:
+       - "{{ php_source_make_command }}"
+       - make install
+
+   - name: Ensure php executable is symlinked into a standard path.
+     file:
+       src: "{{ php_source_install_path }}/bin/php"
+       dest: /usr/bin/php
+       state: link
+
+  when: php_installed|failed or (php_installed|succeeded and php_source_upgrade)
 
 # PHP FPM configuration.
 - name: Ensure php-fpm executable is symlinked into a standard path.
