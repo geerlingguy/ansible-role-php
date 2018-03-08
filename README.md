@@ -42,6 +42,14 @@ If you have enabled any additional repositories such as [geerlingguy.repo-epel](
 
 (Debian/Ubuntu only) Whether to install recommended packages when installing `php_packages`; you might want to set this to `no` explicitly if you're installing a PPA that recommends certain packages you don't want (e.g. Ondrej's `php` PPA will install `php7.0-cli` if you install `php-pear` alongside `php5.6-cli`... which is often not desired!).
 
+    php_ppa_use: false
+
+(Ubuntu only) If you would like to enable the Ondrej's `php` PPA. This option is disabled by default.
+
+    php_version: "7.0"
+
+(Ubuntu only) This option combined with the Ondrej's `php` PPA option enables you to specify which version of `php` will be installed. It defaults to the Debian `php` version which is set in the `__php_version` variable. 
+
     php_executable: "php"
 
 The executable to run when calling PHP from the command line. You should only change this if running `php` on your server doesn't target the correct executable, or if you're using software collections on RHEL/CentOS and need to target a different version of PHP.
