@@ -10,3 +10,22 @@ pm.start_servers = {{ php_fpm_pm_start_servers }}
 pm.min_spare_servers = {{ php_fpm_pm_min_spare_servers }}
 pm.max_spare_servers = {{ php_fpm_pm_max_spare_servers }}
 pm.max_requests = {{ php_fpm_pm_max_requests }}
+
+{% if slowlog is defined %}
+slowlog = /var/log/php-fpm/www-slow.log
+{% endif %}
+{% if php_admin_value is defined %}
+{% for value in php_admin_value %}
+php_admin_value[{{ value }}] = {{ php_admin_value[value] }}
+{% endfor %}
+{% endif %}
+{% if php_admin_flag is defined %}
+{% for flag in php_admin_flag %}
+php_admin_flag[{{ flag }}] = {{ php_admin_flag[flag] }}
+{% endfor %}
+{% endif %}
+{% if php_value is defined %}
+{% for value in php_value %}
+php_value[{{ value }}] = {{ php_value[value] }}
+{% endfor %}
+{% endif %}

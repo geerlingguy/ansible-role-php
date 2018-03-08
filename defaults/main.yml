@@ -22,6 +22,15 @@ php_fpm_pm_start_servers: 5
 php_fpm_pm_min_spare_servers: 5
 php_fpm_pm_max_spare_servers: 5
 php_fpm_pm_max_requests: 0
+slowlog: "/var/log/php-fpm/www-slow.log"
+php_admin_value:
+  error_log: "/var/log/php-fpm/www-error.log"
+php_admin_flag:
+  log_errors: "on"
+php_value:
+  session.save_handler: "files"
+  session.save_path: "/var/lib/php/fpm/session"
+  soap.wsdl_cache_dir: "/var/lib/php/fpm/wsdlcache"
 
 # The executable to run when calling PHP from the command line.
 php_executable: "php"
