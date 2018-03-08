@@ -53,6 +53,10 @@
   when: (php_install_from_source == false) and (ansible_os_family == 'RedHat')
   static: no
 
+- include: setup-Ubuntu.yml
+  when: (php_install_from_source == false) and (ansible_distribution == 'Ubuntu')
+  static: no
+
 - include: setup-Debian.yml
   when: (php_install_from_source == false) and (ansible_os_family == 'Debian')
   static: no

@@ -1,0 +1,14 @@
+---
+- name: Add PPA for PHP.
+  apt_repository:
+    repo: "{{ php_ppa_name }}"
+    state: present
+    update_cache: yes
+  register: php_ppa_added
+  when: php_ppa_use
+
+- name: Ensure php will reinstall if the PPA was just added.
+  apt:
+    name: "php*"
+    state: absent
+  when: php_ppa_added.changed
