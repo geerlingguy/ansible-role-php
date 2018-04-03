@@ -85,6 +85,8 @@ By default, all the extra defaults below are applied through the php.ini include
     php_sendmail_path: "/usr/sbin/sendmail -t -i"
     php_output_buffering: "4096"
     php_short_open_tag: false
+    php_precision: 14
+    php_serialize_precision: 17
     php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
     php_display_errors: "Off"
     php_display_startup_errors: "On"
