@@ -65,6 +65,8 @@ php_allow_url_fopen: "On"
 
 php_sendmail_path: "/usr/sbin/sendmail -t -i"
 php_output_buffering: "4096"
+php_precision: 14
+php_serialize_precision: 17
 php_short_open_tag: "Off"
 php_disable_functions: []
 
