@@ -109,6 +109,7 @@
        {{ item }}
        chdir={{ php_source_clone_dir }}
      with_items:
+       - make clean
        - "{{ php_source_make_command }}"
        - make install
 
