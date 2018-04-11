@@ -98,6 +98,7 @@ By default, all the extra defaults below are applied through the php.ini include
     php_session_save_handler: files
     php_session_save_path: ''
     php_disable_functions: []
+    php_precision: 14
 
 Various defaults for PHP. Only used if `php_use_managed_ini` is set to `true`.
 
