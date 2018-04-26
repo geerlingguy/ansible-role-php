@@ -15,6 +15,9 @@ env:
   - distro: debian8
     playbook: test.yml
     php_version: 7.0
+  - distro: ubuntu1804
+    playbook: test.yml
+    php_version: 7.2
   - distro: ubuntu1604
     playbook: test.yml
     php_version: 7.0
@@ -25,10 +28,10 @@ env:
   # Only test source install on latest supported OSes.
   - distro: centos7
     playbook: test-source.yml
-    php_version: 7.1.9
-  - distro: ubuntu1604
+    php_version: 7.1.17
+  - distro: ubuntu1804
     playbook: test-source.yml
-    php_version: 7.1.9
+    php_version: 7.1.17
 
 script:
   # Configure test script so we can run extra tests after playbook is run.
