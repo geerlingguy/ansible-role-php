@@ -60,6 +60,7 @@ If you're using Apache, you can easily get it configured to work with PHP-FPM us
 
     php_fpm_listen: "127.0.0.1:9000"
     php_fpm_listen_allowed_clients: "127.0.0.1"
+    php_fpm_log_path: "syslog"
     php_fpm_pm_max_children: 50
     php_fpm_pm_start_servers: 5
     php_fpm_pm_min_spare_servers: 5
