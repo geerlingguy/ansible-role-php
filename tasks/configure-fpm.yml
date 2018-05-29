@@ -36,7 +36,7 @@
 - name: Ensure the default pool exists.
   template:
     src: www.conf.j2
-    dest: "{{ php_fpm_pool_conf_path }}"
+    dest: "{{ php_fpm_pool_conf_path }}/www.conf"
     owner: root
     group: root
     mode: 0644
@@ -45,7 +45,7 @@
 
 - name: Configure php-fpm pool (if enabled).
   lineinfile:
-    dest: "{{ php_fpm_pool_conf_path }}"
+    dest: "{{ php_fpm_pool_conf_path }}/www.conf"
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     state: present
