@@ -69,6 +69,7 @@ php_short_open_tag: "Off"
 php_disable_functions: []
 
 php_session_cookie_lifetime: 0
+php_session_serialize_handler: php
 php_session_gc_probability: 1
 php_session_gc_divisor: 1000
 php_session_gc_maxlifetime: 1440
