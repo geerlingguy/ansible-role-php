@@ -92,6 +92,7 @@ By default, all the extra defaults below are applied through the php.ini include
     php_display_startup_errors: "On"
     php_expose_php: "On"
     php_session_cookie_lifetime: 0
+    php_session_serialize_handler: php
     php_session_gc_probability: 1
     php_session_gc_divisor: 1000
     php_session_gc_maxlifetime: 1440

@@ -183,7 +183,7 @@ session.cookie_path = /
 session.cookie_domain =
 session.cookie_httponly =
 
-session.serialize_handler = php
+session.serialize_handler = {{ php_session_serialize_handler }}
 
 session.gc_probability = {{ php_session_gc_probability }}
 session.gc_divisor = {{ php_session_gc_divisor }}
