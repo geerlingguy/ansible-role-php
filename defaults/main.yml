@@ -21,6 +21,7 @@ php_fpm_pm_max_children: 50
 php_fpm_pm_start_servers: 5
 php_fpm_pm_min_spare_servers: 5
 php_fpm_pm_max_spare_servers: 5
+php_fpm_pm: ondemand
 
 # The executable to run when calling PHP from the command line.
 php_executable: "php"
@@ -81,7 +82,9 @@ php_display_startup_errors: "Off"
 
 # Install PHP from source (instead of using a package manager) with these vars.
 php_install_from_source: false
-php_source_repo: "https://git.php.net/repository/php-src.git"
+php_update_from_source: false
+#php_source_repo: "https://git.php.net/repository/php-src.git"
+php_source_repo: "https://github.com/php/php-src.git"
 php_source_version: "master"
 php_source_clone_dir: "~/php-src"
 php_source_clone_depth: 1
