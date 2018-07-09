@@ -34,19 +34,20 @@ php_fpm_pm_max_spare_servers: 5
 # The executable to run when calling PHP from the command line.
 php_executable: "php"
 
-# OpCache settings.
-php_opcache_zend_extension: "opcache.so"
-php_opcache_enable: "1"
-php_opcache_enable_cli: "0"
-php_opcache_memory_consumption: "96"
-php_opcache_interned_strings_buffer: "16"
-php_opcache_max_accelerated_files: "4096"
-php_opcache_max_wasted_percentage: "5"
-php_opcache_validate_timestamps: "1"
-php_opcache_revalidate_path: "0"
-php_opcache_revalidate_freq: "2"
-php_opcache_max_file_size: "0"
-php_opcache_blacklist_filename: ""
+# OpCache default settings.
+php_opcache_defaults:
+  zend_extension: "opcache.so"
+  enable: "1"
+  enable_cli: "0"
+  memory_consumption: "96"
+  interned_strings_buffer: "16"
+  max_accelerated_files: "4096"
+  max_wasted_percentage: "5"
+  validate_timestamps: "1"
+  revalidate_path: "0"
+  revalidate_freq: "2"
+  max_file_size: "0"
+  blacklist_filename: ""
 
 # APCu settings.
 php_enable_apc: true

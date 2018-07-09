@@ -39,15 +39,25 @@
     php_apc_conf_filename: "{{ __php_apc_conf_filename }}"
   when: php_apc_conf_filename is not defined
 
-- name: Define php_opcache_conf_filename (Ubuntu 16.04).
-  set_fact:
-    php_opcache_conf_filename: "10-opcache.ini"
-  when: php_opcache_conf_filename is not defined and ansible_distribution_version == "16.04"
+- name: Define defaults for php opcache (from php_opcache_defaults)
+  block:
+    - name: Set php_opcache if not defined
+      set_fact:
+        php_opcache: {}
+      when: php_opcache is not defined
+    - name: Combine php_opcache defaults and current setting values
+      set_fact:
+        php_opcache: "{{ php_opcache_defaults | combine(php_opcache) }}"
 
-- name: Define php_opcache_conf_filename.
+- name: Define php_opcache.conf_filename (Ubuntu 16.04).
   set_fact:
-    php_opcache_conf_filename: "{{ __php_opcache_conf_filename }}"
-  when: php_opcache_conf_filename is not defined
+    php_opcache: "{{ php_opcache | combine({ 'conf_filename': '10-opcache.ini'}) }}"
+  when: php_opcache.conf_filename is not defined and ansible_distribution_version == "16.04"
+
+- name: Define php_opcache.conf_filename.
+  set_fact:
+    php_opcache: "{{ php_opcache | combine({ 'conf_filename': __php_opcache.conf_filename }) }}"
+  when: php_opcache.conf_filename is not defined
 
 - name: Define php_fpm_conf_path.
   set_fact:

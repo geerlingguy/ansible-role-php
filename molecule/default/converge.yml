@@ -9,6 +9,8 @@
     php_memory_limit: "192M"
     php_enablerepo: "remi,remi-php70"
     php_install_recommends: false
+    php_opcache:
+      memory_consumption: "128"
 
   handlers:
     - name: update apt cache
@@ -67,4 +69,12 @@
   post_tasks:
     - name: Confirm PHP configuration is correct.
       shell: php -i | grep 'memory_limit.*192'
+      changed_when: false
+
+    - name: Confirm PHP opcache default configuration is correct.
+      shell: php -i | grep 'opcache.max_accelerated_files.*4096'
+      changed_when: false
+
+    - name: Confirm PHP opcache configuration set in playbook is correct.
+      shell: php -i | grep 'opcache.memory_consumption.*128'
       changed_when: false
