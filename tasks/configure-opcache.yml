@@ -10,7 +10,7 @@
   file:
     path: "{{ item.1.path }}"
     state: absent
-  when: php_opcache_conf_filename != (item.1.path.split('/') | last)
+  when: php_opcache.conf_filename != (item.1.path.split('/') | last)
   with_subelements:
     - "{{ php_installed_opcache_confs.results }}"
     - files
@@ -19,19 +19,19 @@
 - name: Ensure OpCache config file is present.
   template:
     src: opcache.ini.j2
-    dest: "{{ item }}/{{ php_opcache_conf_filename }}"
+    dest: "{{ item }}/{{ php_opcache.conf_filename }}"
     owner: root
     group: root
     force: true
     mode: 0644
   with_items: "{{ php_extension_conf_paths }}"
-  when: php_opcache_enable | bool
+  when: php_opcache.enable | bool
   notify: restart webserver
 
 - name: Remove OpCache config file if OpCache is disabled.
   file:
-    path: "{{ item }}/{{ php_opcache_conf_filename }}"
+    path: "{{ item }}/{{ php_opcache.conf_filename }}"
     state: absent
   with_items: "{{ php_extension_conf_paths }}"
-  when: not php_opcache_enable | bool
+  when: not php_opcache.enable | bool
   notify: restart webserver

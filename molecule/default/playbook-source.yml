@@ -11,6 +11,8 @@
     php_version: "7.1.17"
     php_source_version: "php-{{ php_version }}"
     php_memory_limit: "192M"
+    php_opcache:
+      memory_consumption: "128"
 
   pre_tasks:
     - name: Update apt cache.
@@ -25,6 +27,14 @@
   post_tasks:
     - name: Confirm PHP configuration is correct.
       shell: php -i | grep 'memory_limit.*192'
+      changed_when: false
+
+    - name: Confirm PHP opcache configuration is correct.
+      shell: php -i | grep 'opcache.memory_consumption.*128'
+      changed_when: false
+
+    - name: Confirm PHP opcache default is correct.
+      shell: php -i | grep 'opcache.max_accelerated_files.*4096'
       changed_when: false
 
     - name: Check the installed PHP version.

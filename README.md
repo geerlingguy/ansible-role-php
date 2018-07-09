@@ -116,24 +116,30 @@ Various defaults for PHP. Only used if `php_use_managed_ini` is set to `true`.
 ### OpCache-related Variables
 
 The OpCache is included in PHP starting in version 5.5, and the following variables will only take effect if the version of PHP you have installed is 5.5 or greater.
+    
+    php_opcache:
+        zend_extension: "opcache.so"
+        enable: "1"
+        enable_cli: "0"
+        memory_consumption: "96"
+        interned_strings_buffer: "16"
+        max_accelerated_files: "4096"
+        max_wasted_percentage: "5"
+        validate_timestamps: "1"
+        revalidate_path: "0"
+        revalidate_freq: "2"
+        max_file_size: "0"
 
-    php_opcache_zend_extension: "opcache.so"
-    php_opcache_enable: "1"
-    php_opcache_enable_cli: "0"
-    php_opcache_memory_consumption: "96"
-    php_opcache_interned_strings_buffer: "16"
-    php_opcache_max_accelerated_files: "4096"
-    php_opcache_max_wasted_percentage: "5"
-    php_opcache_validate_timestamps: "1"
-    php_opcache_revalidate_path: "0"
-    php_opcache_revalidate_freq: "2"
-    php_opcache_max_file_size: "0"
+OpCache ini directives that are often customized on a system. Make sure you have enough memory and file slots allocated in the OpCache (`php_opcache.memory_consumption`, in MB, and `php_opcache.max_accelerated_files`) to contain all the PHP code you are running. If not, you may get less-than-optimal performance!
 
-OpCache ini directives that are often customized on a system. Make sure you have enough memory and file slots allocated in the OpCache (`php_opcache_memory_consumption`, in MB, and `php_opcache_max_accelerated_files`) to contain all the PHP code you are running. If not, you may get less-than-optimal performance!
+**Note:**
 
-For custom opcache.so location provide full path with `php_opcache_zend_extension`.
+If you intend to redefine a value of the php_opcache, just define the php_opcache value in your vars. The defaults values are set by the 
+php_opcache_defaults in the main.yml file. 
 
-    php_opcache_conf_filename: [platform-specific]
+For custom opcache.so location provide full path with `php_opcache.zend_extension`.
+
+    php_opcache.conf_filename: [platform-specific]
 
 The platform-specific opcache configuration filename. Generally the default should work, but in some cases, you may need to override the filename.
 
