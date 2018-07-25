@@ -66,6 +66,12 @@
       line: "pm.min_spare_servers = {{ php_fpm_pm_min_spare_servers }}"
     - regexp: '^pm\.max_spare_servers.?=.+$'
       line: "pm.max_spare_servers = {{ php_fpm_pm_max_spare_servers }}"
+    - regexp: "^listen.owner.?=.+$"
+      line: "listen.owner = {{ php_fpm_listen_owner }}"
+    - regexp: "^listen.group.?=.+$"
+      line: "listen.group = {{ php_fpm_listen_group }}"
+    - regexp: "^listen.mode.?=.+$"
+      line: "listen.mode = {{ php_fpm_listen_mode }}"
   when: php_enable_php_fpm
   notify: restart php-fpm
 
