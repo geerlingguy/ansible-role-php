@@ -1,4 +1,5 @@
 ---
+
 - name: Ensure dependencies for building from source are installed (CentOS).
   package:
     name: epel-release
