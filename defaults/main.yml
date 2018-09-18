@@ -27,7 +27,7 @@ php_executable: "php"
 
 # OpCache settings.
 php_opcache_zend_extension: "opcache.so"
-php_opcache_enable: "1"
+php_opcache_enable: "0"
 php_opcache_enable_cli: "0"
 php_opcache_memory_consumption: "96"
 php_opcache_interned_strings_buffer: "16"
@@ -43,6 +43,11 @@ php_opcache_blacklist_filename: ""
 php_enable_apc: true
 php_apc_shm_size: "96M"
 php_apc_enable_cli: "0"
+
+# ODBC settings.
+php_odbc_default_db: "databasename"
+php_odbc_default_user: "username"
+php_odbc_default_pw: "password"
 
 # If this is set to false, none of the following options will have any effect.
 # Any and all changes to /etc/php.ini will be your responsibility.

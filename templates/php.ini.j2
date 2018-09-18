@@ -124,6 +124,9 @@ mail.add_x_header = On
 sql.safe_mode = Off
 
 [ODBC]
+odbc.default_db    =  {{ php_odbc_default_db }}
+odbc.default_user  =  {{ php_odbc_default_user }}
+odbc.default_pw    =  {{ php_odbc_default_pw }}
 odbc.allow_persistent = On
 odbc.check_persistent = On
 odbc.max_persistent = -1
