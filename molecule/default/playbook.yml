@@ -55,7 +55,7 @@
       when:
         - ansible_os_family == 'RedHat'
         - ansible_distribution != 'Fedora'
-    - geerlingguy.ansible
+    - role: geerlingguy.php
 
   post_tasks:
     - name: Confirm PHP configuration is correct.
