@@ -180,7 +180,7 @@ session.auto_start = 0
 
 session.cookie_lifetime = {{ php_session_cookie_lifetime }}
 session.cookie_path = /
-session.cookie_domain =
+session.cookie_domain = {{ php_session_cookie_domain | default(omit) }}
 session.cookie_httponly =
 
 session.serialize_handler = php
