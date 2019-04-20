@@ -56,6 +56,12 @@
       line: "group = {{ php_fpm_pool_group }}"
     - regexp: "^listen.?=.+$"
       line: "listen = {{ php_fpm_listen }}"
+    - regexp: "^listen.owner.?=.+$"
+      line: "listen.owner = {{ php_fpm_listen_owner }}"
+      when: "{{ php_fpm_listen_owner is defined and php_fpm_listen_owner }}"
+    - regexp: "^listen.group.?=.+$"
+      line: "listen.group = {{ php_fpm_listen_group }}"
+      when: "{{ php_fpm_listen_group is defined and php_fpm_listen_group }}"
     - regexp: '^listen\.allowed_clients.?=.+$'
       line: "listen.allowed_clients = {{ php_fpm_listen_allowed_clients }}"
     - regexp: '^pm\.max_children.?=.+$'
@@ -66,7 +72,7 @@
       line: "pm.min_spare_servers = {{ php_fpm_pm_min_spare_servers }}"
     - regexp: '^pm\.max_spare_servers.?=.+$'
       line: "pm.max_spare_servers = {{ php_fpm_pm_max_spare_servers }}"
-  when: php_enable_php_fpm
+  when: php_enable_php_fpm and item.when|default(True)
   notify: restart php-fpm
 
 - name: Ensure php-fpm is started and enabled at boot (if configured).
