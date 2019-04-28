@@ -73,6 +73,10 @@ Specific settings inside the default `www.conf` PHP-FPM pool. If you'd like to m
 
 ### php.ini settings
 
+    php_use_managed_ini: true
+
+By default, all the extra defaults below are applied through the php.ini included with this role. You can self-manage your php.ini file (if you need more flexility in its configuration) by setting this to `false` (in which case all the below variables will be ignored)
+
     php_ini_template_file: php.ini.j2
 
 This should point to a template file that will be used to produce php.ini. You should make sure that the following options are actually used in your template if you need them.
