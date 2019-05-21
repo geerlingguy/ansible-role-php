@@ -223,3 +223,14 @@ soap.wsdl_cache_limit = 5
 
 [ldap]
 ldap.max_links = -1
+
+{% if php_managed_ini_dynamic_extensions is iterable and php_managed_ini_dynamic_extensions is not string %}
+;;;;;;;;;;;;;;;;;;;;;;
+; Dynamic Extensions ;
+;;;;;;;;;;;;;;;;;;;;;;
+{% for enabled_ext in php_managed_ini_dynamic_extensions %}
+[{{ enabled_ext['name'] }}]
+extension = {{ enabled_ext['extension'] }}
+
+{% endfor %}
+{% endif %}
