@@ -107,6 +107,9 @@ By default, all the extra defaults below are applied through the php.ini include
 
 Various defaults for PHP. Only used if `php_use_managed_ini` is set to `true`.
 
+    php_managed_ini_dynamic_extensions: ""
+When `php_use_managed_ini` is true, you can also use this variable to enable **previously installed** php dynamic extensions (see examples).
+
 ### OpCache-related Variables
 
 The OpCache is included in PHP starting in version 5.5, and the following variables will only take effect if the version of PHP you have installed is 5.5 or greater.
@@ -216,6 +219,9 @@ None.
       - php-pdo
       - php-pecl-apcu
       - php-xml
+    php_managed_ini_dynamic_extensions:
+      - name: MCrypt
+        extension: /usr/lib64/php/modules/mcrypt.so
       ...
 
 ## License
