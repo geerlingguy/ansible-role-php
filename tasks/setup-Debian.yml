@@ -15,7 +15,7 @@
     path: "{{ item }}/{{ php_apc_conf_filename }}"
     state: absent
   with_items: "{{ php_extension_conf_paths }}"
-  when: php_enable_apc and php_package_install.changed
+  when: php_enable_apc|bool and php_package_install.changed
   notify: restart webserver
 
 - name: Delete OpCache configuration file if this role will provide one.
@@ -23,5 +23,5 @@
     path: "{{ item }}/{{ php_opcache_conf_filename }}"
     state: absent
   with_items: "{{ php_extension_conf_paths }}"
-  when: php_opcache_enable and php_package_install.changed
+  when: php_opcache_enable|bool and php_package_install.changed
   notify: restart webserver
