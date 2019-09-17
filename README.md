@@ -96,13 +96,17 @@ By default, all the extra defaults below are applied through the php.ini include
     php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
     php_display_errors: "Off"
     php_display_startup_errors: "On"
+    php_error_log: ""
+    php_error_log_owner: ""
+    php_error_log_group: ""
+    php_error_log_mode: 0644
     php_expose_php: "On"
     php_session_cookie_lifetime: 0
     php_session_gc_probability: 1
     php_session_gc_divisor: 1000
     php_session_gc_maxlifetime: 1440
     php_session_save_handler: files
-    php_session_save_path: ''
+    php_session_save_path: ""
     php_disable_functions: []
 
 Various defaults for PHP. Only used if `php_use_managed_ini` is set to `true`.

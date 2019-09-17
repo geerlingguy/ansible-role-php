@@ -18,3 +18,12 @@
   with_items: "{{ php_conf_paths }}"
   notify: restart webserver
   when: php_use_managed_ini
+
+- name: Create PHP error_log with appropriate permissions.
+  file:
+    path: "{{ php_error_log }}"
+    state: touch
+    owner: "{{ php_error_log_owner }}"
+    group: "{{ php_error_log_group }}"
+    mode: "{{ php_error_log_mode }}"
+  when: php_error_log and php_error_log != "syslog" and php_error_log_owner and php_error_log_group
