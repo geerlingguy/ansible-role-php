@@ -41,6 +41,9 @@ php_opcache_revalidate_path: "0"
 php_opcache_revalidate_freq: "2"
 php_opcache_max_file_size: "0"
 php_opcache_blacklist_filename: ""
+php_opcache_consistency_checks: ""
+php_opcache_save_comments: ""
+php_opcache_fast_shutdown: ""
 
 # APCu settings.
 php_enable_apc: true

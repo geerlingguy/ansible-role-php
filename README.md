@@ -122,6 +122,10 @@ The OpCache is included in PHP starting in version 5.5, and the following variab
     php_opcache_revalidate_path: "0"
     php_opcache_revalidate_freq: "2"
     php_opcache_max_file_size: "0"
+    php_opcache_blacklist_filename: ""
+    php_opcache_consistency_checks: ""
+    php_opcache_save_comments: ""
+    php_opcache_fast_shutdown: ""
 
 OpCache ini directives that are often customized on a system. Make sure you have enough memory and file slots allocated in the OpCache (`php_opcache_memory_consumption`, in MB, and `php_opcache_max_accelerated_files`) to contain all the PHP code you are running. If not, you may get less-than-optimal performance!
 

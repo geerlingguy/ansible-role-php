@@ -12,3 +12,12 @@ opcache.max_file_size={{ php_opcache_max_file_size }}
 {% if php_opcache_blacklist_filename != '' %}
 opcache.blacklist_filename={{ php_opcache_blacklist_filename }}
 {% endif %}
+{% if php_opcache_consistency_checks != '' %}
+opcache.consistency_checks={{ php_opcache_consistency_checks }}
+{% endif %}
+{% if php_opcache_save_comments != '' %}
+opcache.save_comments={{ php_opcache_save_comments }}
+{% endif %}
+{% if php_opcache_fast_shutdown != '' %}
+opcache.fast_shutdown={{ php_opcache_fast_shutdown }}
+{% endif %}
