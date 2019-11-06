@@ -23,5 +23,5 @@
     path: "{{ item }}/{{ php_opcache_conf_filename }}"
     state: absent
   with_items: "{{ php_extension_conf_paths }}"
-  when: php_opcache_enable|bool and php_package_install.changed
+  when: php_opcache_enable | bool and php_package_install.changed
   notify: restart webserver
