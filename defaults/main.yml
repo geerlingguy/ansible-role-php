@@ -3,7 +3,7 @@
 # for RHEL/CentOS.
 php_enablerepo: ""
 
-# No extra packages are installed by default
+# Extra packages to install (in addition to distro-specific default lists).
 php_packages_extra: []
 
 # Default PHP version to install on Debian-based OSes.
