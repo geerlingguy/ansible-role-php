@@ -66,6 +66,12 @@
       line: "pm.min_spare_servers = {{ php_fpm_pm_min_spare_servers }}"
     - regexp: '^pm\.max_spare_servers.?=.+$'
       line: "pm.max_spare_servers = {{ php_fpm_pm_max_spare_servers }}"
+    - regexp: '^;?access.log.?=.+$'
+      line: "access.log = {{ php_fpm_access_log }}"
+    - regexp: '^;?access.format.?=.+$'
+      line: "access.format = {{ php_fpm_access_format }}"
+    - regexp: '^;?pm.status_path.?=.+$'
+      line: "pm.status_path = {{ php_fpm_pm_status_path }}"
   when: php_enable_php_fpm
   notify: restart php-fpm
 

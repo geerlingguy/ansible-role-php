@@ -64,6 +64,11 @@ auto_append_file =
 
 default_mimetype = "text/html"
 
+{% if php_always_populate_raw_post_data is defined %}
+always_populate_raw_post_data = {{ php_always_populate_raw_post_data }}
+{% endif %}
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Paths and Directories ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
