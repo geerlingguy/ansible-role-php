@@ -33,15 +33,17 @@
     mode: 0755
   when: php_fpm_pool_conf_path_dir_stat.stat.islnk is not defined
 
-- name: Ensure the default pool exists.
+- name: Manage the php-fpm www pool
   template:
-    src: www.conf.j2
+    src: "{{ php_fpm_pool_conf_template }}"
     dest: "{{ php_fpm_pool_conf_path }}"
     owner: root
     group: root
     mode: 0644
-    force: false
-  when: php_enable_php_fpm
+  when:
+    - php_enable_php_fpm
+    - not php_fpm_use_managed_ini
+  notify: restart php-fpm
 
 - name: Configure php-fpm pool (if enabled).
   lineinfile:
@@ -66,7 +68,9 @@
       line: "pm.min_spare_servers = {{ php_fpm_pm_min_spare_servers }}"
     - regexp: '^pm\.max_spare_servers.?=.+$'
       line: "pm.max_spare_servers = {{ php_fpm_pm_max_spare_servers }}"
-  when: php_enable_php_fpm
+  when:
+    - php_enable_php_fpm
+    - php_fpm_use_managed_ini
   notify: restart php-fpm
 
 - name: Ensure php-fpm is started and enabled at boot (if configured).
