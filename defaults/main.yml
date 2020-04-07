@@ -31,7 +31,7 @@ php_fpm_pm_min_spare_servers: 5
 php_fpm_pm_max_spare_servers: 5
 
 php_fpm_pool_conf_template: "www.conf.j2"
-php_fpm_use_managed_ini: true
+php_fpm_use_managed_conf: true
 
 # The executable to run when calling PHP from the command line.
 php_executable: "php"

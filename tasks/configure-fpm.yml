@@ -42,7 +42,7 @@
     mode: 0644
   when:
     - php_enable_php_fpm
-    - not php_fpm_use_managed_ini
+    - not php_fpm_use_managed_conf
   notify: restart php-fpm
 
 - name: Configure php-fpm pool (if enabled).
@@ -70,7 +70,7 @@
       line: "pm.max_spare_servers = {{ php_fpm_pm_max_spare_servers }}"
   when:
     - php_enable_php_fpm
-    - php_fpm_use_managed_ini
+    - php_fpm_use_managed_conf
   notify: restart php-fpm
 
 - name: Ensure php-fpm is started and enabled at boot (if configured).
