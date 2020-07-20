@@ -31,7 +31,7 @@ php_fpm_pm_min_spare_servers: 5
 php_fpm_pm_max_spare_servers: 5
 
 php_fpm_access_log: /var/log/php-fpm/access.log
-php_fpm_access_format: '"%{REMOTE_ADDR}e - - [%t] \"%m %r%Q%q\" %s %l \"%{HTTP_REFERER}e\" \"%{HTTP_USER_AGENT}e\" %{mili}dT PID=%p MEM=%{kilo}M CPU=%C%%"'
+php_fpm_access_format: '"%R - %u %t \"%m %r\" %s"'
 php_fpm_pm_status_path: "/status"
 
 # The executable to run when calling PHP from the command line.
