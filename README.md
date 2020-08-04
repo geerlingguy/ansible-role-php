@@ -182,8 +182,9 @@ The version of PHP to install from source (a git branch, tag, or commit hash).
     php_source_clone_depth: 1
     php_source_install_path: "/opt/php"
     php_source_install_gmp_path: "/usr/include/x86_64-linux-gnu/gmp.h"
+    php_source_mysql_config: "/usr/bin/mysql_config"
 
-Location where source will be cloned and installed, and the location of the GMP header file (which can be platform/distribution specific).
+Location where source will be cloned and installed, and the location of the GMP header file (which can be platform/distribution specific), and `mysql_config` binary (this may be `mariadb_config` in newer operating system versions).
 
     php_source_make_command: "make"
 
