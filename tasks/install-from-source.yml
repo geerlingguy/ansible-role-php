@@ -71,7 +71,7 @@
   register: gmp_file
 
 - name: Ensure gmp.h is symlinked into a location accessible to gcc.
-  file:
+  file:  # noqa 208
     src: "{{ php_source_install_gmp_path }}"
     dest: /usr/include/gmp.h
     state: link
@@ -121,14 +121,14 @@
   when: php_installed.rc != 0
 
 - name: Ensure php executable is symlinked into a standard path.
-  file:
+  file:  # noqa 208
     src: "{{ php_source_install_path }}/bin/php"
     dest: /usr/bin/php
     state: link
 
 # PHP FPM configuration.
 - name: Ensure php-fpm executable is symlinked into a standard path.
-  file:
+  file:  # noqa 208
     src: "{{ php_source_install_path }}/sbin/php-fpm"
     dest: "/usr/sbin/{{ php_fpm_daemon }}"
     state: link
@@ -146,6 +146,7 @@
   file:
     path: "{{ php_fpm_conf_path }}"
     state: directory
+    mode: 0755
   when: "'--enable-fpm' in php_source_configure_command"
 
 - name: Ensure php-fpm config file is installed.
