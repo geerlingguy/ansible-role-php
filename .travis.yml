@@ -1,38 +1,32 @@
 ---
-language: python
-services: docker
+os: linux
+dist: bionic
+language: shell
+
+services: 
+  - docker
 
 env:
   global:
-    - ROLE_NAME: php
+    - ROLE_PATH: $TRAVIS_BUILD_DIR
   matrix:
-    - MOLECULE_DISTRO: centos8
-    - MOLECULE_DISTRO: centos7
     - MOLECULE_DISTRO: ubuntu2004
     - MOLECULE_DISTRO: ubuntu1804
     - MOLECULE_DISTRO: debian10
-    - MOLECULE_DISTRO: debian9
+    # - MOLECULE_DISTRO: centos8
+    # - MOLECULE_DISTRO: centos7
+    #   MOLECULE_PLAYBOOK: playbook-source.yml
 
-    - MOLECULE_DISTRO: centos7
-      MOLECULE_PLAYBOOK: playbook-source.yml
-
-before_install:
-  # Upgrade Docker to work with docker-py.
-  - curl https://gist.githubusercontent.com/geerlingguy/ce883ad4aec6a5f1187ef93bd338511e/raw/36612d28981d92863f839c5aefe5b7dd7193d6c6/travis-ci-docker-upgrade.sh | sudo bash
+cache:
+  directories:
+    - /home/travis/.cache/pipenv
 
 install:
-  # Install test dependencies.
-  - pip install molecule yamllint ansible-lint docker
-
-before_script:
-  # Use actual Ansible Galaxy role name for the project directory.
-  - cd ../
-  - mv ansible-role-$ROLE_NAME geerlingguy.$ROLE_NAME
-  - cd geerlingguy.$ROLE_NAME
+  - |
+    sudo apt-get -y purge python3-openssl && sudo apt-get -y autoremove
+    sudo apt-get update && sudo apt-get install -y ca-certificates curl gcc iproute2 pwgen python3 python3-dev sudo
+    curl -skL https://bootstrap.pypa.io/get-pip.py | sudo -H python3
+    sudo -H pip3 install --upgrade --ignore-installed --requirement requirements.txt
 
 script:
-  # Run tests.
-  - molecule test
-
-notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  - sudo -E molecule test
