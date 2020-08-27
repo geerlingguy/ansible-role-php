@@ -1,0 +1,12 @@
+; {{ ansible_managed }}
+zend_extension=xdebug.so
+
+xdebug.remote_enable = {{ php_xdebug_remote_enable }}
+xdebug.idekey = {{ php_xdebug_idekey }}
+xdebug.remote_host = {{ php_xdebug_remote_host }}
+xdebug.remote_port = {{ php_xdebug_remote_port }}
+xdebug.max_nesting_level = {{ php_xdebug_max_nesting_level }}
+xdebug.show_error_trace = {{ php_xdebug_show_error_trace }}
+{% if php_xdebug_remote_log is defined and php_xdebug_remote_log|length %}
+xdebug.remote_log = {{ php_xdebug_remote_log }}
+{% endif %}

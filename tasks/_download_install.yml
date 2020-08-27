@@ -1,0 +1,10 @@
+---
+- name: Downloading {{ item.dest | basename }}
+  get_url: 
+    url: "{{ item.url }}"
+    dest: "{{ item.dest }}"
+    mode: 0775
+
+- name: Installing {{ item.dest | basename }}
+  apt:
+    deb: "{{ item.dest }}"
