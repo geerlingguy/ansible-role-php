@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: Confirm PHP configuration is correct.
+      shell: php -i | grep 'memory_limit.*192'
