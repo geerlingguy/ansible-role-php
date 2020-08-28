@@ -15,8 +15,8 @@
   shell:
     cmd: /usr/bin/php{{ php_default_version_debian }} -m | grep 'cassandra'
   failed_when: false
+  changed_when: false
   register: php_cassandra_check_install
-  tags: ['molecule-idempotence-notest']
 
 - name: cassandra-php | download and compile cassandra php driver if it is not found
   block:

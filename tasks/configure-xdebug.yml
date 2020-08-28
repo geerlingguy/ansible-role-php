@@ -3,8 +3,8 @@
   shell:
     cmd: /usr/bin/php{{ php_default_version_debian }} -m | grep 'xdebug'
   failed_when: false
+  changed_when: false
   register: php_xdebug_check_install
-  tags: ['molecule-idempotence-notest']
 
 - name: xdebug | override default configuration for xdebug
   template: 
