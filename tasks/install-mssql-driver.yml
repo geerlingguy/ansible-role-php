@@ -6,7 +6,7 @@
 
 - name: pdo_dblib | configure FreeTDS for pdo_dblib
   template: 
-    src: freetds.ini.j2
+    src: "{{ php_pdo_dblib_driver_ini_template }}"
     dest: /etc/freetds/freetds.conf
     owner: root
     group: root
