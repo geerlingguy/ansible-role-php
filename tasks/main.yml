@@ -86,7 +86,6 @@
 
 # Install PECL extensions
 - include_tasks: install-pecl-extensions.yml
-  when: php_pecl_extensions_install | length > 1 or php_extensions_enable | length > 1
 
 # Configure PHP.
 - include_tasks: configure.yml
