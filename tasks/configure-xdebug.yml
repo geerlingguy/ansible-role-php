@@ -1,0 +1,14 @@
+---
+- name: xdebug | ensure xdebug is installed and enabled 
+  shell:
+    cmd: /usr/bin/php{{ php_default_version_debian }} -m | grep 'xdebug'
+  failed_when: false
+  changed_when: false
+  register: php_xdebug_check_install
+
+- name: xdebug | override default configuration for xdebug
+  template: 
+    src: xdebug.ini.j2
+    dest: /etc/php/{{ php_default_version_debian }}/mods-available/xdebug.ini
+    mode: 0644
+  when: php_xdebug_check_install.rc == 0

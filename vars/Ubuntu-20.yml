@@ -1,2 +1,4 @@
 ---
 __php_default_version_debian: "7.4"
+
+php_cassandra_php_driver_install: no # not supported

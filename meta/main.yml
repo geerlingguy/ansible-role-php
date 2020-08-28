@@ -1,29 +1,22 @@
 ---
-dependencies: []
-
 galaxy_info:
   role_name: php
-  author: geerlingguy
+  author: Frank Fidanza
   description: PHP for RedHat/CentOS/Fedora/Debian/Ubuntu.
-  company: "Midwestern Mac, LLC"
+  company: RG System
   license: "license (BSD, MIT)"
   min_ansible_version: 2.8
   platforms:
     - name: EL
       versions:
-        - 6
         - 7
         - 8
-    - name: Fedora
-      versions:
-        - all
     - name: Debian
       versions:
-        - all
+        - buster
     - name: Ubuntu
       versions:
-        - trusty
-        - xenial
+        - focal
         - bionic
   galaxy_tags:
     - development
@@ -35,3 +28,5 @@ galaxy_info:
     - wordpress
     - joomla
     - magento
+
+dependencies: []

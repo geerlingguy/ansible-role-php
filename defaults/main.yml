@@ -139,3 +139,53 @@ php_source_configure_command: >
   --with-bz2=/usr
   --with-recode=/usr
   --with-mysqli={{ php_source_mysql_config }}
+
+# cassandra driver
+php_cassandra_php_driver_install: yes
+php_cassandra_php_driver_cleanup_build: yes
+php_cassandra_php_driver_version: "1.3.2" # https://github.com/datastax/php-driver/releases 
+php_cassandra_php_driver_build_dependencies:
+  - build-essential
+  - multiarch-support
+  - cmake 
+  - libgmp-dev
+  - re2c
+  - php{{ php_default_version_debian }}-dev
+php_cassandra_cpp_driver_libuv_version: '1.35.0'
+php_cassandra_cpp_driver_version: '2.15.3'
+php_cassandra_cpp_driver_dependencies_url: https://downloads.datastax.com/cpp-driver/ubuntu/18.04/dependencies
+php_cassandra_cpp_driver_url: https://downloads.datastax.com/cpp-driver/ubuntu/18.04/cassandra
+php_cassandra_cpp_driver_dependencies_pkgs: #  list ordering matters for installation to success
+  - url: "{{ php_cassandra_cpp_driver_dependencies_url }}/libuv/v{{ php_cassandra_cpp_driver_libuv_version }}/libuv1_{{ php_cassandra_cpp_driver_libuv_version }}-1_amd64.deb"
+    dest: /tmp/libuv1_{{ php_cassandra_cpp_driver_libuv_version }}-1_amd64.deb
+  - url: "{{ php_cassandra_cpp_driver_dependencies_url }}/libuv/v{{ php_cassandra_cpp_driver_libuv_version }}/libuv1-dev_{{ php_cassandra_cpp_driver_libuv_version }}-1_amd64.deb"
+    dest: /tmp/libuv1-dev_{{ php_cassandra_cpp_driver_libuv_version }}-1_amd64.deb
+php_cassandra_cpp_driver_pkgs: # list ordering matters for installation to success
+  - url: "{{ php_cassandra_cpp_driver_url }}/v{{ php_cassandra_cpp_driver_version }}/cassandra-cpp-driver_{{ php_cassandra_cpp_driver_version }}-1_amd64.deb"
+    dest: /tmp/cassandra-cpp-driver_{{ php_cassandra_cpp_driver_version }}-1_amd64.deb
+  - url: "{{ php_cassandra_cpp_driver_url }}/v{{ php_cassandra_cpp_driver_version }}/cassandra-cpp-driver-dev_{{ php_cassandra_cpp_driver_version }}-1_amd64.deb"
+    dest: /tmp/cassandra-cpp-driver-dev_{{ php_cassandra_cpp_driver_version }}-1_amd64.deb
+  - url: "{{ php_cassandra_cpp_driver_url }}/v{{ php_cassandra_cpp_driver_version }}/cassandra-cpp-driver-dbg_{{ php_cassandra_cpp_driver_version }}-1_amd64.deb"
+    dest: /tmp/cassandra-cpp-driver-dbg_{{ php_cassandra_cpp_driver_version }}-1_amd64.deb
+
+# pdo_dblib driver
+php_pdo_dblib_driver_install: yes
+php_pdo_dblib_driver_dependencies: 
+  - freetds-common
+  - freetds-bin
+  - freetds-dev
+php_pdo_dblib_driver_ini_template: freetds.ini.j2
+
+# pecl extensions
+php_pecl_extensions_install: []
+php_extensions_enable: []
+php_extensions_disable: []
+
+# xdebug configuration
+php_xdebug_show_error_trace: 1
+php_xdebug_remote_enable: 1
+php_xdebug_idekey: PHPSTORM
+php_xdebug_remote_host: 10.0.2.2
+php_xdebug_remote_port: 9009
+php_xdebug_max_nesting_level: 512
+# php_xdebug_remote_log: '' # path to xdebug logs. Ex: /vagrant/xdebug.log

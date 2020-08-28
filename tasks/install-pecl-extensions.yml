@@ -1,0 +1,44 @@
+---
+- name: pecl | install dependencies
+  apt:
+    name: php-pear
+    state: present
+
+- name: pecl | update pecl channel
+  command: "pecl channel-update pecl.php.net"
+  register: pecl_update
+  changed_when: "'up to date' in pecl_update.stdout_lines"
+
+- name: pecl | install pecl extensions
+  shell: "yes '' | pecl install -f {{ item }}"
+  register: pecl_result
+  changed_when: pecl_result is succeeded
+  failed_when: "not (('already installed' in pecl_result.stdout) or ('install ok:' in pecl_result.stdout))"
+  loop: "{{ php_pecl_extensions_install }}" 
+  when: php_pecl_extensions_install | length > 1
+
+- name: pecl | copy extensions .ini files
+  template: 
+    src: extension.ini.j2
+    dest: /etc/php/{{ php_default_version_debian }}/mods-available/{{ item }}.ini
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ php_extensions_enable }}" 
+  when: php_extensions_enable | length > 1
+
+- name: pecl | enable extensions using phpenmod
+  shell: phpenmod {{ item }}
+  loop: "{{ php_extensions_enable }}" 
+  register: output_enable
+  changed_when: not output_enable.stdout_lines
+  failed_when: output_enable.stderr
+  when: php_extensions_enable | length > 1
+
+- name: pecl | disable extensions using phpdismod
+  shell: phpenmod {{ item }}
+  loop: "{{ php_extensions_disable }}" 
+  register: output_disable
+  changed_when: not output_disable.stdout_lines
+  failed_when: output_disable.stderr
+  when: php_extensions_disable | length > 1
