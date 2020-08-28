@@ -1,4 +1,9 @@
 ---
+- name: pecl | install dependencies
+  apt:
+    name: php-pear
+    state: present
+
 - name: pecl | update pecl channel
   command: "pecl channel-update pecl.php.net"
   register: pecl_update
