@@ -1,4 +1,9 @@
 ---
+- name: cassandra-php | install build dependencies
+  apt:
+    name: "{{ php_cassandra_php_driver_build_dependencies }}"
+    state: present
+
 - name: cassandra-cpp | ensure cassandra c++ driver is not installed
   find:
     paths: /usr/lib/x86_64-linux-gnu/
@@ -20,11 +25,6 @@
 
 - name: cassandra-php | download and compile cassandra php driver if it is not found
   block:
-    - name: cassandra-php | install build dependencies
-      apt:
-        name: "{{ php_cassandra_php_driver_build_dependencies }}"
-        state: present
-
     - name: cassandra-php | download datastax/php-driver archive from GitHub
       get_url: 
         url: "https://github.com/datastax/php-driver/archive/v{{ php_cassandra_php_driver_version }}.tar.gz"
