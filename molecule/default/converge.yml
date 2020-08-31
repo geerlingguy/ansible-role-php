@@ -10,7 +10,11 @@
     php_memory_limit: "192M"
     php_enablerepo: "remi,remi-php70"
     php_install_recommends: false
- 
+    php_pecl_extensions_install:
+      - uuid
+    php_extensions_enable:
+      - uuid
+
   handlers:
     - name: update apt cache
       apt: 
