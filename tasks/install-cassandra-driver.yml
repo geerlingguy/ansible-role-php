@@ -25,29 +25,20 @@
 
 - name: cassandra-php | download and compile cassandra php driver if it is not found
   block:
-    - name: cassandra-php | download datastax/php-driver archive from GitHub
-      get_url: 
-        url: "https://github.com/datastax/php-driver/archive/v{{ php_cassandra_php_driver_version }}.tar.gz"
-        dest: "/usr/src/php-driver.tar.gz"
-        mode: 0775
-
     - name: cassandra-php | Set working directory
       set_fact: 
-        workdir: /usr/src/php-driver-{{ php_cassandra_php_driver_version }}
+        workdir: /usr/src/php-driver
 
-    - name: cassandra-php | extract .tar archive
-      unarchive:
-        src: /usr/src/php-driver.tar.gz
-        dest: /usr/src
-        creates: "{{ workdir }}"
-        remote_src: yes
-        mode: 0775
+    - name: cassandra-php | download datastax/php-driver from GitHub
+      git: 
+        repo: "{{ php_cassandra_php_driver_repo }}"
+        version: "{{ php_cassandra_php_driver_version }}"
+        dest: "{{ workdir }}"
 
     - name: cassandra-php | compile source code
       shell:
         cmd: |
           set -ex
-          cd ext/
           /usr/bin/phpize{{ php_default_version_debian }}
           mkdir -p {{ workdir }}/build
           cd {{ workdir }}/build
@@ -57,14 +48,14 @@
           make install
           echo 'extension=cassandra.so' > /etc/php/{{ php_default_version_debian }}/mods-available/cassandra.ini
           phpenmod -v {{ php_default_version_debian }} cassandra
-        chdir: "{{ workdir }}"
+        chdir: "{{ workdir }}/ext"
+        executable: /bin/bash
 
-    - name: cassandra-php | cleanup files and folders
+    - name: cassandra-php | cleanup
       file:
         path: "{{ item }}"
         state: absent
       loop:
-        - /usr/src/php-driver.tar.gz
         - "{{ workdir }}"
       when: php_cassandra_php_driver_cleanup_build | bool
       
