@@ -9,12 +9,15 @@
   register: pecl_update
   changed_when: "'up to date' in pecl_update.stdout_lines"
 
-- name: pecl | install pecl extensions
-  shell: "yes '' | pecl install -f {{ item }}"
+- name: pecl | install pecl extensions for the current php version
+  shell:
+    cmd: | # here we first need to unregister the extension from PECL list to allow the following install command work for another php version
+      pecl -r uninstall {{ item }}
+      pecl -d php_suffix={{ php_default_version_debian }} install -f {{ item }}
+  loop: "{{ php_pecl_extensions_install }}" 
   register: pecl_result
   changed_when: pecl_result is succeeded
   failed_when: "not (('already installed' in pecl_result.stdout) or ('install ok:' in pecl_result.stdout))"
-  loop: "{{ php_pecl_extensions_install }}" 
   when: php_pecl_extensions_install | length > 0
 
 - name: pecl | copy extensions .ini files
