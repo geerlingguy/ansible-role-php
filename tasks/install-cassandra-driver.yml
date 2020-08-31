@@ -39,6 +39,7 @@
       file:
         path: "{{ workdir }}"
         state: directory
+        mode: 0775
 
     - name: cassandra-php | extract .tar archive
       unarchive:
