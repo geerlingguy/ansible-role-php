@@ -25,23 +25,28 @@
 
 - name: cassandra-php | download and compile cassandra php driver if it is not found
   block:
+    - name: cassandra-php | Set working directory
+      set_fact: 
+        workdir: /usr/src/php-driver
+
     - name: cassandra-php | download datastax/php-driver archive from GitHub
       get_url: 
         url: "https://github.com/datastax/php-driver/archive/v{{ php_cassandra_php_driver_version }}.tar.gz"
         dest: "/usr/src/php-driver.tar.gz"
         mode: 0775
 
-    - name: cassandra-php | Set working directory
-      set_fact: 
-        workdir: /usr/src/php-driver
+    - name: cassandra-php | create directory
+      file:
+        path: "{{ workdir }}"
+        state: directory
 
     - name: cassandra-php | extract .tar archive
       unarchive:
         src: /usr/src/php-driver.tar.gz
-        dest: /usr/src
-        creates: "{{ workdir }}"
+        dest: "{{ workdir }}"
         remote_src: yes
         mode: 0775
+        extra_opts: ['--strip-components=1']
 
     - name: cassandra-php | compile source code
       shell:
