@@ -33,7 +33,7 @@
 
     - name: cassandra-php | Set working directory
       set_fact: 
-        workdir: /usr/src/php-driver-{{ php_cassandra_php_driver_version }}
+        workdir: /usr/src/php-driver
 
     - name: cassandra-php | extract .tar archive
       unarchive:
@@ -47,7 +47,6 @@
       shell:
         cmd: |
           set -ex
-          cd ext/
           /usr/bin/phpize{{ php_default_version_debian }}
           mkdir -p {{ workdir }}/build
           cd {{ workdir }}/build
@@ -57,7 +56,8 @@
           make install
           echo 'extension=cassandra.so' > /etc/php/{{ php_default_version_debian }}/mods-available/cassandra.ini
           phpenmod -v {{ php_default_version_debian }} cassandra
-        chdir: "{{ workdir }}"
+        chdir: "{{ workdir }}/ext"
+        executable: /bin/bash
 
     - name: cassandra-php | cleanup files and folders
       file:
