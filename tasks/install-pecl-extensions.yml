@@ -28,7 +28,7 @@
   when: php_extensions_enable | length > 0
 
 - name: pecl | enable extensions using phpenmod
-  shell: phpenmod {{ item }}
+  shell: phpenmod -v {{ php_default_version_debian }} {{ item }}
   loop: "{{ php_extensions_enable }}" 
   register: output_enable
   changed_when: not output_enable.stdout_lines
@@ -36,7 +36,7 @@
   when: php_extensions_enable | length > 0
 
 - name: pecl | disable extensions using phpdismod
-  shell: phpenmod {{ item }}
+  shell: phpenmod -v {{ php_default_version_debian }} {{ item }}
   loop: "{{ php_extensions_disable }}" 
   register: output_disable
   changed_when: not output_disable.stdout_lines
