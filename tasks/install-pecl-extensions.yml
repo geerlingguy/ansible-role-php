@@ -15,7 +15,7 @@
   changed_when: pecl_result is succeeded
   failed_when: "not (('already installed' in pecl_result.stdout) or ('install ok:' in pecl_result.stdout))"
   loop: "{{ php_pecl_extensions_install }}" 
-  when: php_pecl_extensions_install | length > 1
+  when: php_pecl_extensions_install | length > 0
 
 - name: pecl | copy extensions .ini files
   template: 
@@ -25,7 +25,7 @@
     group: root
     mode: 0644
   loop: "{{ php_extensions_enable }}" 
-  when: php_extensions_enable | length > 1
+  when: php_extensions_enable | length > 0
 
 - name: pecl | enable extensions using phpenmod
   shell: phpenmod {{ item }}
@@ -33,7 +33,7 @@
   register: output_enable
   changed_when: not output_enable.stdout_lines
   failed_when: output_enable.stderr
-  when: php_extensions_enable | length > 1
+  when: php_extensions_enable | length > 0
 
 - name: pecl | disable extensions using phpdismod
   shell: phpenmod {{ item }}
@@ -41,4 +41,4 @@
   register: output_disable
   changed_when: not output_disable.stdout_lines
   failed_when: output_disable.stderr
-  when: php_extensions_disable | length > 1
+  when: php_extensions_disable | length > 0
