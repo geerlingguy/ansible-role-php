@@ -31,7 +31,7 @@
 
     - name: cassandra-php | download datastax/php-driver from GitHub
       git: 
-        repo: https://github.com/datastax/php-driver
+        repo: "{{ php_cassandra_php_driver_repo }}"
         version: "{{ php_cassandra_php_driver_version }}"
         dest: "{{ workdir }}"
 
