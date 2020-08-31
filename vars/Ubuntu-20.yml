@@ -8,3 +8,6 @@ php_cassandra_php_driver_build_dependencies:
   - re2c
   - php{{ php_default_version_debian }}-dev
   - xz-utils
+  - libuv1
+  - libuv1-dev
+php_cassandra_cpp_driver_dependencies_pkgs: [] # 
