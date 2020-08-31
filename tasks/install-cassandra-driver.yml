@@ -29,25 +29,11 @@
       set_fact: 
         workdir: /usr/src/php-driver
 
-    - name: cassandra-php | download datastax/php-driver archive from GitHub
-      get_url: 
-        url: "https://github.com/datastax/php-driver/archive/v{{ php_cassandra_php_driver_version }}.tar.gz"
-        dest: "/usr/src/php-driver.tar.gz"
-        mode: 0775
-
-    - name: cassandra-php | create directory
-      file:
-        path: "{{ workdir }}"
-        state: directory
-        mode: 0775
-
-    - name: cassandra-php | extract .tar archive
-      unarchive:
-        src: /usr/src/php-driver.tar.gz
+    - name: cassandra-php | download datastax/php-driver from GitHub
+      git: 
+        repo: https://github.com/datastax/php-driver
+        version: "{{ php_cassandra_php_driver_version }}"
         dest: "{{ workdir }}"
-        remote_src: yes
-        mode: 0775
-        extra_opts: ['--strip-components=1']
 
     - name: cassandra-php | compile source code
       shell:
@@ -65,12 +51,11 @@
         chdir: "{{ workdir }}/ext"
         executable: /bin/bash
 
-    - name: cassandra-php | cleanup files and folders
+    - name: cassandra-php | cleanup
       file:
         path: "{{ item }}"
         state: absent
       loop:
-        - /usr/src/php-driver.tar.gz
         - "{{ workdir }}"
       when: php_cassandra_php_driver_cleanup_build | bool
       
