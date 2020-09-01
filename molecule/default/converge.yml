@@ -11,9 +11,11 @@
     php_enablerepo: "remi,remi-php70"
     php_install_recommends: false
     php_pecl_extensions_install:
-      - uuid
+      - apcu
+      - redis
     php_extensions_enable:
-      - uuid
+      - apcu
+      - redis
 
   handlers:
     - name: update apt cache
