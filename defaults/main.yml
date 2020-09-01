@@ -179,6 +179,9 @@ php_pdo_dblib_driver_dependencies:
 php_pdo_dblib_driver_ini_template: freetds.ini.j2
 
 # pecl extensions
+php_pecl_extensions_dependencies: 
+  - php-pear
+  - cmake
 php_pecl_extensions_install: []
 php_pecl_extensions_install_opts: --force --alldeps
 php_extensions_enable: []

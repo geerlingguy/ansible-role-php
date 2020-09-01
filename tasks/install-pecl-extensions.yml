@@ -1,7 +1,7 @@
 ---
 - name: pecl | install dependencies
   apt:
-    name: php-pear
+    name: "{{ php_pecl_extensions_dependencies }}"
     state: present
 
 - name: pecl | update pecl channel
