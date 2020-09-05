@@ -9,6 +9,7 @@
     php_memory_limit: "192M"
     php_enablerepo: "remi,remi-php70"
     php_install_recommends: false
+    php_fpm_listen_allowed_clients: "any"
 
   handlers:
     - name: update apt cache
@@ -65,6 +66,9 @@
     - role: geerlingguy.php
 
   post_tasks:
-    - name: Confirm PHP configuration is correct.
+    - name: Confirm PHP configuration for memory limit is correct.
       shell: php -i | grep 'memory_limit.*192'
+      changed_when: false
+    - name: Confirm PHP configuration for allowed clients is correct.
+      shell: grep  'allowed_clients.*any' /etc/php-fpm.d/www.conf
       changed_when: false
