@@ -77,6 +77,8 @@
     line: "clear_env = {{ 'yes' if php_fpm_clear_env else 'no' }}"
     state: present
     mode: 0644
+  when: php_enable_php_fpm
+  notify: restart php-fpm
 
 - name: Ensure php-fpm is started and enabled at boot (if configured).
   service:
