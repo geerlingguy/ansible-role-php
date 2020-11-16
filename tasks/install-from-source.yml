@@ -142,17 +142,4 @@
   when: "'--enable-fpm' in php_source_configure_command"
   notify: restart php-fpm
 
-- name: Ensure php-fpm config directory exists.
-  file:
-    path: "{{ php_fpm_conf_path }}"
-    state: directory
-    mode: 0755
-  when: "'--enable-fpm' in php_source_configure_command"
 
-- name: Ensure php-fpm config file is installed.
-  template:
-    src: php-fpm.conf.j2
-    dest: "{{ php_fpm_conf_path }}/php-fpm.conf"
-    mode: 0644
-  when: "'--enable-fpm' in php_source_configure_command"
-  notify: restart php-fpm

@@ -45,6 +45,19 @@
   when: php_enable_php_fpm
   notify: restart php-fpm
 
+- name: Ensure php-fpm config directory exists.
+  file:
+    path: "{{ php_fpm_conf_path }}"
+    state: directory
+    mode: 0755
+
+- name: Ensure php-fpm config file is installed.
+  template:
+    src: php-fpm.conf.j2
+    dest: "{{ php_fpm_conf_path }}/php-fpm.conf"
+    mode: 0644
+  notify: restart php-fpm
+
 - name: Ensure php-fpm is started and enabled at boot (if configured).
   service:
     name: "{{ php_fpm_daemon }}"

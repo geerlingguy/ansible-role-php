@@ -31,6 +31,8 @@ php_fpm_pm_start_servers: 5
 php_fpm_pm_min_spare_servers: 5
 php_fpm_pm_max_spare_servers: 5
 php_fpm_pm_max_requests: 0
+php_fpm_global_options: |
+  error_log = /var/log/php-fpm.log
 
 # PHP-FPM pool configuration.
 php_fpm_pools:
