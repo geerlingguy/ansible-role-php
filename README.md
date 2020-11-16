@@ -88,6 +88,10 @@ List of PHP-FPM pool to create. By default, www pool is created. To setup a new 
 
 Specific settings inside the default `www.conf.j2` PHP-FPM pool. If you'd like to manage additional settings, you can do so either by replacing the file with your own template using `pool_template`.
 
+FPM global options in `php-fpmd.conf` can be controlled by using `php_fpm_global_options`. The default is:
+
+    error_log = /var/log/php-fpm.log
+
 ### php.ini settings
 
     php_use_managed_ini: true
