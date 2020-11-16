@@ -141,5 +141,3 @@
     mode: 0755
   when: "'--enable-fpm' in php_source_configure_command"
   notify: restart php-fpm
-
-

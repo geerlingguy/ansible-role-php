@@ -9,11 +9,6 @@
     php_memory_limit: "192M"
     php_enablerepo: "remi,remi-php70"
     php_install_recommends: false
-    php_fpm_global_options: |
-      # if 10 children fail within a minute restart
-      emergency_restart_threshold = 10
-      emergency_restart_interval = 1m
-      process_control_timeout = 10s
 
   handlers:
     - name: update apt cache
