@@ -105,6 +105,7 @@ By default, all the extra defaults below are applied through the php.ini include
     php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
     php_display_errors: "Off"
     php_display_startup_errors: "On"
+    php_html_errors: "On"
     php_expose_php: "On"
     php_session_cookie_lifetime: 0
     php_session_gc_probability: 1
@@ -112,6 +113,7 @@ By default, all the extra defaults below are applied through the php.ini include
     php_session_gc_maxlifetime: 1440
     php_session_save_handler: files
     php_session_save_path: ''
+    php_session_name: "PHPSESSID"
     php_disable_functions: []
     php_precision: 14
     php_serialize_precision: "-1"
