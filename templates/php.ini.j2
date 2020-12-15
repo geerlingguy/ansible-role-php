@@ -48,6 +48,9 @@ ignore_repeated_source = Off
 report_memleaks = On
 track_errors = Off
 html_errors = {{ php_html_errors }}
+{% if php_error_log is defined %}
+error_log = {{ php_error_log }}
+{% endif %}
 
 ;;;;;;;;;;;;;;;;;
 ; Data Handling ;
