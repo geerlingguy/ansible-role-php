@@ -179,7 +179,8 @@ session.auto_start = 0
 session.cookie_lifetime = {{ php_session_cookie_lifetime }}
 session.cookie_path = /
 session.cookie_domain =
-session.cookie_httponly =
+session.cookie_httponly = {{ php_session_cookie_httponly }}
+session.cookie_secure = {{ php_session_cookie_secure }}
 
 session.serialize_handler = php
 
