@@ -45,16 +45,6 @@
   when: php_enable_php_fpm
   notify: restart php-fpm
 
-- name: Configure fpm clear_env
-  lineinfile:
-    dest: "{{ php_fpm_pool_conf_path }}"
-    regexp: "clear_env\\s*=\\s*(yes|no)$"
-    line: "clear_env = {{ 'yes' if php_fpm_clear_env else 'no' }}"
-    state: present
-    mode: 0644
-  when: php_enable_php_fpm
-  notify: restart php-fpm
-
 - name: Ensure php-fpm is started and enabled at boot (if configured).
   service:
     name: "{{ php_fpm_daemon }}"
