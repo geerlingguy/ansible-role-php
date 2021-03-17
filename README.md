@@ -77,6 +77,7 @@ The handler restarts PHP-FPM by default. Setting the value to `reloaded` will re
     php_fpm_pm_start_servers: 5
     php_fpm_pm_min_spare_servers: 5
     php_fpm_pm_max_spare_servers: 5
+	php_fpm_memory_limit: "256M"
 
 Specific settings inside the default `www.conf` PHP-FPM pool. If you'd like to manage additional settings, you can do so either by replacing the file with your own template or using `lineinfile` like this role does inside `tasks/configure-fpm.yml`.
 

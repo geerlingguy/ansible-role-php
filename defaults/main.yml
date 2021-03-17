@@ -30,6 +30,7 @@ php_fpm_pm_max_children: 50
 php_fpm_pm_start_servers: 5
 php_fpm_pm_min_spare_servers: 5
 php_fpm_pm_max_spare_servers: 5
+php_fpm_memory_limit: "256M"
 
 # The executable to run when calling PHP from the command line.
 php_executable: "php"
