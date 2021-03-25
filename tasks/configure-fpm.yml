@@ -67,8 +67,12 @@
       line: "pm.min_spare_servers = {{ php_fpm_pm_min_spare_servers }}"
     - regexp: '^pm\.max_spare_servers.?=.+$'
       line: "pm.max_spare_servers = {{ php_fpm_pm_max_spare_servers }}"
-    - regexp: '^php_value\[memory_limit\].?=.+$'
-      line: "php_value[memory_limit] = {{ php_fpm_memory_limit }}"
+    - regexp: '^pm\.max_requests.?=.+$'
+      line: "pm.max_requests = {{ php_fpm_pm_max_requests }}"
+    - regexp: '^php_admin_value\[memory_limit\].?=.+$'
+      line: "php_admin_value[memory_limit] = {{ php_fpm_memory_limit }}"
+    - regexp: '^php_admin_value\[max_execution_time\].?=.+$'
+      line: "php_admin_value[max_execution_time] = {{ php_fpm_max_execution_time }}"
   when: php_enable_php_fpm
   notify: restart php-fpm
 
