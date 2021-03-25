@@ -40,6 +40,7 @@
     owner: root
     group: root
     mode: 0644
+    force: true
   when: php_enable_php_fpm
 
 - name: Configure php-fpm pool (if enabled).
