@@ -26,10 +26,12 @@ php_fpm_handler_state: restarted
 php_fpm_enabled_on_boot: true
 php_fpm_listen: "127.0.0.1:9000"
 php_fpm_listen_allowed_clients: "127.0.0.1"
+php_fpm_pm: "dynamic"
 php_fpm_pm_max_children: 50
 php_fpm_pm_start_servers: 5
 php_fpm_pm_min_spare_servers: 5
 php_fpm_pm_max_spare_servers: 5
+php_fpm_pm_max_requests: 500
 
 # The executable to run when calling PHP from the command line.
 php_executable: "php"
