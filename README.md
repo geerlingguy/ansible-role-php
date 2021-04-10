@@ -77,6 +77,9 @@ The handler restarts PHP-FPM by default. Setting the value to `reloaded` will re
     php_fpm_pm_start_servers: 5
     php_fpm_pm_min_spare_servers: 5
     php_fpm_pm_max_spare_servers: 5
+    php_fpm_pm_max_requests: 500
+	php_fpm_memory_limit: "256M"
+	php_fpm_max_execution_time: 30
 
 Specific settings inside the default `www.conf` PHP-FPM pool. If you'd like to manage additional settings, you can do so either by replacing the file with your own template or using `lineinfile` like this role does inside `tasks/configure-fpm.yml`.
 
@@ -105,6 +108,7 @@ By default, all the extra defaults below are applied through the php.ini include
     php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
     php_display_errors: "Off"
     php_display_startup_errors: "On"
+    php_error_log: "/var/log/php-errors.log"
     php_expose_php: "On"
     php_session_cookie_lifetime: 0
     php_session_gc_probability: 1
