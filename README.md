@@ -108,6 +108,7 @@ By default, all the extra defaults below are applied through the php.ini include
     php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
     php_display_errors: "Off"
     php_display_startup_errors: "On"
+    php_error_log: "/var/log/php-errors.log"
     php_expose_php: "On"
     php_session_cookie_lifetime: 0
     php_session_gc_probability: 1
