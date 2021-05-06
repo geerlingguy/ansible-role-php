@@ -37,16 +37,6 @@ php_fpm_pools:
     pool_pm_min_spare_servers: 5
     pool_pm_max_spare_servers: 5
     pool_pm_max_requests: 500
-#  - pool_name: pool
-#    pool_template: www.conf.j2
-#    pool_listen: 127.0.0.1:9001
-#    pool_listen_allowed_clients: 127.0.0.1
-#    pool_pm: dynamic
-#    pool_pm_max_children: 50
-#    pool_pm_start_servers: 5
-#    pool_pm_min_spare_servers: 5
-#    pool_pm_max_spare_servers: 5
-#    pool_pm_max_requests: 500
 
 # The executable to run when calling PHP from the command line.
 php_executable: "php"
