@@ -32,10 +32,10 @@ php_fpm_pools:
     pool_listen: "127.0.0.1:9000"
     pool_listen_allowed_clients: "127.0.0.1"
     pool_pm: dynamic
-    pool_pm_max_children: 50
-    pool_pm_start_servers: 5
-    pool_pm_min_spare_servers: 5
-    pool_pm_max_spare_servers: 5
+    pool_pm_max_children: 5
+    pool_pm_start_servers: 2
+    pool_pm_min_spare_servers: 1
+    pool_pm_max_spare_servers: 3
     pool_pm_max_requests: 500
 
 # The executable to run when calling PHP from the command line.
