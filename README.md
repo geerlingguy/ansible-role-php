@@ -71,22 +71,20 @@ Control over the fpm daemon's state; set these to `stopped` and `false` if you w
 
 The handler restarts PHP-FPM by default. Setting the value to `reloaded` will reload the service, intead of restarting it.
 
-    php_fpm_pools
 
-List of PHP-FPM pool to create. By default, www pool is created.
+    php_fpm_pools:
+      - pool_name: www
+        pool_template: www.conf.j2
+        pool_listen: "127.0.0.1:9000"
+        pool_listen_allowed_clients: "127.0.0.1"
+        pool_pm: dynamic
+        pool_pm_max_children: 50
+        pool_pm_start_servers: 5
+        pool_pm_min_spare_servers: 5
+        pool_pm_max_spare_servers: 5
+        pool_pm_max_requests: 500
 
-    pool_name: www
-    pool_template: www.conf.j2
-    pool_listen: "127.0.0.1:9000"
-    pool_listen_allowed_clients: "127.0.0.1"
-    pool_pm: dynamic
-    pool_pm_max_children: 50
-    pool_pm_start_servers: 5
-    pool_pm_min_spare_servers: 5
-    pool_pm_max_spare_servers: 5
-    pool_pm_max_requests: 500
-
-To setup a new pool, add an item to php_fpm_pools list.
+List of PHP-FPM pool to create. By default, www pool is created. To setup a new pool, add an item to php_fpm_pools list.
 
 Specific settings inside the default `www.conf.j2` PHP-FPM pool. If you'd like to manage additional settings, you can do so either by replacing the file with your own template using `pool_template`.
 
