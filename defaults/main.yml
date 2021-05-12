@@ -24,19 +24,24 @@ php_enable_php_fpm: false
 php_fpm_state: started
 php_fpm_handler_state: restarted
 php_fpm_enabled_on_boot: true
+php_fpm_listen: "127.0.0.1:9000"
+php_fpm_listen_allowed_clients: "127.0.0.1"
+php_fpm_pm_max_children: 50
+php_fpm_pm_start_servers: 5
+php_fpm_pm_min_spare_servers: 5
+php_fpm_pm_max_spare_servers: 5
 
 # PHP-FPM pool configuration.
 php_fpm_pools:
   - pool_name: www
     pool_template: www.conf.j2
-    pool_listen: "127.0.0.1:9000"
-    pool_listen_allowed_clients: "127.0.0.1"
+    pool_listen: "{{ php_fpm_listen }}"
+    pool_listen_allowed_clients: "{{ php_fpm_listen_allowed_clients }}"
     pool_pm: dynamic
-    pool_pm_max_children: 5
-    pool_pm_start_servers: 2
-    pool_pm_min_spare_servers: 1
-    pool_pm_max_spare_servers: 3
-    pool_pm_max_requests: 500
+    pool_pm_max_children: "{{ php_fpm_pm_max_children }}"
+    pool_pm_start_servers: "{{ php_fpm_pm_start_servers }}"
+    pool_pm_min_spare_servers: "{{ php_fpm_pm_min_spare_servers }}"
+    pool_pm_max_spare_servers: "{{ php_fpm_pm_max_spare_servers }}"
 
 # The executable to run when calling PHP from the command line.
 php_executable: "php"
