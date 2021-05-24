@@ -36,7 +36,7 @@
 - name: Create fpm pools.
   template:
     src: "{{ item.pool_template | default('www.conf.j2', true) }}"
-    dest: "{{ php_fpm_pool_conf_path | dirname }}/{{ item.pool_name }}.conf"
+    dest: "{{ php_fpm_pool_conf_path | dirname }}/{{ item.pool_file }}"
     owner: root
     group: root
     mode: 0644
