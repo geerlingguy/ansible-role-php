@@ -75,6 +75,7 @@ The handler restarts PHP-FPM by default. Setting the value to `reloaded` will re
     php_fpm_pools:
       - pool_name: www
         pool_template: www.conf.j2
+        pool_file: www.conf
         pool_listen: "127.0.0.1:9000"
         pool_listen_allowed_clients: "127.0.0.1"
         pool_pm: dynamic
