@@ -1,4 +1,4 @@
-; {{ ansible_managed }}
+{{ ansible_managed | comment(decoration='; ') }}
 
 [{{ item.pool_name | mandatory }}]
 listen = {{ item.pool_listen | mandatory }}
