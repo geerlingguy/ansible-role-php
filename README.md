@@ -1,6 +1,6 @@
 # Ansible Role: PHP
 
-[![Build Status](https://travis-ci.com/rgsystemes/ansible-role-php.svg?branch=master)](https://travis-ci.com/rgsystemes/ansible-role-php)
+[![CI](https://github.com/geerlingguy/ansible-role-php/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-php/actions?query=workflow%3ACI)
 
 Installs PHP on RedHat/CentOS and Debian/Ubuntu servers.
 
@@ -34,9 +34,9 @@ The default values for the HTTP server deamon are `httpd` (used by Apache) for R
 
 (RedHat/CentOS only) If you have enabled any additional repositories (might I suggest [geerlingguy.repo-epel](https://github.com/geerlingguy/ansible-role-repo-epel) or [geerlingguy.repo-remi](https://github.com/geerlingguy/ansible-role-repo-remi)), those repositories can be listed under this variable (e.g. `remi-php70,epel`). This can be handy, as an example, if you want to install the latest version of PHP 7.0, which is in the Remi repository.
 
-    php_default_version_debian: "7.0"
+    php_default_version_debian: ""
 
-(Debian/Ubuntu only) The default version of PHP in the given OS version repositories. Defaults to the latest Ubuntu LTS release. Ubuntu 18.04 needs this to be set to `"7.2"` since PHP 7.0 is not available in the default bionic packages.
+(Debian/Ubuntu only) The default version of PHP in the given OS version repositories. The specific version is set per distro and per version, but you can override it by providing a value here, like `"7.4"`.
 
 **If you'd like to be able to switch PHP versions easily, or use a version that's not available in system packages**: You can use the [`geerlingguy.php-versions`](https://galaxy.ansible.com/geerlingguy/php-versions/) role to more easily switch between major PHP versions (e.g. 5.6, 7.1, 7.2).
 
@@ -71,14 +71,22 @@ Control over the fpm daemon's state; set these to `stopped` and `false` if you w
 
 The handler restarts PHP-FPM by default. Setting the value to `reloaded` will reload the service, intead of restarting it.
 
-    php_fpm_listen: "127.0.0.1:9000"
-    php_fpm_listen_allowed_clients: "127.0.0.1"
-    php_fpm_pm_max_children: 50
-    php_fpm_pm_start_servers: 5
-    php_fpm_pm_min_spare_servers: 5
-    php_fpm_pm_max_spare_servers: 5
 
-Specific settings inside the default `www.conf` PHP-FPM pool. If you'd like to manage additional settings, you can do so either by replacing the file with your own template or using `lineinfile` like this role does inside `tasks/configure-fpm.yml`.
+    php_fpm_pools:
+      - pool_name: www
+        pool_template: www.conf.j2
+        pool_listen: "127.0.0.1:9000"
+        pool_listen_allowed_clients: "127.0.0.1"
+        pool_pm: dynamic
+        pool_pm_max_children: 5
+        pool_pm_start_servers: 2
+        pool_pm_min_spare_servers: 1
+        pool_pm_max_spare_servers: 3
+        pool_pm_max_requests: 500
+
+List of PHP-FPM pool to create. By default, www pool is created. To setup a new pool, add an item to php_fpm_pools list.
+
+Specific settings inside the default `www.conf.j2` PHP-FPM pool. If you'd like to manage additional settings, you can do so either by replacing the file with your own template using `pool_template`.
 
 ### php.ini settings
 

@@ -1,16 +1,7 @@
 # https://docs.ansible.com/ansible-lint/rules/default_rules.html
 use_default_rules: true
 skip_list:
-  - '106' # Role name monitoring.apps does not match ``^[a-z][a-z0-9_]+$`` pattern
-  - '204' # Lines should be no longer than 160 chars
-  - '201' # Trailing whitespace
-  - '301' # Commands should not change things if nothing needs doing
-  - '306' # Shells that use pipes should set the pipefail option
-  - '303' # Using command rather than module
-  - '305' # Use shell only when shell functionality is required
-  - '501' # become_user requires become to work as expected
-  - '503' # tasks that run when changed should likely be handlers
-  - '701' # meta/main.yml should contain relevant info
-verbosity: 1
-exclude_paths: 
-  - ../.ansible/roles
+  - 'yaml'
+  - 'risky-shell-pipe'
+  - 'no-handler'
+  - 'role-name'
