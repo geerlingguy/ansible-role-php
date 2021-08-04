@@ -139,6 +139,7 @@ The OpCache is included in PHP starting in version 5.5, and the following variab
     php_opcache_interned_strings_buffer: "16"
     php_opcache_max_accelerated_files: "4096"
     php_opcache_max_wasted_percentage: "5"
+    php_opcache_consistency_checks: "0"
     php_opcache_validate_timestamps: "1"
     php_opcache_revalidate_path: "0"
     php_opcache_revalidate_freq: "2"
