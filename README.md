@@ -124,6 +124,7 @@ By default, all the extra defaults below are applied through the php.ini include
     php_disable_functions: []
     php_precision: 14
     php_serialize_precision: "-1"
+    php_zlib_output_compression: "Off"
 
 Various defaults for PHP. Only used if `php_use_managed_ini` is set to `true`.
 
