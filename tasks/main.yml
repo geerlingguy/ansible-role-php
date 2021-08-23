@@ -75,13 +75,13 @@
 # Install cassandra PHP driver for Apache Cassandra (compiled from sources)
 - include_tasks: install-cassandra-driver.yml
   when: 
-    - php_cassandra_php_driver_install | bool
+    - php_cassandra_php_driver_install
     - ansible_os_family == 'Debian'
 
 # Install pdo_dblib PHP driver for Microsoft SQL Server
 - include_tasks: install-mssql-driver.yml
   when: 
-    - php_pdo_dblib_driver_install | bool
+    - php_pdo_dblib_driver_install
     - ansible_os_family == 'Debian'
 
 # Install PECL extensions

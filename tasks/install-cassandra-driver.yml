@@ -1,4 +1,12 @@
 ---
+- name: cassandra-php | Add bionic repository for multiarch-support
+  apt_repository:
+    repo: deb http://security.ubuntu.com/ubuntu bionic-security main
+    filename: bionic
+    state: present
+    update_cache: yes
+  when: ansible_distribution_release == 'focal'
+
 - name: cassandra-php | install build dependencies
   apt:
     name: "{{ php_cassandra_php_driver_build_dependencies }}"
