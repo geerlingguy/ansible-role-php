@@ -185,7 +185,7 @@ php_cassandra_cpp_driver_pkgs: # list ordering matters for installation to succe
     dest: /tmp/cassandra-cpp-driver-dbg_{{ php_cassandra_cpp_driver_version }}-1_amd64.deb
 
 # pdo_dblib driver
-php_pdo_dblib_driver_install: yes
+php_pdo_dblib_driver_install: no
 php_pdo_dblib_driver_dependencies: 
   - freetds-common
   - freetds-bin
