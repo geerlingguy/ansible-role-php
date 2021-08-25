@@ -104,6 +104,7 @@ By default, all the extra defaults below are applied through the php.ini include
     php_file_uploads: "On"
     php_upload_max_filesize: "64M"
     php_max_file_uploads: "20"
+    php_upload_tmp_dir: NULL
     php_post_max_size: "32M"
     php_date_timezone: "America/Chicago"
     php_allow_url_fopen: "On"
@@ -123,6 +124,7 @@ By default, all the extra defaults below are applied through the php.ini include
     php_disable_functions: []
     php_precision: 14
     php_serialize_precision: "-1"
+    php_sys_temp_dir: ""
 
 Various defaults for PHP. Only used if `php_use_managed_ini` is set to `true`.
 
