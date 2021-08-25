@@ -203,9 +203,8 @@ php_extensions_disable: []
 
 # xdebug configuration
 php_xdebug_show_error_trace: 1
-php_xdebug_remote_enable: 1
 php_xdebug_idekey: PHPSTORM
 php_xdebug_remote_host: 10.0.2.2
 php_xdebug_remote_port: 9009
 php_xdebug_max_nesting_level: 512
-# php_xdebug_remote_log: '' # path to xdebug logs. Ex: /vagrant/xdebug.log
+# php_xdebug_log_path: '' # path to xdebug logs. Ex: /vagrant/xdebug.log
