@@ -106,7 +106,7 @@ php_display_startup_errors: "Off"
 
 # Install PHP from source (instead of using a package manager) with these vars.
 php_install_from_source: false
-php_source_repo: "https://git.php.net/repository/php-src.git"
+php_source_repo: "https://github.com/php/php-src.git"
 php_source_version: "master"
 php_source_clone_dir: "~/php-src"
 php_source_clone_depth: 1
