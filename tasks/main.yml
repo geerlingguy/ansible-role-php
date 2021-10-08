@@ -76,4 +76,3 @@
 - include_tasks: configure-opcache.yml
 - include_tasks: configure-fpm.yml
 - include_tasks: configure-cli.yml
-
