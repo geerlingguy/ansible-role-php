@@ -10,6 +10,5 @@
       template:
         src: memory_limit.ini.j2
         dest: "/etc/php/{{ php_default_version_debian }}/cli/conf.d/20-memory_limit.ini"
-  become: yes
+  become: true
   when: php_set_cli_memory_limit | bool
-
