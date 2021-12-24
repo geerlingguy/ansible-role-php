@@ -28,7 +28,7 @@ If your usage of PHP is tied to a web server (e.g. Apache or Nginx), leave this 
 
     php_webserver_daemon: "httpd"
 
-The default values for the HTTP server deamon are `httpd` (used by Apache) for RedHat/CentOS, or `apache2` (also used by Apache) for Debian/Ubuntu. If you are running another webserver (for example, `nginx`), change this value to the name of the daemon under which the webserver runs.
+The default values for the HTTP server daemon are `httpd` (used by Apache) for RedHat/CentOS, or `apache2` (also used by Apache) for Debian/Ubuntu. If you are running another webserver (for example, `nginx`), change this value to the name of the daemon under which the webserver runs.
 
     php_enablerepo: ""
 
