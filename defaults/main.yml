@@ -63,6 +63,7 @@ php_opcache_revalidate_path: "0"
 php_opcache_revalidate_freq: "2"
 php_opcache_max_file_size: "0"
 php_opcache_blacklist_filename: ""
+php_opcache_jit_buffer_size: 100M
 
 # APCu settings.
 php_enable_apc: true
