@@ -4,4 +4,14 @@
     name: "{{ php_packages + php_packages_extra }}"
     state: "{{ php_packages_state }}"
     enablerepo: "{{ php_enablerepo | default(omit, true) }}"
+  when: ansible_distribution != "Amazon"
+  notify: restart webserver
+
+- name: Ensure PHP packages are installed (Amazon Linux 2).
+  yum:
+    name: "{{ php_packages + php_packages_extra }}"
+    state: "{{ php_packages_state }}"
+    enablerepo: "{{ php_enablerepo | default(omit, true) }}"
+    disable_plugin: priorities
+  when: ansible_distribution == "Amazon"
   notify: restart webserver
