@@ -4,7 +4,6 @@
   become: true
 
   vars:
-    role_path: "{{ lookup('env', 'ROLE_PATH') }}"
     php_enable_webserver: false
     php_enable_php_fpm: true
     php_memory_limit: "192M"
@@ -70,4 +69,4 @@
       when:
         - ansible_os_family == 'RedHat'
         - ansible_distribution != 'Fedora'
-    - name: "{{ role_path if role_path is defined and role_path else lookup('env', 'HOME') + '/ansible-role-php' }}"
+    - name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}"
