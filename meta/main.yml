@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  namespace: rgsystemes
   role_name: php
   author: Frank Fidanza
   description: PHP for RedHat/CentOS/Fedora/Debian/Ubuntu.
