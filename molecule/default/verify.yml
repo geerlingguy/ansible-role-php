@@ -1,0 +1,11 @@
+---
+- hosts: instance
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: Ensure cassandra compiled driver was installed
+      shell:
+        cmd: php -m | grep -qiE 'cassandra'
+        executable: /bin/bash
+        warn: no
