@@ -19,8 +19,8 @@
       changed_when: false
 
   roles:
-    - role: geerlingguy.git
-    - role: geerlingguy.php
+    - name: geerlingguy.git
+    - name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}"
 
   post_tasks:
     - name: Confirm PHP configuration is correct.

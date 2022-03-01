@@ -62,7 +62,8 @@
       when: ansible_distribution == "Debian"
       notify: update apt cache
 
-    - meta: flush_handlers
+    - name: Flush handlers
+      meta: flush_handlers
 
   roles:
     - name: geerlingguy.repo-remi

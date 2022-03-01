@@ -5,3 +5,6 @@ skip_list:
   - 'risky-shell-pipe'
   - 'no-handler'
   - 'role-name'
+  - command-instead-of-shell
+  - command-instead-of-module
+  - no-changed-when
