@@ -168,7 +168,7 @@ php_cassandra_php_driver_build_dependencies:
   - re2c
   - php{{ php_default_version_debian }}-dev
 php_cassandra_cpp_driver_libuv_version: '1.35.0'
-php_cassandra_cpp_driver_version: '2.15.3'
+php_cassandra_cpp_driver_version: '2.16.0'
 php_cassandra_cpp_driver_dependencies_url: https://downloads.datastax.com/cpp-driver/ubuntu/18.04/dependencies
 php_cassandra_cpp_driver_url: https://downloads.datastax.com/cpp-driver/ubuntu/18.04/cassandra
 php_cassandra_cpp_driver_dependencies_pkgs: #  list ordering matters for installation to success
