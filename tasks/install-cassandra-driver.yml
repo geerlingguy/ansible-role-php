@@ -1,4 +1,11 @@
 ---
+- name: cassandra-php | Add bionic apt key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 3B4FE6ACC0B21F32
+    state: present
+  when: ansible_distribution_release not in 'bionic'
+
 - name: cassandra-php | Add bionic repository for multiarch-support
   apt_repository:
     repo: deb http://security.ubuntu.com/ubuntu bionic-security main
