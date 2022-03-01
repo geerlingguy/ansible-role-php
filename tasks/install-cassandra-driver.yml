@@ -5,7 +5,7 @@
     filename: bionic
     state: present
     update_cache: yes
-  when: ansible_distribution_release == 'focal'
+  when: ansible_distribution_release not in 'bionic'
 
 - name: cassandra-php | install build dependencies
   apt:
