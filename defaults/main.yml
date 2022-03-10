@@ -157,7 +157,7 @@ php_source_configure_command: >
 # cassandra driver
 php_cassandra_php_driver_install: yes
 php_cassandra_php_driver_cleanup_build: yes
-php_cassandra_php_driver_repo: https://github.com/datastax/php-driver
+php_cassandra_php_driver_repo: https://github.com/rgsystemes/php-driver
 php_cassandra_php_driver_version: master 
 php_cassandra_php_driver_build_dependencies:
   - git
