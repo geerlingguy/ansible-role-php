@@ -8,6 +8,7 @@ group = {{ php_fpm_pool_group }}
 
 listen.owner = {{ php_fpm_pool_user }}
 listen.group = {{ php_fpm_pool_group }}
+listen.backlog = {{ php_fpm_pool_backlog | default(128, true) }}
 
 pm = {{ item.pool_pm | default('dynamic', true) }}
 pm.max_children = {{ item.pool_pm_max_children | default(50, true) }}
