@@ -9,6 +9,19 @@
     php_memory_limit: "192M"
     php_enablerepo: "remi,remi-php82"
     php_install_recommends: false
+    php_fpm_pools:
+      - pool_name: www
+        pool_template: www.conf.j2
+        pool_listen: "127.0.0.1"
+        pool_listen_allowed_clients: "127.0.0.1"
+        pool_pm: dynamic
+        pool_pm_max_children: "10"
+        pool_pm_start_servers: "10"
+        pool_pm_min_spare_servers: "10"
+        pool_pm_max_spare_servers: "10"
+        pool_php_fpm_pm_max_requests: "10"
+        pool_extra_settings: |
+          pm.status_path = /status
 
   handlers:
     - name: update apt cache
@@ -41,7 +54,7 @@
 
     - name: Add Ondrej Sury's repo for PHP 8 (Ubuntu).
       apt_repository:
-        repo: 'ppa:ondrej/php'
+        repo: "ppa:ondrej/php"
       when: ansible_distribution == 'Ubuntu'
 
     - name: Add Ondrej Sury's apt key (Debian).
@@ -67,6 +80,10 @@
     - role: geerlingguy.php
 
   post_tasks:
-    - name: Confirm PHP configuration is correct.
+    - name: Confirm PHP configuration is correct. (memory_limit)
       shell: php -i | grep 'memory_limit.*192'
+      changed_when: false
+
+    - name: Confirm PHP configuration is correct. (pm.status)
+      shell: cat {{ php_fpm_pool_conf_path | dirname }}/www.conf | grep -q "pm.status_path = /status"
       changed_when: false
