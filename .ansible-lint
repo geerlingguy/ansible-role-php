@@ -8,3 +8,5 @@ skip_list:
   - command-instead-of-shell
   - command-instead-of-module
   - no-changed-when
+  - fqcn-builtins
+  - experimental
