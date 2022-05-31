@@ -7,7 +7,6 @@
     php_enable_webserver: false
     php_enable_php_fpm: true
     php_memory_limit: "192M"
-    php_enablerepo: "remi,remi-php70"
     php_install_recommends: false
     php_pecl_extensions_install:
       - apcu
@@ -66,8 +65,4 @@
       meta: flush_handlers
 
   roles:
-    - name: geerlingguy.repo-remi
-      when:
-        - ansible_os_family == 'RedHat'
-        - ansible_distribution != 'Fedora'
     - name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}"
