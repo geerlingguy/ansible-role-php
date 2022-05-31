@@ -26,8 +26,6 @@ jobs:
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v2
-        with:
-          path: rgsystemes.php
 
       - name: Set up Python 3.
         uses: actions/setup-python@v2
