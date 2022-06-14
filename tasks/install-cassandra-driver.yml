@@ -5,6 +5,7 @@
     id: 3B4FE6ACC0B21F32
     state: present
   when: ansible_distribution_release not in 'bionic'
+  tags: ['cassandra-apt-requirements']
 
 - name: cassandra-php | Add bionic repository for multiarch-support
   apt_repository:
@@ -13,6 +14,7 @@
     state: present
     update_cache: yes
   when: ansible_distribution_release not in 'bionic'
+  tags: ['cassandra-apt-requirements']
 
 - name: cassandra-php | install build dependencies
   apt:
