@@ -101,6 +101,7 @@ By default, all the extra defaults below are applied through the php.ini include
     php_max_input_time: "60"
     php_max_input_vars: "1000"
     php_realpath_cache_size: "32K"
+    php_realpath_cache_ttl: ""
     php_file_uploads: "On"
     php_upload_max_filesize: "64M"
     php_max_file_uploads: "20"
