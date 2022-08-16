@@ -41,7 +41,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - distro: centos8
+          - distro: rockylinux8
             playbook: converge.yml
           - distro: centos7
             playbook: converge.yml
@@ -52,8 +52,6 @@ jobs:
           - distro: debian11
             playbook: converge.yml
           - distro: debian10
-            playbook: converge.yml
-          - distro: debian9
             playbook: converge.yml
 
           - distro: centos7
