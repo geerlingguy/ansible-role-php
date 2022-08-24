@@ -1,0 +1,11 @@
+---
+- name: Install PHP {{ php_version }} from Remi
+  dnf:
+    name: "@php:remi-{{ php_version }}"
+    state: present
+
+- name: Ensure PHP packages are installed.
+  package:
+    name: "{{ php_packages + php_packages_extra }}"
+    state: "{{ php_packages_state }}"
+  notify: restart webserver

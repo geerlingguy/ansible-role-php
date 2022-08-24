@@ -61,6 +61,11 @@
     - not php_install_from_source
     - ansible_os_family == 'RedHat'
 
+- include_tasks: setup-AlmaLinux.yml
+  when:
+    - not php_install_from_source
+    - ansible_os_family == 'AlmaLinux'
+
 - include_tasks: setup-Debian.yml
   when:
     - not php_install_from_source
