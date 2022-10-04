@@ -3,7 +3,7 @@ galaxy_info:
   namespace: rgsystemes
   role_name: php
   author: Frank Fidanza
-  description: PHP for RedHat/CentOS/Fedora/Debian/Ubuntu.
+  description: PHP for Debian/Ubuntu.
   company: RG System
   license: "license (BSD, MIT)"
   min_ansible_version: 2.8
@@ -15,10 +15,11 @@ galaxy_info:
     - name: Debian
       versions:
         - buster
+        - bullseye
     - name: Ubuntu
       versions:
-        - focal
         - bionic
+        - focal
   galaxy_tags:
     - development
     - web
