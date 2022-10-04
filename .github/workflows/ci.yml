@@ -16,13 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include:
-          - distro: ubuntu2004
-            playbook: converge.yml
-          - distro: debian11
-            playbook: converge.yml
-          - distro: debian10
-            playbook: converge.yml
+        version:
+          - 7.4
+          - 8.1
+        distro: 
+          - ubuntu2204
+          - debian11
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v2
@@ -41,4 +40,4 @@ jobs:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO: ${{ matrix.distro }}
-          MOLECULE_PLAYBOOK: ${{ matrix.playbook }}
+          PHP_DEFAULT_VERSION_DEBIAN: ${{ matrix.version }}

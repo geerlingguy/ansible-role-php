@@ -17,5 +17,6 @@ platforms:
     pre_build_image: true
 provisioner:
   name: ansible
-  playbooks:
-    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
+  inventory:
+    instance: 
+      php_default_version_debian: ${PHP_DEFAULT_VERSION_DEBIAN:-"8.1"}
