@@ -58,11 +58,6 @@
   when: php_fpm_conf_path is not defined
 
 # Setup/install tasks.
-- include_tasks: setup-RedHat.yml
-  when:
-    - not php_install_from_source
-    - ansible_os_family == 'RedHat'
-
 - include_tasks: setup-Debian.yml
   when:
     - not php_install_from_source
