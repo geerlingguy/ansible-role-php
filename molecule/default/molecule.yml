@@ -17,6 +17,8 @@ platforms:
     pre_build_image: true
 provisioner:
   name: ansible
+  log: true
   inventory:
-    instance: 
-      php_default_version_debian: ${PHP_DEFAULT_VERSION_DEBIAN:-"8.1"}
+    host_vars: 
+      instance:
+        php_default_version_debian: ${PHP_DEFAULT_VERSION_DEBIAN:-"8.1"}
