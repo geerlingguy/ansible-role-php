@@ -31,7 +31,7 @@
   when: php_extensions_enable | length > 0
 
 - name: PECL | enable extensions using phpenmod
-  shell: phpenmod -v {{ php_default_version_debian }} {{ item }}
+  command: phpenmod -v {{ php_default_version_debian }} {{ item }}
   loop: "{{ php_extensions_enable }}" 
   register: phpenmod_enable
   changed_when: phpenmod_enable.stdout_lines
@@ -39,7 +39,7 @@
   when: php_extensions_enable | length > 0
 
 - name: PECL | disable extensions using phpdismod
-  shell: phpenmod -v {{ php_default_version_debian }} {{ item }}
+  command: phpenmod -v {{ php_default_version_debian }} {{ item }}
   loop: "{{ php_extensions_disable }}" 
   register: phpenmod_disable
   changed_when: not phpenmod_disable.stdout_lines
