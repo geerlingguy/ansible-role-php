@@ -1,15 +1,15 @@
 ---
-- name: pecl | install dependencies
+- name: PECL | install dependencies
   apt:
     name: "{{ php_pecl_extensions_dependencies }}"
     state: present
 
-- name: pecl | update pecl channel
+- name: PECL | update pecl channel
   command: "pecl channel-update pecl.php.net"
   register: pecl_update
   changed_when: "'up to date' in pecl_update.stdout_lines"
 
-- name: pecl | install pecl extensions for the current php version
+- name: PECL | install pecl extensions for the current php version
   shell:
     cmd: | # here we first need to unregister the extension from PECL list to allow the following install command work for another php version
       pecl uninstall --register-only {{ item }}
@@ -20,7 +20,7 @@
   failed_when: "not (('already installed' in pecl_result.stdout) or ('install ok:' in pecl_result.stdout))"
   when: php_pecl_extensions_install | length > 0
 
-- name: pecl | copy extensions .ini files
+- name: PECL | copy extensions .ini files
   template: 
     src: extension.ini.j2
     dest: /etc/php/{{ php_default_version_debian }}/mods-available/{{ item }}.ini
@@ -30,7 +30,7 @@
   loop: "{{ php_extensions_enable }}" 
   when: php_extensions_enable | length > 0
 
-- name: pecl | enable extensions using phpenmod
+- name: PECL | enable extensions using phpenmod
   shell: phpenmod -v {{ php_default_version_debian }} {{ item }}
   loop: "{{ php_extensions_enable }}" 
   register: phpenmod_enable
@@ -38,7 +38,7 @@
   failed_when: phpenmod_enable.stderr and 'File exists' not in phpenmod_enable.stderr
   when: php_extensions_enable | length > 0
 
-- name: pecl | disable extensions using phpdismod
+- name: PECL | disable extensions using phpdismod
   shell: phpenmod -v {{ php_default_version_debian }} {{ item }}
   loop: "{{ php_extensions_disable }}" 
   register: phpenmod_disable
