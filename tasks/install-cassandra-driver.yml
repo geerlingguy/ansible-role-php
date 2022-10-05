@@ -67,6 +67,8 @@
           phpenmod -v {{ php_default_version_debian }} cassandra
         chdir: "{{ workdir }}/ext"
         executable: /bin/bash
+      register: build_cassandra
+      changed_when: build_cassandra.rc != 0
 
     - name: cassandra-php | cleanup
       file:
