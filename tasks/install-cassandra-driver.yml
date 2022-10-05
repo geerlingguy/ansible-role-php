@@ -1,20 +1,20 @@
 ---
-- name: cassandra-php | Add bionic apt key
-  apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: 3B4FE6ACC0B21F32
-    state: present
-  when: ansible_distribution_release not in 'bionic'
-  tags: ['cassandra-apt-requirements']
+- name: cassandra-php | Make package multiarch-support available on this OS
+  block: 
+    - name: cassandra-php | Add bionic apt key
+      apt_key:
+        keyserver: keyserver.ubuntu.com
+        id: 3B4FE6ACC0B21F32
+        state: present
 
-- name: cassandra-php | Add bionic repository for multiarch-support
-  apt_repository:
-    repo: deb http://security.ubuntu.com/ubuntu bionic-security main
-    filename: bionic
-    state: present
-    update_cache: yes
-  when: ansible_distribution_release not in 'bionic'
+    - name: cassandra-php | Add bionic repository for multiarch-support
+      apt_repository:
+        repo: deb http://security.ubuntu.com/ubuntu bionic-security main
+        filename: bionic
+        state: present
+        update_cache: yes
   tags: ['cassandra-apt-requirements']
+  when: ansible_distribution_release != 'bionic'
 
 - name: cassandra-php | install build dependencies
   apt:
