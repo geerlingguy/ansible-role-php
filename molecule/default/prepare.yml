@@ -24,7 +24,7 @@
       apt_repository: 
         repo: ppa:ondrej/php
         state: present
-      notify: update apt cache
+      notify: Update apt cache
       when: ansible_distribution == 'Ubuntu'
 
     # Debian-specific tasks.

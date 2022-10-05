@@ -8,7 +8,7 @@
     state: "{{ php_packages_state }}"
     install_recommends: "{{ php_install_recommends }}"
   register: php_package_install
-  notify: restart webserver
+  notify: Restart webserver
 
 - name: Delete APCu configuration file if this role will provide one.
   file:
@@ -16,7 +16,7 @@
     state: absent
   with_items: "{{ php_extension_conf_paths }}"
   when: php_enable_apc and php_package_install.changed
-  notify: restart webserver
+  notify: Restart webserver
 
 - name: Delete OpCache configuration file if this role will provide one.
   file:
@@ -24,4 +24,4 @@
     state: absent
   with_items: "{{ php_extension_conf_paths }}"
   when: php_opcache_enable | bool and php_package_install.changed
-  notify: restart webserver
+  notify: Restart webserver

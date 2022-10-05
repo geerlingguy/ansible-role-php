@@ -14,7 +14,7 @@
   with_subelements:
     - "{{ php_installed_apc_confs.results }}"
     - files
-  notify: restart webserver
+  notify: Restart webserver
 
 - name: Ensure APCu config file is present.
   template:
@@ -26,7 +26,7 @@
     mode: 0644
   with_items: "{{ php_extension_conf_paths }}"
   when: php_enable_apc
-  notify: restart webserver
+  notify: Restart webserver
 
 - name: Remove APCu config file if APC is disabled.
   file:
@@ -34,4 +34,4 @@
     state: absent
   with_items: "{{ php_extension_conf_paths }}"
   when: not php_enable_apc
-  notify: restart webserver
+  notify: Restart webserver

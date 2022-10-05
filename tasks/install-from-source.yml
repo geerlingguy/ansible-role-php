@@ -1,37 +1,8 @@
 ---
-- name: Ensure dependencies for building from source are installed (RedHat).
-  package:
-    name:
-      - autoconf
-      - automake
-      - libtool
-      - bison
-      - make
-      - re2c
-      - sqlite-devel
-      - oniguruma-devel
-      - curl-devel
-      - recode-devel
-      - aspell-devel
-      - libxml2-devel
-      - pkgconfig
-      - libmcrypt-devel
-      - t1lib-devel
-      - libXpm-devel
-      - libpng-devel
-      - libjpeg-turbo-devel
-      - bzip2-devel
-      - openssl-devel
-      - freetype-devel
-      - libicu-devel
-      - mariadb-devel
-      - gmp-devel
-    state: present
-  when: ansible_os_family == 'RedHat'
-
 - name: Update apt cache (Debian).
-  apt: update_cache=yes cache_valid_time=86400
-  when: ansible_os_family == 'Debian'
+  apt: 
+    update_cache: yes 
+    cache_valid_time: 86400
 
 - name: Ensure dependencies for building from source are installed (Debian).
   apt:
@@ -59,7 +30,6 @@
       - librecode-dev
       - libssl-dev
     state: present
-  when: ansible_os_family == 'Debian'
 
 - name: Define php_fpm_daemon (if not defined already).
   set_fact:
@@ -140,7 +110,7 @@
     dest: "/etc/init.d/{{ php_fpm_daemon }}"
     mode: 0755
   when: "'--enable-fpm' in php_source_configure_command"
-  notify: restart php-fpm
+  notify: Restart php-fpm
 
 - name: Ensure php-fpm config directory exists.
   file:
@@ -155,4 +125,4 @@
     dest: "{{ php_fpm_conf_path }}/php-fpm.conf"
     mode: 0644
   when: "'--enable-fpm' in php_source_configure_command"
-  notify: restart php-fpm
+  notify: Restart php-fpm
