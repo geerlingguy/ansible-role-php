@@ -4,7 +4,7 @@
   become: yes
 
   handlers:
-    - name: update apt cache
+    - name: Update apt cache
       apt: 
         update_cache: true
 
