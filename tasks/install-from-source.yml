@@ -140,7 +140,7 @@
     dest: "/etc/init.d/{{ php_fpm_daemon }}"
     mode: 0755
   when: "'--enable-fpm' in php_source_configure_command"
-  notify: restart php-fpm
+  notify: Restart php-fpm
 
 - name: Ensure php-fpm config directory exists.
   file:
@@ -155,4 +155,4 @@
     dest: "{{ php_fpm_conf_path }}/php-fpm.conf"
     mode: 0644
   when: "'--enable-fpm' in php_source_configure_command"
-  notify: restart php-fpm
+  notify: Restart php-fpm

@@ -14,7 +14,7 @@
   with_subelements:
     - "{{ php_installed_opcache_confs.results }}"
     - files
-  notify: restart webserver
+  notify: Restart webserver
 
 - name: Ensure OpCache config file is present.
   template:
@@ -26,7 +26,7 @@
     mode: 0644
   with_items: "{{ php_extension_conf_paths }}"
   when: php_opcache_enable | bool
-  notify: restart webserver
+  notify: Restart webserver
 
 - name: Remove OpCache config file if OpCache is disabled.
   file:
@@ -34,4 +34,4 @@
     state: absent
   with_items: "{{ php_extension_conf_paths }}"
   when: not php_opcache_enable | bool
-  notify: restart webserver
+  notify: Restart webserver
