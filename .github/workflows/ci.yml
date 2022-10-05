@@ -25,19 +25,34 @@ jobs:
           - ubuntu2204
           - debian11
     steps:
-      - name: Check out the codebase.
+      - name: Checkout repo
         uses: actions/checkout@v2
-
-      - name: Set up Python 3.
-        uses: actions/setup-python@v2
+      - name: Prepare 
+        shell: bash
+        run: |
+          python --version
+          sudo -H pip install --upgrade pip pipenv
+      - name: Cache pipenv
+        uses: actions/cache@v3
+        env:
+          cache-name: pipenv
         with:
-          python-version: '3.x'
-
-      - name: Install test dependencies.
-        run: pip3 install ansible molecule[docker] docker yamllint ansible-lint
-
-      - name: Run Molecule tests.
-        run: molecule test
+          path: ~/.cache/pipenv
+          key:  ${{ env.cache-name }}-${{ hashFiles('Pipfile.lock') }}
+          restore-keys: |
+            ${{ env.cache-name }}-${{ hashFiles('Pipfile.lock') }}
+            ${{ env.cache-name }}-
+      - name: Install dependencies
+        shell: bash
+        run: |
+          pipenv install
+      - name: Run version check
+        shell: bash
+        run: |
+          pipenv run molecule --version
+      - name: Run tests
+        run: |
+          pipenv run molecule test -- -vvv
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'

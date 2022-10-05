@@ -1,12 +1,11 @@
+---
 # https://docs.ansible.com/ansible-lint/rules/default_rules.html
+exclude_paths: 
+  - ~/.ansible/roles/
+  - .cache/
+  - .github/
+verbosity: 1
 use_default_rules: true
 skip_list:
-  - 'yaml'
-  - 'risky-shell-pipe'
-  - 'no-handler'
-  - 'role-name'
-  - command-instead-of-shell
-  - command-instead-of-module
-  - no-changed-when
-  - fqcn-builtins
   - experimental
+  - fqcn-builtins
