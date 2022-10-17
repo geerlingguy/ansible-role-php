@@ -5,7 +5,7 @@
     state: directory
     follow: true
     mode: 0755
-  with_flattened:
+  loop:
     - "{{ php_conf_paths }}"
     - "{{ php_extension_conf_paths }}"
 
