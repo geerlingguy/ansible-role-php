@@ -11,7 +11,6 @@ on:
       - master
   schedule:
     - cron: 0 4 * * 1
-
 jobs:
   molecule:
     name: Molecule
@@ -26,22 +25,16 @@ jobs:
           - debian11
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Prepare 
         shell: bash
         run: |
           python --version
           sudo -H pip install --upgrade pip pipenv
-      - name: Cache pipenv
-        uses: actions/cache@v3
-        env:
-          cache-name: pipenv
+      - uses: actions/cache@v3
         with:
-          path: ~/.cache/pipenv
-          key:  ${{ env.cache-name }}-${{ hashFiles('Pipfile.lock') }}
-          restore-keys: |
-            ${{ env.cache-name }}-${{ hashFiles('Pipfile.lock') }}
-            ${{ env.cache-name }}-
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-pipenv-${{ hashFiles('Pipfile.lock') }}
       - name: Install dependencies
         shell: bash
         run: |
