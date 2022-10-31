@@ -3,6 +3,10 @@
 # for RHEL/CentOS.
 php_enablerepo: ""
 
+# Pass the module you want to enable (e.g. "php:remi-7.4"). Used only for
+# RHEL/CentOS >= 8.6.
+php_enable_dnf_module: ""
+
 # Extra packages to install (in addition to distro-specific default lists).
 php_packages_extra: []
 

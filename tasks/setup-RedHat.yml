@@ -1,4 +1,14 @@
 ---
+- name: Ensure PHP default module is reset
+  shell: "dnf module reset php -y"
+  when: ansible_distribution_major_version == '8'
+
+- name: Ensure new PHP module is set
+  dnf:
+    name: "@{{ php_enable_dnf_module }}"
+    state: present
+  when: ansible_distribution_major_version == '8'
+
 - name: Ensure PHP packages are installed.
   package:
     name: "{{ php_packages + php_packages_extra }}"
