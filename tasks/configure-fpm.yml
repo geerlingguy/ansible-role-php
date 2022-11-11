@@ -19,6 +19,16 @@
     php_fpm_pool_group: "{{ __php_fpm_pool_group }}"
   when: php_fpm_pool_group is not defined
 
+- name: Define php_fpm_pool_listen_user.
+  set_fact:
+    php_fpm_pool_listen_user: "{{ __php_fpm_pool_listen_user }}"
+  when: php_fpm_pool_listen_user is not defined
+
+- name: Define php_fpm_pool_listen_group.
+  set_fact:
+    php_fpm_pool_listen_group: "{{ __php_fpm_pool_listen_group }}"
+  when: php_fpm_pool_listen_group is not defined
+
 - name: Stat php_fpm_pool_conf_path
   stat:
     path: "{{ php_fpm_pool_conf_path | dirname }}"

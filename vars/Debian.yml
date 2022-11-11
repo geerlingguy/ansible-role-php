@@ -37,3 +37,5 @@ __php_fpm_pool_conf_path: "{{ __php_fpm_conf_path }}/pool.d/www.conf"
 
 __php_fpm_pool_user: www-data
 __php_fpm_pool_group: www-data
+__php_fpm_pool_listen_user: "{{ __php_fpm_pool_user }}"
+__php_fpm_pool_listen_group: "{{ __php_fpm_pool_group }}"

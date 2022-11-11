@@ -6,8 +6,8 @@ listen.allowed_clients = {{ item.pool_listen_allowed_clients | default('127.0.0.
 user = {{ php_fpm_pool_user }}
 group = {{ php_fpm_pool_group }}
 
-listen.owner = {{ php_fpm_pool_user }}
-listen.group = {{ php_fpm_pool_group }}
+listen.owner = {{ php_fpm_pool_listen_user }}
+listen.group = {{ php_fpm_pool_listen_group }}
 
 pm = {{ item.pool_pm | default('dynamic', true) }}
 pm.max_children = {{ item.pool_pm_max_children | default(50, true) }}
