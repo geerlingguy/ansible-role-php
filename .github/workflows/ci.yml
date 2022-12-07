@@ -43,8 +43,6 @@ jobs:
         include:
           - distro: rockylinux8
             playbook: converge.yml
-          - distro: centos7
-            playbook: converge.yml
           - distro: ubuntu2004
             playbook: converge.yml
           - distro: ubuntu1804
@@ -54,7 +52,7 @@ jobs:
           - distro: debian10
             playbook: converge.yml
 
-          - distro: centos7
+          - distro: rockylinux8
             playbook: source-install.yml
 
     steps:
