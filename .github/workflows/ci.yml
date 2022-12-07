@@ -52,7 +52,7 @@ jobs:
           - distro: debian10
             playbook: converge.yml
 
-          - distro: rockylinux8
+          - distro: debian11
             playbook: source-install.yml
 
     steps:
