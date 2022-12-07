@@ -54,7 +54,7 @@
       - libfreetype6-dev
       - libgmp3-dev
       - libmcrypt-dev
-      - libmariadbclient-dev
+      - libmariadb-dev
       - libpspell-dev
       - librecode-dev
       - libssl-dev
