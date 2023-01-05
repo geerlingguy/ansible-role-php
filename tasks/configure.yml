@@ -5,9 +5,9 @@
     state: directory
     follow: true
     mode: 0755
-  with_flattened:
-    - "{{ php_conf_paths }}"
-    - "{{ php_extension_conf_paths }}"
+  loop:
+    - "{{ php_conf_paths | flatten }}"
+    - "{{ php_extension_conf_paths | flatten }}"
 
 - name: Place PHP configuration file in place.
   template:
