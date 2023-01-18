@@ -14,21 +14,15 @@ galaxy_info:
         - 8
     - name: Debian
       versions:
-        - buster
         - bullseye
     - name: Ubuntu
       versions:
-        - bionic
-        - focal
+        - jammy
   galaxy_tags:
     - development
     - web
     - php
     - language
     - fpm
-    - drupal
-    - wordpress
-    - joomla
-    - magento
-
+    
 dependencies: []
