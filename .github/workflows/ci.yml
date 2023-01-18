@@ -1,7 +1,7 @@
 ---
 name: CI
 on:
-  repository_dispatch: 
+  repository_dispatch:
     types: CI
   pull_request:
     branches:
@@ -18,11 +18,10 @@ jobs:
     strategy:
       matrix:
         version:
-          - 7.4
           - 8.1
         distro: 
-          - ubuntu2204
           - debian11
+          - ubuntu2204
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
