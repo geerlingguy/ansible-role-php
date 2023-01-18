@@ -32,7 +32,7 @@ The default values for the HTTP server deamon are `httpd` (used by Apache) for R
 
     php_default_version_debian: ""
 
-(Debian/Ubuntu only) The default version of PHP in the given OS version repositories. The specific version is set per distro and per version, but you can override it by providing a value here, like `"7.4"`.
+(Debian/Ubuntu only) The default version of PHP in the given OS version repositories. The specific version is set per distro and per version, but you can override it by providing a value here, like `"8.1"`.
 
 **If you'd like to be able to switch PHP versions easily, or use a version that's not available in system packages**: You can use the [`geerlingguy.php-versions`](https://galaxy.ansible.com/geerlingguy/php-versions/) role to more easily switch between major PHP versions (e.g. 5.6, 7.1, 7.2).
 

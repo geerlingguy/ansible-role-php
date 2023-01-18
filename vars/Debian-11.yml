@@ -1,5 +1,5 @@
 ---
-__php_default_version_debian: "7.4"
+__php_default_version_debian: "8.1"
 php_cassandra_cpp_driver_dependencies_pkgs: [] # A later version is already installed
 php_cassandra_php_driver_build_dependencies:
   - git
