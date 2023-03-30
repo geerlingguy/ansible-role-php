@@ -1,16 +1,16 @@
 ---
 - name: Ensure configuration directories exist.
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     follow: true
     mode: 0755
-  with_flattened:
-    - "{{ php_conf_paths }}"
-    - "{{ php_extension_conf_paths }}"
+  with_items:
+    - "{{ php_conf_paths | flatten }}"
+    - "{{ php_extension_conf_paths | flatten }}"
 
 - name: Place PHP configuration file in place.
-  template:
+  ansible.builtin.template:
     src: php.ini.j2
     dest: "{{ item }}/php.ini"
     owner: root
