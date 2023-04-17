@@ -122,6 +122,7 @@ By default, all the extra defaults below are applied through the php.ini include
     php_session_gc_maxlifetime: 1440
     php_session_save_handler: files
     php_session_save_path: ''
+    php_session_name: 'PHPSESSID'
     php_disable_functions: []
     php_precision: 14
     php_serialize_precision: "-1"

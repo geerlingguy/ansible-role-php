@@ -102,6 +102,7 @@ php_session_gc_divisor: 1000
 php_session_gc_maxlifetime: 1440
 php_session_save_handler: files
 php_session_save_path: ''
+php_session_name: 'PHPSESSID'
 
 php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
 php_display_errors: "Off"

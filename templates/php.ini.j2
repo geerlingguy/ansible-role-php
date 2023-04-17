@@ -177,7 +177,7 @@ session.save_handler = {{ php_session_save_handler }}
 session.save_path = {{ php_session_save_path }}
 session.use_cookies = 1
 session.use_only_cookies = 1
-session.name = PHPSESSID
+session.name = {{ php_session_name }}
 session.auto_start = 0
 
 session.cookie_lifetime = {{ php_session_cookie_lifetime }}
