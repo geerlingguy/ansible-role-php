@@ -15,6 +15,16 @@
     php_default_version_debian: "{{ __php_default_version_debian }}"
   when: php_default_version_debian is not defined and ansible_os_family == 'Debian'
 
+- name: Define the name of the JSON extension package on Debian for PHP <8.
+  set_fact:
+    __php_json_package_debian: "{{ 'php' + php_default_version_debian + '-json' }}"
+  when: ansible_os_family == 'Debian' and php_default_version_debian is version('8.0', '<')
+
+- name: Add the JSON extension on Debian for PHP <8.
+  set_fact:
+    __php_packages: "{{ __php_packages + [__php_json_package_debian] }}"
+  when: __php_json_package_debian is defined and __php_json_package_debian not in __php_packages
+
 - name: Define php_packages.
   set_fact:
     php_packages: "{{ __php_packages | list }}"
