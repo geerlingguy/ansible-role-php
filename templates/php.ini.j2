@@ -175,8 +175,8 @@ bcmath.scale = 0
 [Session]
 session.save_handler = {{ php_session_save_handler }}
 session.save_path = {{ php_session_save_path }}
-session.use_cookies = 1
-session.use_only_cookies = 1
+session.use_cookies = {{ php_session_use_cookies }}
+session.use_only_cookies = {{ php_session_use_only_cookies }}
 session.name = {{ php_session_name }}
 session.auto_start = 0
 
@@ -196,7 +196,7 @@ session.referer_check =
 session.cache_limiter = nocache
 session.cache_expire = 180
 
-session.use_trans_sid = 0
+session.use_trans_sid = {{ php_session_use_trans_sid }}
 
 session.hash_function = 0
 session.hash_bits_per_character = 5
