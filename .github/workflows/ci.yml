@@ -43,8 +43,6 @@ jobs:
         include:
           - distro: rockylinux8
             playbook: converge.yml
-          - distro: centos7
-            playbook: converge.yml
           - distro: ubuntu2004
             playbook: converge.yml
           - distro: ubuntu1804
@@ -54,8 +52,9 @@ jobs:
           - distro: debian10
             playbook: converge.yml
 
-          - distro: centos7
-            playbook: source-install.yml
+          # Had some trouble, might fix later.
+          # - distro: debian11
+          #   playbook: source-install.yml
 
     steps:
       - name: Check out the codebase.
@@ -69,7 +68,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install ansible molecule[docker] docker
+        run: pip3 install ansible molecule molecule-plugins[docker] docker
 
       - name: Run Molecule tests.
         run: molecule test

@@ -7,7 +7,7 @@
     php_enable_webserver: false
     php_enable_php_fpm: true
     php_memory_limit: "192M"
-    php_enablerepo: "remi,remi-php70"
+    php_enablerepo: "remi,remi-php82"
     php_install_recommends: false
 
   handlers:
@@ -28,7 +28,7 @@
         state: present
       when: ansible_os_family == 'Debian'
 
-    - name: Add repository for PHP 7.
+    - name: Add repository for PHP 8.
       apt_repository: repo='ppa:ondrej/php'
       when: ansible_distribution == 'Ubuntu'
 
