@@ -21,9 +21,10 @@ galaxy_info:
         - all
     - name: Ubuntu
       versions:
-        - trusty
         - xenial
         - bionic
+        - focal
+        - jammy
   galaxy_tags:
     - development
     - web
