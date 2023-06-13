@@ -21,13 +21,6 @@
       when: ansible_os_family == 'Debian'
       changed_when: false
 
-    # Ubuntu-specific tasks.
-    - name: Ensure dirmngr is installed (gnupg dependency).
-      apt:
-        name: dirmngr
-        state: present
-      when: ansible_os_family == 'Debian'
-
     - name: Add repository for PHP 8.
       apt_repository: repo='ppa:ondrej/php'
       when: ansible_distribution == 'Ubuntu'
