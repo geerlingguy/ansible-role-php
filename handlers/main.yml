@@ -13,3 +13,4 @@
   when:
     - php_enable_php_fpm
     - php_fpm_state == 'started'
+    - not ansible_check_mode
