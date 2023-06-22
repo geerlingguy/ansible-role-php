@@ -51,6 +51,6 @@
     state: "{{ php_fpm_state }}"
     enabled: "{{ php_fpm_enabled_on_boot }}"
   when:
-  - php_enable_php_fpm
-  - ansible_distribution != "Debian"
-  - not ansible_check_mode
+    - php_enable_php_fpm
+    - ansible_distribution != "Debian"
+    - not ansible_check_mode
