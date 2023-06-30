@@ -27,6 +27,7 @@
       apt:
         name: dirmngr
         state: present
+      when: ansible_os_family == 'Debian'
 
     # Debian-specific tasks.
     - name: Add dependencies for PHP versions (Debian).
