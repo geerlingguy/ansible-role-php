@@ -17,13 +17,16 @@
 
   pre_tasks:
     - name: Update apt cache.
-      apt: update_cache=true cache_valid_time=600
+      apt:
+        update_cache: true
+        cache_valid_time: 600
       when: ansible_os_family == 'Debian'
       changed_when: false
 
-    - name: Add repository for PHP 8.
-      apt_repository: repo='ppa:ondrej/php'
-      when: ansible_distribution == 'Ubuntu'
+    - name: Ensure dirmngr is installed (gnupg dependency).
+      apt:
+        name: dirmngr
+        state: present
 
     # Debian-specific tasks.
     - name: Add dependencies for PHP versions (Debian).
@@ -34,6 +37,11 @@
           - gnupg2
         state: present
       when: ansible_distribution == "Debian"
+
+    - name: Add Ondrej Sury's repo for PHP 8 (Ubuntu).
+      apt_repository:
+        repo: 'ppa:ondrej/php'
+      when: ansible_distribution == 'Ubuntu'
 
     - name: Add Ondrej Sury's apt key (Debian).
       apt_key:
