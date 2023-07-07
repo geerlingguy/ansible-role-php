@@ -15,3 +15,6 @@ pm.start_servers = {{ item.pool_pm_start_servers | default(5, true) }}
 pm.min_spare_servers = {{ item.pool_pm_min_spare_servers | default(5, true) }}
 pm.max_spare_servers = {{ item.pool_pm_max_spare_servers | default(5, true) }}
 pm.max_requests = {{ item.pool_pm_max_requests | default(500, true) }}
+{% if item.pool_pm_status_path|length %}
+pm.status_path = {{ item.pool_pm_status_path }}
+{% endif %}
