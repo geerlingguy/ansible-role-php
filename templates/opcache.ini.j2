@@ -9,6 +9,10 @@ opcache.validate_timestamps={{ php_opcache_validate_timestamps }}
 opcache.revalidate_path={{ php_opcache_revalidate_path }}
 opcache.revalidate_freq={{ php_opcache_revalidate_freq }}
 opcache.max_file_size={{ php_opcache_max_file_size }}
+{% if php_opcache_jit_buffer_size != '0' %}
+opcache.jit_buffer_size={{ php_opcache_jit_buffer_size }}
+opcache.jit={{ php_opcache_jit }}
+{% endif %}
 {% if php_opcache_blacklist_filename != '' %}
 opcache.blacklist_filename={{ php_opcache_blacklist_filename }}
 {% endif %}
