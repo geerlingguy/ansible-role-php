@@ -9,7 +9,6 @@ __php_packages:
   - php{{ php_default_version_debian }}-gd
   - php{{ php_default_version_debian }}-curl
   - php{{ php_default_version_debian }}-imap
-  - php{{ php_default_version_debian }}-json
   - php{{ php_default_version_debian }}-opcache
   - php{{ php_default_version_debian }}-xml
   - php{{ php_default_version_debian }}-mbstring

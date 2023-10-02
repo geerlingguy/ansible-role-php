@@ -83,6 +83,7 @@ The handler restarts PHP-FPM by default. Setting the value to `reloaded` will re
         pool_pm_min_spare_servers: 1
         pool_pm_max_spare_servers: 3
         pool_pm_max_requests: 500
+        pool_pm_status_path: /status
 
 List of PHP-FPM pool to create. By default, www pool is created. To setup a new pool, add an item to php_fpm_pools list.
 

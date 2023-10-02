@@ -7,7 +7,7 @@
     php_enable_webserver: false
     php_enable_php_fpm: true
     php_memory_limit: "192M"
-    php_enablerepo: "remi,remi-php70"
+    php_enablerepo: "remi,remi-php82"
     php_install_recommends: false
 
   handlers:
@@ -17,20 +17,17 @@
 
   pre_tasks:
     - name: Update apt cache.
-      apt: update_cache=true cache_valid_time=600
+      apt:
+        update_cache: true
+        cache_valid_time: 600
       when: ansible_os_family == 'Debian'
       changed_when: false
 
-    # Ubuntu-specific tasks.
     - name: Ensure dirmngr is installed (gnupg dependency).
       apt:
         name: dirmngr
         state: present
       when: ansible_os_family == 'Debian'
-
-    - name: Add repository for PHP 7.
-      apt_repository: repo='ppa:ondrej/php'
-      when: ansible_distribution == 'Ubuntu'
 
     # Debian-specific tasks.
     - name: Add dependencies for PHP versions (Debian).
@@ -41,6 +38,11 @@
           - gnupg2
         state: present
       when: ansible_distribution == "Debian"
+
+    - name: Add Ondrej Sury's repo for PHP 8 (Ubuntu).
+      apt_repository:
+        repo: 'ppa:ondrej/php'
+      when: ansible_distribution == 'Ubuntu'
 
     - name: Add Ondrej Sury's apt key (Debian).
       apt_key:
