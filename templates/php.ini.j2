@@ -18,7 +18,9 @@ disable_functions = {{ php_disable_functions|join(",") }}
 disable_classes =
 
 zend.enable_gc = On
-
+zend.assertions = {{ php_zend_assertions }}
+zend.exception_ignore_args = {{ php_zend_exception_ignore_args }}
+zend.exception_string_param_max_len = {{ php_zend_exception_string_param_max_len }}
 ;;;;;;;;;;;;;;;;;
 ; Miscellaneous ;
 ;;;;;;;;;;;;;;;;;
@@ -53,7 +55,7 @@ html_errors = On
 ; Data Handling ;
 ;;;;;;;;;;;;;;;;;
 
-variables_order = "GPCS"
+variables_order = {{ php_variables_order }}
 request_order = "GP"
 register_argc_argv = Off
 auto_globals_jit = On
@@ -114,7 +116,7 @@ smtp_port = 25
 ; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
 sendmail_path = {{ php_sendmail_path }}
 
-mail.add_x_header = On
+mail.add_x_header = {{ php_mail_add_x_header }}
 
 [SQL]
 sql.safe_mode = Off

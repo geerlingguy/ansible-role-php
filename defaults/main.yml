@@ -63,6 +63,8 @@ php_opcache_revalidate_path: "0"
 php_opcache_revalidate_freq: "2"
 php_opcache_max_file_size: "0"
 php_opcache_blacklist_filename: ""
+php_opcache_jit: "tracing"
+php_opcache_file_cache: ""
 
 # APCu settings.
 php_enable_apc: true
@@ -84,14 +86,19 @@ php_file_uploads: "On"
 php_upload_max_filesize: "64M"
 php_max_file_uploads: "20"
 
+php_variables_order: "GPCS"
 php_post_max_size: "32M"
 php_date_timezone: "America/Chicago"
 php_allow_url_fopen: "On"
 
 php_sendmail_path: "/usr/sbin/sendmail -t -i"
+php_mail_add_x_header: "On"
 php_output_buffering: "4096"
 php_short_open_tag: "Off"
 php_disable_functions: []
+php_zend_assertions: 1
+php_zend_exception_ignore_args: 'Off'
+php_zend_exception_string_param_max_len: 15
 php_precision: 14
 php_serialize_precision: "-1"
 
