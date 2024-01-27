@@ -102,9 +102,11 @@ By default, all the extra defaults below are applied through the php.ini include
     php_max_input_time: "60"
     php_max_input_vars: "1000"
     php_realpath_cache_size: "32K"
+    php_realpath_cache_ttl: ""
     php_file_uploads: "On"
     php_upload_max_filesize: "64M"
     php_max_file_uploads: "20"
+    php_upload_tmp_dir: NULL
     php_post_max_size: "32M"
     php_date_timezone: "America/Chicago"
     php_allow_url_fopen: "On"
@@ -121,9 +123,14 @@ By default, all the extra defaults below are applied through the php.ini include
     php_session_gc_maxlifetime: 1440
     php_session_save_handler: files
     php_session_save_path: ''
+    php_session_name: 'PHPSESSID'
+    php_session_use_cookies: 1
+    php_session_use_only_cookies: 1
+    php_session_use_trans_sid: 0
     php_disable_functions: []
     php_precision: 14
     php_serialize_precision: "-1"
+    php_sys_temp_dir: ""
 
 Various defaults for PHP. Only used if `php_use_managed_ini` is set to `true`.
 

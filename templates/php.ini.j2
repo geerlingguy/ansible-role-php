@@ -19,6 +19,8 @@ disable_classes =
 
 zend.enable_gc = On
 
+sys_temp_dir = {{ php_sys_temp_dir }}
+
 ;;;;;;;;;;;;;;;;;
 ; Miscellaneous ;
 ;;;;;;;;;;;;;;;;;
@@ -74,6 +76,7 @@ user_dir =
 enable_dl = Off
 
 realpath_cache_size = {{ php_realpath_cache_size }}
+realpath_cache_ttl = {{ php_realpath_cache_ttl }}
 
 ;;;;;;;;;;;;;;;;
 ; File Uploads ;
@@ -82,6 +85,7 @@ realpath_cache_size = {{ php_realpath_cache_size }}
 file_uploads = {{ php_file_uploads }}
 upload_max_filesize = {{ php_upload_max_filesize }}
 max_file_uploads = {{ php_max_file_uploads }}
+upload_tmp_dir = {{ php_upload_tmp_dir }}
 
 ;;;;;;;;;;;;;;;;;;
 ; Fopen wrappers ;
@@ -171,9 +175,9 @@ bcmath.scale = 0
 [Session]
 session.save_handler = {{ php_session_save_handler }}
 session.save_path = {{ php_session_save_path }}
-session.use_cookies = 1
-session.use_only_cookies = 1
-session.name = PHPSESSID
+session.use_cookies = {{ php_session_use_cookies }}
+session.use_only_cookies = {{ php_session_use_only_cookies }}
+session.name = {{ php_session_name }}
 session.auto_start = 0
 
 session.cookie_lifetime = {{ php_session_cookie_lifetime }}
@@ -192,7 +196,7 @@ session.referer_check =
 session.cache_limiter = nocache
 session.cache_expire = 180
 
-session.use_trans_sid = 0
+session.use_trans_sid = {{ php_session_use_trans_sid }}
 
 session.hash_function = 0
 session.hash_bits_per_character = 5
