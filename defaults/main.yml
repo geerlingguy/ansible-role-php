@@ -69,6 +69,10 @@ php_enable_apc: true
 php_apc_shm_size: "96M"
 php_apc_enable_cli: "0"
 
+# Manage PHP CLI memory limit.
+php_set_cli_memory_limit: false
+php_cli_memory_limit: "512M"
+
 # If this is set to false, none of the following options will have any effect.
 # Any and all changes to /etc/php.ini will be your responsibility.
 php_use_managed_ini: true
