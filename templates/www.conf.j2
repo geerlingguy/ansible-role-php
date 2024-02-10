@@ -3,11 +3,11 @@
 [{{ item.pool_name | mandatory }}]
 listen = {{ item.pool_listen | mandatory }}
 listen.allowed_clients = {{ item.pool_listen_allowed_clients | default('127.0.0.1', true) }}
-user = {{ php_fpm_pool_user }}
-group = {{ php_fpm_pool_group }}
+user = {{ item.pool_user | default(php_fpm_pool_user) }}
+group = {{ item.pool_group | default(php_fpm_pool_group) }}
 
-listen.owner = {{ php_fpm_pool_user }}
-listen.group = {{ php_fpm_pool_group }}
+listen.owner = {{ item.pool_user | default(php_fpm_pool_user) }}
+listen.group = {{ item.pool_group | default(php_fpm_pool_group) }}
 
 pm = {{ item.pool_pm | default('dynamic', true) }}
 pm.max_children = {{ item.pool_pm_max_children | default(50, true) }}

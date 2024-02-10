@@ -36,6 +36,8 @@ php_fpm_pm_status_path: ""
 # PHP-FPM pool configuration.
 php_fpm_pools:
   - pool_name: www
+    pool_user: www-data
+    pool_group: www-data
     pool_template: www.conf.j2
     pool_listen: "{{ php_fpm_listen }}"
     pool_listen_allowed_clients: "{{ php_fpm_listen_allowed_clients }}"
