@@ -1,4 +1,6 @@
 ---
+__php_default_version_redhat: "7.2"
+
 __php_packages:
   - php
   - php-cli

@@ -1,4 +1,7 @@
 ---
+- name: Set the default PHP version for RedHat-based OSes.
+  command: "dnf module enable -y php:{{ __php_default_version_redhat }}"
+
 - name: Ensure PHP packages are installed.
   package:
     name: "{{ php_packages + php_packages_extra }}"
