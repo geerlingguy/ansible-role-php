@@ -15,6 +15,11 @@
     php_default_version_debian: "{{ __php_default_version_debian }}"
   when: php_default_version_debian is not defined and ansible_os_family == 'Debian'
 
+- name: Set the default PHP version for Suse-based OSes.
+  set_fact:
+    php_default_version_suse: "{{ __php_default_version_suse }}"
+  when: php_default_version_debian is not defined and ansible_os_family == 'Suse'
+
 - name: Define the name of the JSON extension package on Debian for PHP <8.
   set_fact:
     __php_json_package_debian: "{{ 'php' + php_default_version_debian + '-json' }}"
@@ -75,6 +80,11 @@
   when:
     - not php_install_from_source
     - ansible_os_family == 'Debian'
+
+- include_tasks: setup-Suse.yml
+  when:
+    - not php_install_from_source
+    - ansible_os_family == 'Suse'
 
 # Install PHP from source when php_install_from_source is true.
 - include_tasks: install-from-source.yml

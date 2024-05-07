@@ -1,0 +1,35 @@
+---
+__php_default_version_suse: "81"
+
+__php_packages:
+  - php{{ php_default_version_suse }}
+  - php{{ php_default_version_suse }}-APCu
+  - php{{ php_default_version_suse }}-cli
+  - php{{ php_default_version_suse }}-devel
+  - php{{ php_default_version_suse }}-fpm
+  - php{{ php_default_version_suse }}-gd
+  - php{{ php_default_version_suse }}-ldap
+  - php{{ php_default_version_suse }}-mbstring
+  - php{{ php_default_version_suse }}-opcache
+  - php{{ php_default_version_suse }}-pdo
+  - php{{ php_default_version_suse }}-pear
+  - php{{ php_default_version_suse }}-xmlreader
+  - php{{ php_default_version_suse }}-xmlwriter
+__php_webserver_daemon: "apache2"
+
+__php_conf_paths:
+  - /etc/php{{ php_default_version_suse | first }}/fpm
+  - /etc/php{{ php_default_version_suse | first }}/cli
+
+__php_extension_conf_paths:
+  - /etc/php{{ php_default_version_suse | first }}/conf.d
+
+__php_apc_conf_filename: 50-apc.ini
+__php_opcache_conf_filename: 10-opcache.ini
+__php_fpm_daemon: php-fpm
+__php_fpm_conf_path: "/etc/php{{ php_default_version_suse | first }}/fpm/"
+__php_fpm_pool_path: "{{ __php_fpm_conf_path }}/php-fpm.d"
+__php_fpm_pool_conf_path: "{{ __php_fpm_conf_path }}/php-fpm.d/www.conf"
+
+__php_fpm_pool_user: wwwrun
+__php_fpm_pool_group: wwwrun
