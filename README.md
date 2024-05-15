@@ -151,6 +151,9 @@ For custom opcache.so location provide full path with `php_opcache_zend_extensio
 
 The platform-specific opcache configuration filename. Generally the default should work, but in some cases, you may need to override the filename.
 
+Additionally, any variable matching the `^php_opcache_.*$` regex will be converted into the corresponding opcache ini variable. \
+For instance, `php_opcache_jit_buffer_size: 256` will automatically be converted into `opcache.jit_buffer_size=256` in the opcache ini file.
+
 ### APCu-related Variables
 
     php_enable_apc: true
