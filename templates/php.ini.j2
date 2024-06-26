@@ -73,7 +73,7 @@ default_mimetype = "text/html"
 doc_root =
 user_dir =
 
-enable_dl = Off
+enable_dl = {{ php_enable_dl }}
 
 realpath_cache_size = {{ php_realpath_cache_size }}
 
@@ -199,6 +199,12 @@ session.use_trans_sid = 0
 session.hash_function = 0
 session.hash_bits_per_character = 5
 session.use_strict_mode = 0
+
+redis.session.lock_retries = {{ php_redis_session_lock_retries }}
+redis.session.lock_wait_time = {{ php_redis_session_lock_wait_time }}
+session.serialize_handler = {{ php_session_serialize_handler }}
+session.sid_bits_per_character = {{ php_session_sid_bits_per_character}}
+session.sid_length = {{ php_session_sid_length }}
 
 url_rewriter.tags = "a=href,area=href,frame=src,input=src,form=fakeentry"
 
