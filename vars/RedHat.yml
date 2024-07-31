@@ -13,7 +13,6 @@ __php_packages:
   - php-pear
   - php-pecl-apcu
   - php-xml
-  - php-xmlrpc
 __php_webserver_daemon: "httpd"
 
 __php_conf_paths:
