@@ -1,0 +1,13 @@
+__opcache_var_names: "{{ lookup('varnames',
+                                '^php_opcache_(?!(zend_extension|conf_filename|blacklist_filename)).*$',
+                                wantlist=True) }}"
+__opcache_var_values: "{{ lookup('vars',
+                                 *__opcache_var_names,
+                                 wantlist=True) }}"
+opcache_vars: "{{ __opcache_var_names
+                    | map('regex_replace', '^(php_opcache_)', '')
+                    | map('community.general.dict_kv', 'key')
+                  | zip(__opcache_var_values
+                        | map('community.general.dict_kv', 'value'))
+                  | map('combine')
+                  | items2dict }}"
