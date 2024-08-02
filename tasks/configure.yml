@@ -11,7 +11,7 @@
 
 - name: Place PHP configuration file in place.
   ansible.builtin.template:
-    src: php.ini.j2
+    src: "{{ php_ini_template }}"
     dest: "{{ item }}/php.ini"
     owner: root
     group: root
