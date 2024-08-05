@@ -3,11 +3,11 @@
 [{{ item.pool_name | mandatory }}]
 listen = {{ item.pool_listen | mandatory }}
 listen.allowed_clients = {{ item.pool_listen_allowed_clients | default('127.0.0.1', true) }}
-user = {{ php_fpm_pool_user }}
-group = {{ php_fpm_pool_group }}
+user = {{ item.pool_user | default( php_fpm_pool_user ) }}
+group = {{ item.pool_group | default( php_fpm_pool_group ) }}
 
-listen.owner = {{ php_fpm_pool_user }}
-listen.group = {{ php_fpm_pool_group }}
+listen.owner = {{ item.pool_user | default( php_fpm_pool_user ) }}
+listen.group = {{ item.pool_group | default( php_fpm_pool_group ) }}
 
 pm = {{ item.pool_pm | default('dynamic', true) }}
 pm.max_children = {{ item.pool_pm_max_children | default(50, true) }}
@@ -17,4 +17,8 @@ pm.max_spare_servers = {{ item.pool_pm_max_spare_servers | default(5, true) }}
 pm.max_requests = {{ item.pool_pm_max_requests | default(500, true) }}
 {% if item.pool_pm_status_path|length %}
 pm.status_path = {{ item.pool_pm_status_path }}
+{% endif %}
+{% if item.pool_chroot | default(false) %}chroot = {{ item.pool_chroot }}
+{% endif %}
+{% if item.pool_chdir | default(false) %}chdir = {{ item.pool_chdir }}
 {% endif %}
