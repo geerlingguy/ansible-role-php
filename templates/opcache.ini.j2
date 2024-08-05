@@ -12,3 +12,9 @@ opcache.max_file_size={{ php_opcache_max_file_size }}
 {% if php_opcache_blacklist_filename != '' %}
 opcache.blacklist_filename={{ php_opcache_blacklist_filename }}
 {% endif %}
+{% if php_opcache_preload != '' %}
+opcache.preload={{ php_opcache_preload }}
+{% endif %}
+{% if php_opcache_preload_user != '' %}
+opcache.preload_user={{ php_opcache_preload_user }}
+{% endif %}
