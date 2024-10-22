@@ -1,0 +1,37 @@
+---
+__php_packages:
+  - php
+  - php-cli
+  - php-common
+  - php-devel
+  - php-fpm
+  - php-gd
+  - php-ldap
+  - php-mbstring
+  - php-opcache
+  - php-pdo
+  - php-pear
+  - php-pecl-apcu
+  - php-xml
+__php_default_version_rocky: "8.2"
+
+__php_webserver_daemon: "httpd"
+
+__php_conf_paths:
+  - /etc/php/{{ php_default_version_rocky }}/fpm
+  - /etc/php/{{ php_default_version_rocky }}/httpd
+  - /etc/php/{{ php_default_version_rocky }}/cli
+
+__php_extension_conf_paths:
+  - /etc/php/{{ php_default_version_rocky }}/fpm/conf.d
+  - /etc/php/{{ php_default_version_rocky }}/httpd/conf.d
+  - /etc/php/{{ php_default_version_rocky }}/cli/conf.d
+
+__php_apc_conf_filename: 20-apcu.ini
+__php_opcache_conf_filename: 10-opcache.ini
+__php_fpm_daemon: php-fpm
+__php_fpm_conf_path: "/etc/php/{{ php_default_version_rocky }}/fpm"
+__php_fpm_pool_conf_path: "{{ __php_fpm_conf_path }}/pool.d/www.conf"
+
+__php_fpm_pool_user: apache
+__php_fpm_pool_group: apache

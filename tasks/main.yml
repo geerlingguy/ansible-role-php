@@ -25,6 +25,11 @@
     __php_packages: "{{ __php_packages + [__php_json_package_debian] }}"
   when: __php_json_package_debian is defined and __php_json_package_debian not in __php_packages
 
+- name: Set the default PHP version for Rocky-based OSes.
+  set_fact:
+    php_default_version_rocky: "{{ __php_default_version_rocky }}"
+  when: php_default_version_rocky is not defined and ansible_os_family == 'Rocky'
+
 - name: Define php_packages.
   set_fact:
     php_packages: "{{ __php_packages | list }}"
@@ -75,6 +80,11 @@
   when:
     - not php_install_from_source
     - ansible_os_family == 'Debian'
+
+- include_tasks: setup-Rocky.yml
+  when:
+    - not php_install_from_source
+    - ansible_os_family == 'Rocky'
 
 # Install PHP from source when php_install_from_source is true.
 - include_tasks: install-from-source.yml
