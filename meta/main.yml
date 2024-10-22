@@ -18,6 +18,9 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - all
+    - name: Rocky
+      versions:
+        - 9
   galaxy_tags:
     - development
     - web
