@@ -85,3 +85,4 @@
 - include_tasks: configure-apcu.yml
 - include_tasks: configure-opcache.yml
 - include_tasks: configure-fpm.yml
+  when: php_enable_php_fpm
