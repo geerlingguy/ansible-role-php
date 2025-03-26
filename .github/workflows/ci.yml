@@ -41,9 +41,8 @@ jobs:
     strategy:
       matrix:
         include:
-          # See: https://github.com/geerlingguy/ansible-role-php/issues/434
-          # - distro: rockylinux9
-          #   playbook: converge.yml
+          - distro: rockylinux9
+            playbook: converge.yml
           - distro: ubuntu2404
             playbook: converge.yml
           - distro: ubuntu2204
