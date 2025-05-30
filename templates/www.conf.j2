@@ -18,3 +18,7 @@ pm.max_requests = {{ item.pool_pm_max_requests | default(500, true) }}
 {% if item.pool_pm_status_path|length %}
 pm.status_path = {{ item.pool_pm_status_path }}
 {% endif %}
+{% if item.pool_ping_path|length %}
+ping.path = {{ item.pool_ping_path }}
+ping.response = {{ pool_ping_response | default('pong', true) }}
+{% endif %}
