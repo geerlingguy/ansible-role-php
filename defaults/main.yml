@@ -46,6 +46,8 @@ php_fpm_pools:
     pool_pm_max_spare_servers: "{{ php_fpm_pm_max_spare_servers }}"
     pool_pm_max_requests: "{{ php_fpm_pm_max_requests }}"
     pool_pm_status_path: "{{ php_fpm_pm_status_path }}"
+    pool_ping_path: ""
+    pool_ping_response: "pong"
 
 # The executable to run when calling PHP from the command line.
 php_executable: "php"
