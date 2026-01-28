@@ -10,7 +10,9 @@
   file:
     path: "{{ item.1.path }}"
     state: absent
-  when: php_apc_conf_filename != (item.1.path.split('/') | last)
+  when:
+    - php_enable_apc
+    - php_apc_conf_filename != (item.1.path.split('/') | last)
   with_subelements:
     - "{{ php_installed_apc_confs.results }}"
     - files
