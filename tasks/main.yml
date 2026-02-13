@@ -83,5 +83,6 @@
 # Configure PHP.
 - include_tasks: configure.yml
 - include_tasks: configure-apcu.yml
+  when: php_enable_apc | bool
 - include_tasks: configure-opcache.yml
 - include_tasks: configure-fpm.yml
