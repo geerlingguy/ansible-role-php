@@ -1,4 +1,6 @@
+{% if ansible_facts.os_family == 'Debian' and php_default_version_debian is version('8.5', '<') %}
 zend_extension={{ php_opcache_zend_extension }}
+{% endif %}
 opcache.enable={{ php_opcache_enable }}
 opcache.enable_cli={{ php_opcache_enable_cli }}
 opcache.memory_consumption={{ php_opcache_memory_consumption }}
