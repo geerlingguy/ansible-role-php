@@ -18,6 +18,6 @@ pm.max_requests = {{ item.pool_pm_max_requests | default(500, true) }}
 {% if item.pool_pm_status_path|length %}
 pm.status_path = {{ item.pool_pm_status_path }}
 {% endif %}
-{% if item.request_terminate_timeout|length %}
-request_terminate_timeout = {{ item.request_terminate_timeout }}
+{% if item.pool_request_terminate_timeout|length %}
+request_terminate_timeout = {{ item.pool_request_terminate_timeout }}
 {% endif %}
