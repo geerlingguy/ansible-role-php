@@ -83,5 +83,8 @@
 # Configure PHP.
 - include_tasks: configure.yml
 - include_tasks: configure-apcu.yml
+  when: php_use_apcu_managed_ini
 - include_tasks: configure-opcache.yml
+  when: php_use_opcache_managed_ini
 - include_tasks: configure-fpm.yml
+  when: php_enable_php_fpm
