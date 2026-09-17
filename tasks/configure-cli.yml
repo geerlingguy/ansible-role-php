@@ -1,0 +1,14 @@
+---
+
+- name: Set PHP CLI memory limit.
+  block:
+    - name: Ensure PHP CLI config directory exists.
+      file:
+        dest: "/etc/php/{{ php_default_version_debian }}/cli/conf.d/"
+        state: directory
+    - name: Set PHP CLI memory limit.
+      template:
+        src: memory_limit.ini.j2
+        dest: "/etc/php/{{ php_default_version_debian }}/cli/conf.d/20-memory_limit.ini"
+  become: true
+  when: php_set_cli_memory_limit | bool
