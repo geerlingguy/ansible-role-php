@@ -25,6 +25,16 @@
     __php_packages: "{{ __php_packages + [__php_json_package_debian] }}"
   when: __php_json_package_debian is defined and __php_json_package_debian not in __php_packages
 
+- name: Define the name of the IMAP extension package on Debian for PHP <8.4.
+  set_fact:
+    __php_imap_package_debian: "{{ 'php' + php_default_version_debian + '-imap' }}"
+  when: ansible_facts.os_family == 'Debian' and php_default_version_debian is version('8.4', '<')
+
+- name: Add the IMAP extension on Debian for PHP <8.4.
+  set_fact:
+    __php_packages: "{{ __php_packages + [__php_imap_package_debian] }}"
+  when: __php_imap_package_debian is defined and __php_imap_package_debian not in __php_packages
+
 - name: Define php_packages.
   set_fact:
     php_packages: "{{ __php_packages | list }}"
