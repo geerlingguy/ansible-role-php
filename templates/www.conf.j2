@@ -18,3 +18,5 @@ pm.max_requests = {{ item.pool_pm_max_requests | default(500, true) }}
 {% if item.pool_pm_status_path|length %}
 pm.status_path = {{ item.pool_pm_status_path }}
 {% endif %}
+
+clear_env = {{ item.pool_clear_env | default('yes') }}
