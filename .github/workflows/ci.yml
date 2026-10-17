@@ -50,14 +50,10 @@ jobs:
             playbook: converge.yml
           - distro: ubuntu2204
             playbook: converge.yml
+          - distro: debian13
+            playbook: converge.yml
           - distro: debian12
             playbook: converge.yml
-          - distro: debian11
-            playbook: converge.yml
-
-          # Had some trouble, might fix later.
-          # - distro: debian11
-          #   playbook: source-install.yml
 
     steps:
       - name: Check out the codebase.
