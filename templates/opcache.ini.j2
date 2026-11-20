@@ -1,4 +1,6 @@
+{% if php_opcache_zend_extension %}
 zend_extension={{ php_opcache_zend_extension }}
+{% endif %}
 opcache.enable={{ php_opcache_enable }}
 opcache.enable_cli={{ php_opcache_enable_cli }}
 opcache.memory_consumption={{ php_opcache_memory_consumption }}

@@ -1,0 +1,19 @@
+---
+__php_default_version_debian: "8.5"
+__php_packages:
+  - php{{ php_default_version_debian }}-common
+  - php{{ php_default_version_debian }}-cli
+  - php{{ php_default_version_debian }}-dev
+  - php{{ php_default_version_debian }}-fpm
+  - libpcre2-dev
+  - php{{ php_default_version_debian }}-gd
+  - php{{ php_default_version_debian }}-curl
+  - php{{ php_default_version_debian }}-xml
+  - php{{ php_default_version_debian }}-mbstring
+  - php{{ php_default_version_debian }}-apcu
+  - php{{ php_default_version_debian }}-sqlite3
+
+# OPcache is compiled into PHP core as of 8.5, so there is no opcache.so to load
+# as a Zend extension (and no php8.5-opcache package). Leave this empty to skip
+# the `zend_extension` line in the OPcache config.
+php_opcache_zend_extension: ""
