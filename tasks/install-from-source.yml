@@ -55,6 +55,7 @@
       - libgmp3-dev
       - libmcrypt-dev
       - libmariadb-dev
+      - libmariadb-dev-compat
       - libpspell-dev
       - librecode-dev
       - libssl-dev
