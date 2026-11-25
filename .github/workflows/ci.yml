@@ -54,6 +54,9 @@ jobs:
             playbook: converge.yml
           - distro: debian12
             playbook: converge.yml
+          # test installation from source
+          - distro: ubuntu2604
+            playbook: source-install.yml
 
     steps:
       - name: Check out the codebase.
@@ -76,28 +79,3 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO: ${{ matrix.distro }}
           MOLECULE_PLAYBOOK: ${{ matrix.playbook }}
-
-  source-install:
-    name: Molecule (source install)
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out the codebase.
-        uses: actions/checkout@v4
-        with:
-          path: 'geerlingguy.php'
-
-      - name: Set up Python 3.
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'  # Can't go to 3.14+ until Ansible 13.x
-
-      - name: Install test dependencies.
-        run: pip3 install ansible molecule molecule-plugins[docker] docker
-
-      - name: Run Molecule tests.
-        run: molecule test
-        env:
-          PY_COLORS: '1'
-          ANSIBLE_FORCE_COLOR: '1'
-          MOLECULE_DISTRO: ubuntu2604
-          MOLECULE_PLAYBOOK: source-install.yml
